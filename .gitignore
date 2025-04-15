@@ -2,8 +2,10 @@
 *.aux
 *.lof
 *.log
+*.loq
 *.lot
 *.fls
+*.ist
 *.out
 *.toc
 *.fmt
@@ -22,7 +24,7 @@
 # *.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
-.pdf
+exemplo_monografia_UFLA.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -112,6 +114,9 @@ acs-*.bib
 *.glg
 *.glo
 *.gls
+*.glg-abr
+*.glo-abr
+*.gls-abr
 *.glsdefs
 *.lzo
 *.lzs
