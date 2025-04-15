@@ -109,13 +109,28 @@
 % Alterada em 14/06/2016 por Joaquim Q. Uchoa
 % -> Melhorias na ficha catalográfica
 % -> Ajustes menores na folha de rosto e de aprovação
+% ******** Versão adaptada para 6a edição do manual da UFLA ********
+% Alterada em 11/04/2025 por João Paulo P. Lima (@joaopaulo7)
+% -> Alteração para fonte do texto 12pt e folha a4 e onesided
+% -> Alteração no tamanho das margens
+% -> Alteração de Large de 14.4pt para 14pt
+% -> Alteração de small e footnotesize para 11pt
+% -> Remoção do salto de linha entre o título e subtítulo
+% -> Agora as listas de figuras e etc mantêm a formatação para qualquer índice.
+% -> Agora o sumário mantém a formatação para qualque índice. 
+%     (antes, sec/subsec > 10 quebravam a formatação)
+% -> Uso de 11pt para notas, fichas e rodapés
+% -> Ajustes de posicionamento
+%     necessário graças às diferenças de tamanho das fontes e das margens
+% -> Remoção de páginas duplas dos elementos pré-textuais
+% -> Adição dos indicadores de impacto
 %######################################################################
 
 
 %######################################################################
 % identificacao
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{uflamon}[2015/09/21]
+\ProvidesClass{uflamon}[2025/04/11]
 %######################################################################
 
 
@@ -152,12 +167,18 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
 
-\LoadClass[11pt,letterpaper]{book} % classe base para a monografia
+\LoadClass[12pt, a4paper, oneside]{book} % classe base para a monografia
 \RequirePackage{ifthen} % para testes
 \RequirePackage{calc} % para calculos (margens, etc.)
 \RequirePackage{lastpage} % para ficha catalografica
 \RequirePackage{graphicx} % Logo da UFLA na capa.
+
+% para listas de siglas, símbolos e etc; glossário e índice.
+\RequirePackage[nopostdot, abbreviations,
+                automake, symbols, index]{glossaries-extra}
+\usepackage{glossary-mcols}
 %######################################################################
+
 
 
 %######################################################################
@@ -223,14 +244,14 @@
 % Definicao de margens
 \setlength{\hoffset}{-1in} % remove padrao do LaTeX 
 \setlength{\voffset}{-1in} % remove padrao do LaTeX 
-\setlength{\oddsidemargin}{4.5cm}  % margem esquerda
-\setlength{\evensidemargin}{4.5cm} % margem direita
-\setlength{\topmargin}{3.3cm}    % margem superior
+\setlength{\oddsidemargin}{3.0cm}  % margem esquerda
+\setlength{\evensidemargin}{2.0cm} % margem direita
+\setlength{\topmargin}{1.0cm}    % margem superior
 \newlength{\bottommargin}        % margem inferior eh deduzida em LaTeX
-\setlength{\bottommargin}{3.3cm} % margem inferior
-\setlength{\headheight}{0cm} % altura do cabecalho
-\setlength{\headsep}{1cm}    % espaco entre cabecalho e texto
-\setlength{\footskip}{0cm}  % espaco entre rodape e texto
+\setlength{\bottommargin}{2.0cm} % margem inferior
+\setlength{\headheight}{2,0cm}   % altura do cabecalho
+\setlength{\headsep}{2.0cm}      % espaco entre cabecalho e texto
+\setlength{\footskip}{2.0cm}     % espaco entre rodape e texto
 \setlength\textheight{ % altura disponivel para texto
  \paperheight-\topmargin-\bottommargin-\headheight-\headsep-\footskip
 } 
@@ -263,9 +284,22 @@
 % Para controle de tamanho de itens
 \newlength{\mylen}
 
+% Redefinindo Large
+ \def\@tamanhoLarge{14.0}
+\renewcommand\Large{\@setfontsize\Large\@tamanhoLarge{17}}
+
 % Redefinindo LARGE
- \def\@xvipt{16.0}
-\renewcommand\LARGE{\@setfontsize\LARGE\@xvipt{20}}
+ \def\@tamanhoLARGE{16.0}
+\renewcommand\LARGE{\@setfontsize\LARGE\@tamanhoLARGE{20}}
+
+% Redefinindo small
+ \def\@tamanhosmall{11.0}
+\renewcommand\small{\@setfontsize\small\@tamanhosmall{13}}
+
+% Redefinindo footnotesize
+ \def\@tamanhofootnotesize{11.0}
+\renewcommand\footnotesize{\@setfontsize\footnotesize\@tamanhofootnotesize{13}}
+
 
 % Definindo tamanho para exemplo
 \newcommand\smallx{%
@@ -303,8 +337,7 @@
 
 \fancypagestyle{ufla}{
 \fancyhf{}
-\fancyhead[RO]{\thepage}
-\fancyhead[LE]{\thepage}
+\fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 }
@@ -313,19 +346,37 @@
 
 %######################################################################
 % Redefinicao de titulos
-%\RequirePackage[noindentafter]{titlesec}
 \RequirePackage[noindentafter]{titlesec}
 \setcounter{secnumdepth}{6}
 \setcounter{tocdepth}{6}
 
+
+
 % máxima profundidade utilizada (necessário rodar duas vezes)
 % maxuseddepthold é pego do .aux
-\newcounter{maxuseddepthold}
-\newcounter{maxuseddepth}
-\setcounter{maxuseddepth}{0}
+\newlength{\widthsechold}
+\newlength{\widthsec}
+\setlength{\widthsec}{0pt}
 
-\newcommand{\testasecao}[1]{
-    \setcounter{maxuseddepth}{\maxof{\value{maxuseddepth}}{#1}}
+\newlength{\auxwidthsec}
+\setlength{\auxwidthsec}{1.5em}% recuo dos textos com relação aos índices
+% encontra o maior índice, em pt, nas seções e salva em \widthsec
+\newcommand{\testasecao}{
+    % calcula o tamanho do texto dos índices. Ignora zeros.
+    \ifthenelse{\value{chapter}>0}
+        {\addtolength{\auxwidthsec}{\widthof{\arabic{chapter}}}}{}
+    \ifthenelse{\value{section}>0}
+        {\addtolength{\auxwidthsec}{\widthof{.\arabic{section}}}}{}
+    \ifthenelse{\value{subsection}>0}
+        {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsection}}}}{}
+    \ifthenelse{\value{subsubsection}>0}
+        {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsubsection}}}}{}
+    \ifthenelse{\value{subsubsubsection}>0}
+        {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsubsubsection}}}}{}
+    
+    % define se é o maior
+    \setlength{\auxwidthsec}{\maxof{\auxwidthsec}{\widthsec}}
+    \global\widthsec=\auxwidthsec
 }
 
 % Redefinindo titulo de capitulo
@@ -349,23 +400,24 @@
 \renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
 \renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
 
+
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                                    {-3.5ex \@plus -1ex \@minus -.2ex}%
                                    {2.3ex \@plus.2ex}%
-                                   {\testasecao{1}\normalfont\normalsize\bfseries}}
+                                   {\testasecao\normalfont\normalsize\bfseries}}
 
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
                                      {1.5ex \@plus .2ex}%
-                                     {\testasecao{2}\normalfont\normalsize\bfseries}}
+                                     {\testasecao\normalfont\normalsize\bfseries}}
 
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
                                     {1.5ex \@plus .2ex}%
-                                    {\testasecao{3}\normalfont\normalsize\bfseries}}
+                                    {\testasecao\normalfont\normalsize\bfseries}}
 
 \titleformat{\subsubsubsection}
-  {\testasecao{4}\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+  {\testasecao\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
 \titlespacing*{\subsubsubsection}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
@@ -438,8 +490,8 @@
 
     \LARGE\textbf{\MakeUppercase\@title}%
     \ifthenelse{\equal{\@subtitle}{\@empty}}% verifica se tem subtitulo
-    {\\}% se nao tiver, so pula a linha
-    {\LARGE:\\{\MakeUppercase\@subtitle}} % subtitulo da monografia
+    {}% se nao tiver, não faz nada
+    {\LARGE: {\MakeUppercase\@subtitle}} % subtitulo da monografia
     
      \ifthenelse{\equal{\@edicao}{\@empty}}% verifica se tem edicao
     {}{\large\@edicao}                                     % se tiver, imprime
@@ -449,10 +501,10 @@
     \Large\textbf{\MakeUppercase\@local}\\ 
     \textbf{\MakeUppercase\@date}
     \null
-    \cleardoublepage
     \end{titlepage}
 }
 %######################################################################
+
 
 
 %######################################################################
@@ -460,18 +512,18 @@
   % Antes verifica se tem os dados, senão, não imprime
   \ifthenelse{\equal{\@fcautor}{\@empty}}{}{%
   % Espacamento entre linhas
-  \renewcommand{\baselinestretch}{1}\normalsize 
-  \@fcautor \\
+  \renewcommand{\baselinestretch}{1}\small
+   \@fcautor \\
   \tab 
   \ifthenelse{\equal{\@subtitle}{\@empty}}% verififica se tem título e subtítulo
   {% se não tem imprime só título
-    \@title
+     \@title
   } {% se tiver, imprime os dois
-    \@title\ : \@subtitle
+     \@title\ : \@subtitle
   }  
   / \@fcautores. 
-  \ifthenelse{\equal{\@fcedicao}{\@empty}}{}{\@fcedicao} 
-  -- Lavras : UFLA, \@date.\\
+  \ifthenelse{\equal{\@fcedicao}{\@empty}}{}{ \@fcedicao} 
+   -- Lavras : UFLA, \@date.\\
   \tab \pageref{LastPage} p. : \@fcilustrado\\
   \vfill
   \ifthenelse{\equal{\@fctipo}{\@empty}} % se tipo nao existir,
@@ -504,11 +556,11 @@
 %######################################################################
 
 
+
 %######################################################################
 % Codigo para impressao da folha de rosto
 \newcommand\imprimeFolhaRosto{
     \begin{titlepage}
-    \newpage    
     %\pagestyle{empty}
     %\vspace*{\stretch{.08}}
     
@@ -519,17 +571,25 @@
 
         \textbf{\MakeUppercase\@title}% titulo da monografia
         \ifthenelse{\equal{\@subtitle}{\@empty}}% verifica se tem subtitulo
-        {\\}% se nao tiver, so pula a linha
-        {:\\{\MakeUppercase\@subtitle}} % subtitulo da monografia
+        {}% se nao tiver, não faz nada
+        {: {\MakeUppercase\@subtitle}} % subtitulo da monografia
 
          \ifthenelse{\equal{\@edicao}{\@empty}}% verifica se tem edicao
-         {}{\large\@edicao}                                     % se tiver, imprime
+         {}{\@edicao}                                     % se tiver, imprime
 
+        \vspace{\stretch{.10}}
+
+        %espaçamento simples
+        % a normalização diz que notas são tamanho 11, mas no docx é 12(?)
+        % mantive 12
+        {\renewcommand{\baselinestretch}{1}\normalsize%small 
+            \hfill%
+            \begin{minipage}{8cm}
+                \@tipo
+            \end{minipage}
+        }
+        
         \vspace{\stretch{1}}
-
-        \hfill\begin{minipage}{8cm}{\@tipo}\end{minipage} % tipo da monografia
-
-        \vspace{\stretch{.58}}
 
 
         \ifthenelse{\equal{\@orientador}{\@empty}} % % se orientador nao existir,
@@ -574,7 +634,7 @@
       \vspace*{\stretch{1}}
   
      \begin{center}
-        \bfseries\footnotesize
+        \bfseries
         \@preparofichacat
       \end{center}
 
@@ -583,7 +643,10 @@
       \addtolength{\mylenn}{\mylen}
       \addtolength{\mylenn}{-1.9cm}
 
-      \noindent \hfill  
+      % alteração graças às diferenças de margem.
+      % a4 = 21cm, margem direita = 3cm margem esquerda = 2cm, caixa = 12.5cm
+      % espaço à esquerda = (21-3-2-12.5)/2 = 1.75cm
+      \noindent \hspace{1.75cm} 
       \fbox{\parbox[c][7.5cm][t]{\mylen}{
         \vspace{0.3cm}
         \hspace{1.5cm} \parbox[c][7.2cm][t]{\mylenn}{
@@ -600,6 +663,7 @@
   \end{titlepage}
 }
 %######################################################################
+
 
 
 %######################################################################
@@ -655,7 +719,7 @@
     %se existir arquivo, então insira-o
     {%\pagestyle{empty} %
      \vspace*{-4.5cm}\hspace*{-4.5cm} \includegraphics[scale=\@escalaFolhaAprovacao]{\@arquivoFolhaAprovacao}%
-     \cleardoublepage} %
+     \clearpage} %
 }
 
 % Codigo para impressao da folha de aprovacao
@@ -684,12 +748,17 @@
         }
     \end{center}
 
-    \vspace{\stretch{0.4}}
+    \vspace{\stretch{0.1}}
 
     \hfill%
-    \begin{minipage}{8cm}{%
-        \@tipo}%
-    \end{minipage}    
+    %espaçamento simples
+        % a normalização diz que notas são tamanho 11, mas no docx é 12(?)
+        % mantive 12
+    {\renewcommand{\baselinestretch}{1}\normalsize
+        \begin{minipage}{8cm}
+             \@tipo
+        \end{minipage}
+    }
 
     \vspace{\stretch{.5}}
         
@@ -767,7 +836,7 @@
         {\bf\@date}
     \end{center}   
     
-    \cleardoublepage
+    \clearpage
     %\end{titlepage}
 } % \def\folhaaprovacao
 %######################################################################
@@ -784,7 +853,7 @@
     \begin{flushright}{\textit{#1}}\end{flushright}
     \vspace*{1cm}
         
-    \cleardoublepage
+    \clearpage
     %\end{titlepage}
 } % \dedic
 
@@ -800,7 +869,7 @@
     \vspace*{1cm}    
     \vfill\null
     
-    \cleardoublepage
+    \clearpage
     %\end{titlepage}
 } % \thanks
 
@@ -814,7 +883,7 @@
     \begin{flushright}{\textit{#1}}\end{flushright}
     \vspace*{1cm}
         
-    \cleardoublepage
+    \clearpage
     %\end{titlepage}
 } % epigrafe
 %######################################################################
@@ -849,7 +918,7 @@
     
     % Retoma espaçamento normal entre linhas
 	\renewcommand{\baselinestretch}{1.5}\normalsize        
-    \cleardoublepage
+    \clearpage
 }
 
 \newcommand{\abstract}[1]{
@@ -876,7 +945,41 @@
     
     % Retoma espaçamento normal entre linhas
 	\renewcommand{\baselinestretch}{1.5}\normalsize        
-    \cleardoublepage
+    \clearpage
+}
+%######################################################################
+
+
+%######################################################################
+% Resumo e palavras-chave
+\newcommand{\indicadoresdeimpacto}[1]{
+    \newpage
+                          
+    \begin{center}
+        \large{\textbf{INDICADORES DE IMPACTO}}
+    \end{center}
+    
+    % espaçamento simples 
+    {
+    \renewcommand{\baselinestretch}{1}\normalsize 
+    \noindent #1
+    }
+    \clearpage
+}
+
+\newcommand{\impactindicators}[1]{
+    \newpage
+                          
+    \begin{center}
+        \large{\textbf{IMPACT INDICATORS}}
+    \end{center}
+    
+    % espaçamento simples 
+    {
+    \renewcommand{\baselinestretch}{1}\normalsize 
+    \noindent #1
+    }
+    \clearpage
 }
 %######################################################################
 
@@ -888,7 +991,7 @@
     %\pagestyle{empty}
     \begin{center}\textbf{\MakeUppercase{\contentsname}}\end{center}
     \normalfont\normalsize\@starttoc{toc}
-    \cleardoublepage
+    \clearpage
 }
 %######################################################################
 
@@ -909,23 +1012,23 @@
     \begingroup\setlength{\parskip}{\z@}%
        \@starttoc{\@nameuse{ext@#1}}%
     \endgroup}%
-   \cleardoublepage%
+   \clearpage%
 }
 
 % Lista de Figuras
-\newfloat{figure}{htb!}{lff}[chapter]
+%\newfloat{figure}{htb!}{lff}[chapter]
 \floatname{figure}{Figura}
 \renewcommand{\listoffigures}{%
-	{\let\oldnumberline\numberline%
-	\renewcommand{\numberline}{Figura~\oldnumberline}
+	{%
+	\renewcommand{\numberline}{Figura~}
 	\listof{figure}{Lista de Figuras}}}
 
 % Lista de Tabelas
-\newfloat{table}{htb!}{ltt}[chapter]
+%\newfloat{table}{htb!}{ltt}[chapter]
 \floatname{table}{Tabela}
 \renewcommand{\listoftables}{%
-	{\let\oldnumberline\numberline%
-	\renewcommand{\numberline}{Tabela~\oldnumberline}
+	{%
+	\renewcommand{\numberline}{Tabela~}
 	\listof{table}{Lista de Tabelas}}}
 
 
@@ -933,40 +1036,40 @@
 \newfloat{exemplo}{htb!}{loe}[chapter]
 \floatname{exemplo}{Exemplo}
 \newcommand{\listofexemplos}{%
-	{\let\oldnumberline\numberline%
-	\renewcommand{\numberline}{Exemplo~\oldnumberline}
+	{%
+	\renewcommand{\numberline}{Exemplo~}
 	\listof{exemplo}{Lista de Exemplos}}}
 
 % Lista de Quadros
 \newfloat{quadro}{htb!}{loq}[chapter]
 \floatname{quadro}{Quadro}
 \newcommand{\listofquadros}{%
-	{\let\oldnumberline\numberline%
-	\renewcommand{\numberline}{Quadro~\oldnumberline}
+	{%
+	\renewcommand{\numberline}{Quadro~}
 	\listof{quadro}{Lista de Quadros}}}
 
 % Lista de Gráficos
 \newfloat{grafico}{htb!}{lgg}[chapter]
 \floatname{grafico}{Gr\'afico}
 \newcommand{\listofgraficos}{
-	{\let\oldnumberline\numberline%
-	\renewcommand{\numberline}{Gr\'afico~\oldnumberline}
+	{%
+	\renewcommand{\numberline}{Gr\'afico~}
 	\listof{grafico}{Lista de Gr\'aficos}}}
 
 % Lista de Teoremas
 \newfloat{teorema}{htb!}{ltt}[chapter]
 \floatname{teorema}{Teorema}
 \newcommand{\listofteoremas}{
-	{\let\oldnumberline\numberline%
-	\renewcommand{\numberline}{Teorema~\oldnumberline}
+	{%
+	\renewcommand{\numberline}{Teorema~}
 	\listof{teorema}{Lista de Teoremas}}}
 
 % Lista de Ilustrações
 \newfloat{ilustracao}{htb!}{loi}[chapter]
 \floatname{ilustracao}{Ilustra\c{c}\~ao}
 \newcommand{\listofilustracoes}{
-	{\let\oldnumberline\numberline%
-	\renewcommand{\numberline}{Ilustra\c{c}\~ao~\oldnumberline}
+	{%
+	\renewcommand{\numberline}{Ilustra\c{c}\~ao~}
 	\listof{ilustracao}{Lista de Ilustra\c{c}\~oes}}}
 %######################################################################
 
@@ -1023,7 +1126,7 @@
 
 \newcommand\anexos{%
 	\appendix%
-	\cleardoublepage%
+	\clearpage%
 	\phantomsection%
 }
 
@@ -1044,7 +1147,7 @@
     \anexos                  % crie formatação dos anexos
     \primeiroanexo{false}    % marque que já passou do primeiro
   } {% se não for, pule a página 
-    \cleardoublepage          
+    \clearpage          
   }
   {\centering \bf ANEXO~\theanexo\ -- #1\\}
   \addcontentsline{toc}{chapter}{\numberline{} ANEXO~\theanexo\ -- #1}
@@ -1067,7 +1170,7 @@
 
 \newcommand\apendices{%
 	\appendix%
-	\cleardoublepage%
+	\clearpage%
 	\phantomsection%
 }
 
@@ -1077,7 +1180,7 @@
     \apendices                  % crie cabeçalho dos apendices
     \primeiroapendice{false}    % marque que já passou do primeiro
   } {% se não for, pule a página 
-    \cleardoublepage          
+    \clearpage          
   }
   {\centering \bf  AP\^{E}NDICE~\theapendice\ -- #1\\}
   \addcontentsline{toc}{chapter}{\numberline{} APENDICE~\theapendice\ -- #1}
@@ -1087,7 +1190,7 @@
 %######################################################################
 % Comando auxiliar para formatação da seção de referências
 \newcommand\referencias{%
-   \cleardoublepage%
+   \newpage%
    \phantomsection%
    \addcontentsline{toc}{chapter}{\numberline{} REFER\^ENCIAS}
    %\renewcommand\bibname{Referências}
@@ -1101,41 +1204,36 @@
 % e margens
 \AtBeginDocument{
     \pagestyle{empty}
-
+    
     \def\maketitle{    %\maketitle
-		
+    		
         \imprimeCapa
-
+        
         \imprimeFolhaRosto
-
+     
         \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
         {}%                                     % não produza 
         {\imprimeFolhaAprovacao}%               % caso contrário produza folha de aprovação 
-   }
-
-\newlength{\identation}
-\newlength{\widthsec}
-%\addtolength{\identation}{\arabic{maxuseddepthold}em}
-\addtolength{\widthsec}{\arabic{maxuseddepthold}em}
-%\addtolength{\identation}{3em}
-\addtolength{\widthsec}{1em}
-
-\setlength{\identation}{0cm}
-
-\def\l@chapter{\bfseries\@dottedtocline{0}{\identation}{\widthsec}}
-\def\l@section{\@dottedtocline{1}{\identation}{\widthsec}}
-\def\l@subsection{\@dottedtocline{2}{\identation}{\widthsec}}
-\def\l@subsubsection{\@dottedtocline{3}{\identation}{\widthsec}}
-\def\l@subsubsubsection{\@dottedtocline{4}{\identation}{\widthsec}}
-\def\l@paragraph{\@dottedtocline{5}{\identation}{\widthsec}}
-\def\l@subparagraph{\@dottedtocline{6}{\identation}{\widthsec}}
+    }
+    
+    \newlength{\identation}
+    \setlength{\identation}{0cm}
+    \def\l@chapter{\bfseries\@dottedtocline{0}{\identation}{\widthsechold}}
+    \def\l@section{\@dottedtocline{1}{\identation}{\widthsechold}}
+    \def\l@subsection{\@dottedtocline{2}{\identation}{\widthsechold}}
+    \def\l@subsubsection{\@dottedtocline{3}{\identation}{\widthsechold}}
+    \def\l@subsubsubsection{\@dottedtocline{4}{\identation}{\widthsechold}}
+    \def\l@paragraph{\@dottedtocline{5}{\identation}{\widthsechold}}
+    \def\l@subparagraph{\@dottedtocline{6}{\identation}{\widthsechold}}
 }
+
+
 %######################################################################
 
 %######################################################################
 % salvando a maior profundidade utilizada para próxima execução
 \AtEndDocument{
     %\immediate\write\@mainaux{\string\newcounter{maxuseddepthold}}%
-    \immediate\write\@mainaux{\string\setcounter{maxuseddepthold}{\arabic{maxuseddepth}}}%
+    \immediate\write\@mainaux{\string\global\widthsechold=\the\widthsec}%
 }
 %######################################################################

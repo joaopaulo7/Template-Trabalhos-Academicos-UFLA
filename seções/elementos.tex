@@ -3,6 +3,7 @@
 
 Este capítulo apresenta o uso básico de equações, figuras e tabelas no código da monografia, bem como o posicionamento das legendas, segundo as normas da UFLA.
 
+
 \section{Utilizando Recursos do \LaTeX}
 
 \subsection{Inserindo Comandos Definidos}
@@ -20,7 +21,7 @@ A Figura~\ref{fig:exemplo} é apenas um exemplo de figura para que o usuário da
 \begin{figure}[!htb]
 \centering
 \caption{Uma Figura de Exemplo} %legenda
-\includegraphics[scale=0.9]{gradpenguin}\\  % o 0.9 indica 90% do tamanho original
+\includegraphics[scale=0.9]{imgs/gradpenguin}\\  % o 0.9 indica 90% do tamanho original
 % pdfLaTeX aceita figuras no formato PNG, JPG ou PDF
 % figuras vetoriais podem ser exportadas para eps e depois convertidas para pdf usando epstopdf
 {\small Fonte: fonte da figura} %Fonte da imagem
@@ -98,7 +99,7 @@ public static void main(String[] args) {
 \centering
 \caption{Inserindo Código a Partir do Código-Fonte} %legenda
 \label{fig:exemplocodigo2} %rotulo para refencia
-\lstinputlisting{Hello.java}
+\lstinputlisting{codigos/Hello.java}
 {\small Fonte: fonte da figura} %Fonte da imagem
 \end{figure}
 

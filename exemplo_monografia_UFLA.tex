@@ -77,8 +77,17 @@
 %\usepackage[alf,abnt-etal-cite=3,abnt-etal-list=0,abnt-etal-text=emph]{abntcite}
 
 
-% redefinindo formatação de títulos de tabelas e figuras
+%==============================================================================
+% criação do glossário, índice, listas de siglas, símbolos e etc
+\input{glossários/acronimos}
+\input{glossários/glossario}
+\input{glossários/indice}
+\input{glossários/siglas}
+\input{glossários/simbolos}
 
+\makeglossaries
+
+%==============================================================================
 
 %==============================================================================
 % para os fãs do Word, descomente as linhas abaixo
@@ -105,8 +114,8 @@ FAE-PE Recovery TelEduc Williams UFLA}
 \subtitle{Exemplo para os Usuários}
 \engtitle{Use of Uflamon Class}
 \engsubtitle{Sample for Users}
-\edicao{3$^a$ edição revista, atualizada e ampliada}
-\date{2016}
+\edicao{6$^a$(?) edição atualizada e ampliada, mas não muito revista}
+\date{2025}
 \tipo{Tese apresentada à Universidade Federal de Lavras, como parte das exigências do Programa de Pós-Graduação em Monografia, área de concentração em TCC, para a obtenção do título de Doutor.}
 % use \orientador ou \orientadora quando for o caso
 \orientador{Prof. DSc. José Orientador}
@@ -119,7 +128,7 @@ FAE-PE Recovery TelEduc Williams UFLA}
 \bancadois{Prof. DSc. João Banca Dois}{FCO} % comente se sua banca tiver só um professor
 \bancatres{Profa. Esp. Eliza Banca Três}{BELMIS}
 \bancaquatro{Prof. Esp. Carlos Banca Quatro}{IBGPLUS}
-\defesa{30 de Fevereiro de 2016}
+\defesa{11 de abril de 2025}
 %==============================================================================
 %##################################################
 % Dados para Ficha catalográfica, gerada pelo sistema da Biblioteca da UFLA
@@ -137,13 +146,13 @@ FAE-PE Recovery TelEduc Williams UFLA}
 % caso não seja ilustrado, basta comentá-lo
 \fcilustrado{il.}
 % dados da edição para a ficha 
-\fcedicao{2$^a$ ed. rev., atual. e ampl.}
+\fcedicao{6$^a$ ed. rev.?, atual. e ampl.}
 % tipo do trabalho (tese, dissertação, etc.), de acordo com sistema
 % de geração de ficha catalográfica
 \fctipo{Tese(doutorado)}
 % ano da defesa, só precisa informar se for diferente do ano da publicação
 % se forem iguais, comente a linha a seguir
-\fcdatadefesa{2016}
+\fcdatadefesa{205}
 % preencher aqui com os dados de catalogação gerados pelo sistema
 \fccatalogacao{1. TCC. 2. Monografia. 3. Dissertação. 4. Tese. 5. Trabalho Científico – Normas. I. Universidade Federal de Lavras. II. Título.}
 \fcclasi{808.066}
@@ -211,13 +220,48 @@ FAE-PE Recovery TelEduc Williams UFLA}
 Espaço reservado a epígrafe.\\
 (Autor Desconhecido)}
 
+
 % palavras-chave
 \palchaves{Resumo. Palavras. Representativas.}
-\resumo{O resumo deve conter palavras representativas do conteúdo do trabalho, localizadas abaixo do resumo, separadas por dois espaços, antecedidas da expressão palavras-chave. Essas palavras representativas são grafadas com a letra inicial em maiúscula, separadas entre si por ponto.}  % Resumo (digite aqui o resumo)
+\resumo{Mudanças com relação ao original (Uflamon 3a Edição):\\
+> Alteração para fonte do texto 12pt, folha a4 e onesided;\\
+> Alteração no tamanho das margens;\\
+> Alteração de Large de 14.4pt para 14pt;\\
+> Alteração de small de 10.95pt para 11pt;\\
+> Remoção do salto de linha entre o título e subtítulo;\\
+> Agora as listas de figuras e etc mantêm a formatação para qualquer índice (antes, figuras/tabelas > 10 quebravam a formatação);\\
+> Agora o sumário mantém a formatação para qualquer índice (antes, sec/subsec > 10 quebravam a formatação);\\
+> Uso de 11pt para notas, fichas e rodapés;\\
+> Ajustes de posicionamento necessário graças às diferenças de tamanho das fontes e das margens;\\
+> Remoção de páginas duplas dos elementos pré-textuais;\\
+> Adição dos indicadores de impacto;\\
+> Uso de itálico nas expressões em latim nas referências (ex: \textit{et al} e [\textit{s.n.}]);\\
+> Alteração na capitalização de citações de pessoas físicas (de AUTOR para Autor);\\
+> Reorganização dos arquivos;\\
+\\
+Se encontrar mais mudanças necessárias, por favor informar!\\
+}  % Resumo (digite aqui o resumo)
 
 % keywords devem vir antes do abstract
 \keywords{Summary. Words. Representative.} % keywords
 \abstract{The abstract should contain representative words of the work content, located below the abstract, separated by two spaces, preceded by the keyword expression. These representative words are spelled with the first letter capitalized, separated by point.}
+
+
+\indicadoresdeimpacto{De caráter institucional, é um item obrigatório como parte das exigências das PRPG/PROEC para os trabalhos de pós-graduação Stricto sensu da UFLA. O autor deve apresentar um relato dos impactos sociais, tecnológicos, econômicos e/ou culturais dos resultados obtidos, considerando as populações, sociedade e territórios, deixando evidente se esses impactos foram concretos e diretos ou em potencial. Ao elaborar o item sobre impactos, é importante: 
+a) caracterizar e quantificar resultados dos impactos sociais, tecnológicos, econômicos e/ou culturais da melhor forma possível; 
+b) estabelecer se há algum caráter extensionista no trabalho, demonstrando impacto e participação da sociedade externa à UFLA, como parceiros e público-alvo; 
+c) definir o território e grupos populacionais impactados; 
+d) quando possível, declarar público diretamente beneficiado e número de docentes, estudantes e técnicos envolvidos nas ações extensionistas; 
+e) estabelecer em quais das oito áreas temáticas da Política Nacional de Extensão podem ser classificados os impactos do trabalho. São elas: 1 - Comunicação, 2 - Cultura, 3 - Direitos humanos e justiça, 4 - Educação, 5 - Meio ambiente, 6 - Saúde, 7 - Tecnologia e produção e 8 - Trabalho;
+ f) demonstrar quais os impactos da pesquisa e se estão alinhados com os 17 (dezessete) Objetivos de Desenvolvimento Sustentável (ODS) da Organização das Nações Unidas (ONU).}
+
+\impactindicators{Of an institutional nature, it is a mandatory item as part of the PRPG/PROEC requirements for UFLA's Stricto sensu postgraduate work. The author must present a report on the social, technological, economic and/or cultural impacts of the results obtained, considering the populations, society and territories, making it clear whether these impacts were concrete and direct or potential. When preparing the item on impacts, it is important to:
+a) characterize and quantify the results of the social, technological, economic and/or cultural impacts in the best possible way;
+b) establish whether there is any extensionist character to the work, demonstrating the impact and participation of society outside UFLA, such as partners and target audience;
+c) define the territory and population groups impacted;
+d) when possible, declare the public directly benefited and the number of teachers, students and technicians involved in the extension actions;
+e) establish in which of the eight thematic areas of the National Extension Policy the impacts of the work can be classified. They are: 1 - Communication, 2 - Culture, 3 - Human rights and justice, 4 - Education, 5 - Environment, 6 - Health, 7 - Technology and production and 8 - Work;
+f) demonstrate the impacts of the research and whether they are aligned with the 17 (seventeen) Sustainable Development Goals (SDGs) of the United Nations (UN).}
 
 %##################################################
 
@@ -235,7 +279,7 @@ Espaço reservado a epígrafe.\\
 % descomente para habilitar a lista desejada
 \listoffigures                             % Lista de Figuras
 %\listofilustracoes
-%\listofgraficos							   % Lista de Gráficos
+%\listofgraficos						   % Lista de Gráficos
 \listoftables                              % Lista de Tabelas
 \listofquadros							   % Lista de Quadros
 %\listofexemplos
@@ -247,10 +291,11 @@ Espaço reservado a epígrafe.\\
 \pagestyle{ufla}
 
 %==============================================================================
-% incluindo os capitulos
-\include{introducao}
-\include{elementos}
-\include{conclusao}
+% incluindo as seções
+\include{seções/introducao}
+\include{seções/elementos}
+\include{seções/conclusao}
+%\include{seções/referencias}
 
 %==============================================================================
 % Incluindo bibliografia
@@ -266,7 +311,8 @@ Espaço reservado a epígrafe.\\
 %==============================================================================
 % Incluindo anexos num1erados com letras maiusculas.
 %\apendices
-\include{apendice1}
+
+\include{apêndices/apendice1}
 
 
 %==============================================================================
