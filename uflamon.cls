@@ -124,6 +124,8 @@
 %     necessário graças às diferenças de tamanho das fontes e das margens
 % -> Remoção de páginas duplas dos elementos pré-textuais
 % -> Adição dos indicadores de impacto
+% -> Adição de glossários, listas de termos e índices
+% -> Suporte para mais de 26 anexos/apêndices
 %######################################################################
 
 
@@ -172,11 +174,12 @@
 \RequirePackage{calc} % para calculos (margens, etc.)
 \RequirePackage{lastpage} % para ficha catalografica
 \RequirePackage{graphicx} % Logo da UFLA na capa.
+\RequirePackage{alphalph} % Para número de apêndices/anexos acima de 26.
 
 % para listas de siglas, símbolos e etc; glossário e índice.
 \RequirePackage[nopostdot, abbreviations,
                 automake, symbols, index]{glossaries-extra}
-\usepackage{glossary-mcols}
+\RequirePackage{glossary-mcols}
 %######################################################################
 
 
@@ -1159,7 +1162,7 @@
 \def\primeiroanexo#1{\gdef\@primeiroanexo{#1}} % verificando se é primeiro anexo
 \primeiroanexo{true} %inicialmente sim (true)
 \newcounter{anexo} %contador para os anexos (uso em referências)
-\renewcommand\theanexo{\Alph{anexo}}
+\renewcommand\theanexo{\AlphAlph{\value{anexo}}}
 
 %\newcommand\anexos{%
 %	\appendix%
@@ -1203,7 +1206,7 @@
 \def\primeiroapendice#1{\gdef\@primeiroapendice{#1}} % verificando se é primeiro apêndice
 \primeiroapendice{true} %inicialmente sim (true)
 \newcounter{apendice} %contador para os apêndices (uso em referências)
-\renewcommand\theapendice{\Alph{apendice}}
+\renewcommand\theapendice{\AlphAlph{\value{apendice}}}
 
 %\newcommand\apendices{%
 %	\appendix%
