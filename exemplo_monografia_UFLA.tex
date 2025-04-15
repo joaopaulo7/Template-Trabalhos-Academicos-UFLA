@@ -79,7 +79,7 @@
 
 %==============================================================================
 % criação do glossário, índice, listas de siglas, símbolos e etc
-\input{glossarios/acronimos}
+\input{glossarios/abreviaturas}
 \input{glossarios/glossario}
 \input{glossarios/indice}
 \input{glossarios/siglas}
@@ -281,6 +281,9 @@ f) demonstrate the impacts of the research and whether they are aligned with the
 \listofquadros							   % Lista de Quadros
 %\listofexemplos
 %\listofteoremas
+\listofabreviaturas
+\listofsiglas
+\listofsimbolos
 \tableofcontents                           % Sumário
 
 \clearpage
@@ -306,12 +309,18 @@ f) demonstrate the impacts of the research and whether they are aligned with the
 \referencias
 \bibliography{refbib}			% arquivo exemplo refbib.bib
 %==============================================================================
+% Incluindo glossário
+
+\glossario
+%==============================================================================
 % Incluindo anexos num1erados com letras maiusculas.
 %\apendices
 
 \include{apendices/apendice1}
+%==============================================================================
+% Incluindo índice
 
-
+\indice
 %==============================================================================
 % Fim do texto
 \end{document}

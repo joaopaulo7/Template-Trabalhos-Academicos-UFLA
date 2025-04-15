@@ -1075,6 +1075,52 @@
 
 
 %######################################################################
+%Imprimindo os glossários
+% lista de abreviaturas
+\newcommand{\listofabreviaturas}{
+	\newpage
+	\printglossary[
+		title={\centering \textbf{LISTA DE ABREVIATURAS}},
+		type={abbreviations},
+		nonumberlist,
+		style=long]}
+
+% lista de siglas
+\newcommand{\listofsiglas}{
+	\newpage
+	\printglossary[
+		title={\centering \textbf{LISTA DE SIGLAS}},
+		type={\acronymtype},
+		nonumberlist,
+		style=long]}
+
+% lista de símbolos
+\newcommand{\listofsimbolos}{
+	\newpage
+	\printglossary[
+		title={\centering \textbf{LISTA DE SÍMBOLOS}},
+		type={symbols},
+		nonumberlist,
+		style=long]}
+	
+% glossário
+\newcommand{\glossario}{
+	\newpage
+	\printglossary[
+		title={\centering \textbf{GlOSSÁRIO}},
+		nonumberlist,
+		style=long]}
+	
+% índice
+\newcommand{\indice}{
+	\newpage
+	\printindex[
+		title={\centering \textbf{ÍNDICE}},
+		style=mcolindex]}
+%######################################################################
+
+
+%######################################################################
 % Remodelando o formato dos títulos de tabelas e figuras
 \RequirePackage[labelsep=endash,font=small]{caption}  
 
