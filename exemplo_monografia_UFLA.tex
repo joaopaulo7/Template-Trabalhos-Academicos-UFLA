@@ -54,7 +54,15 @@
    tabsize=3,
    basicstyle=\footnotesize\ttfamily,
    stringstyle=\em,
-   showstringspaces=false 
+   showstringspaces=false ,
+   inputencoding=utf8,
+   literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ú}{{\'u}}1
+   			{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ú}{{\'U}}1
+   			{â}{{\^a}}1 {ê}{{\^e}}1
+   			{Â}{{\^A}}1 {Ê}{{\^E}}1
+            {ã}{{\~a}}1 {õ}{{\~o}}1 {ẽ}{{\~e}}1 
+            {ç}{{\c{c}}}1
+            {à}{{\`{a}}}1{À}{{\`{A}}}1,
 }
 
 % para referências de acordo com a ABNT
@@ -297,6 +305,7 @@ f) demonstrate the impacts of the research and whether they are aligned with the
 \include{secoes/introducao}
 \include{secoes/elementos}
 \include{secoes/conclusao}
+\include{secoes/listasGlossarioIndice}
 %\include{seções/referencias}
 
 %==============================================================================
