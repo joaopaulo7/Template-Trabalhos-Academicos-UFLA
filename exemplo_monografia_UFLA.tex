@@ -1,0 +1,274 @@
+\documentclass{uflamon}          % classe base para a monografia
+
+%==============================================================================
+% Utilizacao de pacotes
+\usepackage[T1]{fontenc}         % usa fontes postscript com acentos
+\usepackage[brazil]{babel}       % hifenização e títulos em português do Brasil
+\usepackage[utf8]{inputenc}     % permite edição direta com acentos
+\usepackage{amsmath}             % pacote da AMS para Matemática Avançada
+\usepackage{amssymb}             % símbolos extras da AMS
+\usepackage{latexsym}            % símbolos extras do LaTeX
+\usepackage{graphicx}            % para inserção de gráficos
+\usepackage{listings}            % para inserção de código
+\usepackage{fancyvrb}            % para inserção de saídas de comandos
+%\usepackage{enumerate}           % para personalizar lista enumeradas 
+											%(incluso na classe)
+\usepackage{longtable}           % para tambelas muito grandes NOVO!!!!
+
+\usepackage{colortbl} % cores em tabelas
+\newcolumntype{Z}{|>{\columncolor[gray]{0.9}}l|} %cor cinza em células
+%\usepackage{array} % já incluso na classe
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{multirow} % para juntar duas linhas em uma só
+
+\usepackage{multicol} % para uso de várias colunas
+
+% cores para os links cruzados
+\usepackage{color}
+\definecolor{rltred}{rgb}{0.2,0,0}
+\definecolor{rltgreen}{rgb}{0,0.2,0}
+\definecolor{rltblue}{rgb}{0,0,0.2}
+
+\usepackage[colorlinks=true,
+            urlcolor=rltblue,       % \href{...}{...} external (URL)
+            filecolor=rltgreen,     % \href{...} local file
+            linkcolor=rltred,       % \ref{...} and \pageref{...}
+            citecolor=rltgreen,
+            pdftitle={Exemplo de Uso da Classe Uflamon},
+          pdfauthor={Joaquim Quinteiro Uchôa},
+          pdfsubject={Este texto tem por objetivo servir de exemplo da classe Uflamon.},
+          pdfkeywords={Comunicação Científica. 2. Pesquisa . 3. Pesquisa Científica. 
+ 					 4. Redação. 5. Monografia.}%
+]{hyperref} % para referência cruzadas
+%\usepackage{hyperref}            % para referência cruzadas
+\usepackage{subfigure}           % figuras dentro de figuras
+\usepackage{caption}            % remodelando o formato dos títulos de 
+                                 % tabelas e figuras
+
+% configuração padrão do listings   
+\lstset{
+   language=Java,
+   extendedchars=true,
+   tabsize=3,
+   basicstyle=\footnotesize\ttfamily,
+   stringstyle=\em,
+   showstringspaces=false 
+}
+
+% para referências de acordo com a ABNT
+% precisa instalar o abntex2 antes!!!
+% http://abntex.codigolivre.org.br/
+% comente se pretende usar outro padrão
+
+%abnt-emphasize=bf coloca o título das bibliografias em negrito
+%abnt-thesis-year=both
+\usepackage[alf,abnt-etal-cite=3,abnt-etal-list=3,abnt-url-package=url,abnt-emphasize=bf]{abntex2cite}
+
+% evite usar o hyperref com abntex, pode dar caca em urls... no linha anterior, informo
+% para incluir urls usando o pacote url e não o hyperref
+%
+% caso queira o hyperref com abntex, comente a linha anterior e descomente a seguinte
+%\usepackage[alf,abnt-etal-cite=3,abnt-etal-list=0,abnt-etal-text=emph]{abntex2cite}
+%
+% caso vc ainda use a versão anterior da abntex, comente a linha incluindo o abntex2cite
+% e descomente a próxima linha 
+%\usepackage[alf,abnt-etal-cite=3,abnt-etal-list=0,abnt-etal-text=emph]{abntcite}
+
+
+% redefinindo formatação de títulos de tabelas e figuras
+
+
+%==============================================================================
+% para os fãs do Word, descomente as linhas abaixo
+%\sloppy %mais espaço entre as linhas
+%\usepackage{identfirst} %identando-se a primeira linha de cada seção
+%\noindentfirst % Tire o comentário para manter o padrão do LaTeX.
+
+%==============================================================================
+% definido comandos na monografia - não é necessário na sua monografia 
+% apenas para exemplificar a definição de novos comandos
+\newcommand{\defs}[1]{\textsl{#1}}
+
+
+% Especificando hifenizações que por ventura LaTeX não saiba fazer
+% Por padrão 99,9% dos termos em português devem ser hifenizados corretamente.
+\hyphenation{hardware software Li-nux am-bien-te diag-nos-ti-car coor-de-na-ção 
+FAE-PE Recovery TelEduc Williams UFLA}
+
+%==============================================================================
+% Dados da monografia, capa: autor, titulo, banca, etc... - SUBSTITUA DE ACORDO
+%==============================================================================
+\author{Joaquim Quinteiro Uchôa}
+\title{Uso da Classe Uflamon}
+\subtitle{Exemplo para os Usuários}
+\engtitle{Use of Uflamon Class}
+\engsubtitle{Sample for Users}
+\edicao{3$^a$ edição revista, atualizada e ampliada}
+\date{2016}
+\tipo{Tese apresentada à Universidade Federal de Lavras, como parte das exigências do Programa de Pós-Graduação em Monografia, área de concentração em TCC, para a obtenção do título de Doutor.}
+% use \orientador ou \orientadora quando for o caso
+\orientador{Prof. DSc. José Orientador}
+%\orientadora{}
+% use \coorientador ou \coorientadora quando for o caso
+\coorientadora{Prof. DSc. Maria Orientadora } % comente se não tiver coorientador
+%\coorientador{}
+\local{Lavras -- MG}
+\bancaum{Prof. MSc. Antônio Banca Um}{UFM}
+\bancadois{Prof. DSc. João Banca Dois}{FCO} % comente se sua banca tiver só um professor
+\bancatres{Profa. Esp. Eliza Banca Três}{BELMIS}
+\bancaquatro{Prof. Esp. Carlos Banca Quatro}{IBGPLUS}
+\defesa{30 de Fevereiro de 2016}
+%==============================================================================
+%##################################################
+% Dados para Ficha catalográfica, gerada pelo sistema da Biblioteca da UFLA
+% http://www.biblioteca.ufla.br/FichaCatalografica/
+% dados para ficha catalográfica
+% Elaboração da Ficha Catalográfica
+\preparofichacat{Ficha catalográfica elaborada pela Coordenadoria de Processos Técnicos \\ da Biblioteca Universitária da UFLA}
+% primeiro autor - como na primeira linha da ficha catalográfica
+\fcautor{Uchôa, Joaquim Quinteiro}
+% autores, separados por vírgula - na ficha catalográfica, no formato que
+% vem após o título e a barra ("/")
+\fcautores{Joaquim Quinteiro Uchôa}
+% caso trabalho seja ilustrado (figuras, gráficos, tabelas, etc.), 
+% então informar por meio do comando a seguir
+% caso não seja ilustrado, basta comentá-lo
+\fcilustrado{il.}
+% dados da edição para a ficha 
+\fcedicao{2$^a$ ed. rev., atual. e ampl.}
+% tipo do trabalho (tese, dissertação, etc.), de acordo com sistema
+% de geração de ficha catalográfica
+\fctipo{Tese(doutorado)}
+% ano da defesa, só precisa informar se for diferente do ano da publicação
+% se forem iguais, comente a linha a seguir
+\fcdatadefesa{2016}
+% preencher aqui com os dados de catalogação gerados pelo sistema
+\fccatalogacao{1. TCC. 2. Monografia. 3. Dissertação. 4. Tese. 5. Trabalho Científico – Normas. I. Universidade Federal de Lavras. II. Título.}
+\fcclasi{808.066}
+
+%##################################################
+
+%\antesfichacat{\noindent Para citar este documento: \\UNIVERSIDADE FEDERAL DE LAVRAS. Biblioteca Universitária. \textbf{Manual de normalização e estrutura de trabalhos acadêmicos: TCC, monografias, dissertações e teses}. 2. ed. rev., atual. e ampl. Lavras, 2015. Disponível em: \url{http://www.biblioteca.ufla.br/wordpress/wpcontent/uploads/bdtd/manual_normalizacao_UFLA.pdf}. Acesso em: data de acesso.}
+
+%\depoisfichacat{\noindent A reprodução e a divulgação total ou parcial deste trabalho são autorizadas, por qualquer meio convencional ou eletrônico, para fins de estudo e pesquisa, desde que citada a fonte.\\
+%\newline
+%{\small Este documento possui páginas em branco para facilitar a impressão frente-e-verso.}}
+
+%##################################################
+
+%##################################################
+
+% para os exemplos do manual
+%\newenvironment{exemplomanual}{
+%\vspace{0.5cm}
+%\noindent\begin{minipage}{\textwidth}
+%\noindent\rule{\textwidth}{0.5pt}
+%\vspace{-1cm}
+%\begin{flushleft}
+%}{
+%\end{flushleft}
+%\vspace{-0.6cm}
+%\noindent\rule{\textwidth}{0.5pt}
+%\vspace{0.3cm}
+%\end{minipage}
+%}
+
+%\newenvironment{exemplomanuallista}{
+%\vspace{0.3cm}
+%\noindent\begin{minipage}{\textwidth - 0.5cm}
+%\noindent\rule{\textwidth}{0.5pt}
+%\vspace{-1cm}
+%\begin{flushleft}
+%}{
+%\end{flushleft}
+%\vspace{-0.6cm}
+%\noindent\rule{\textwidth}{0.5pt}
+%\vspace{0.3cm}
+%\end{minipage}
+%}
+
+% por conta de alguns exemplos
+%\usepackage{setspace}
+
+%##################################################
+
+% se vc já defendeu e tem o arquivo escaneado da folha de rosto, 
+% descomente e altere o nome do arquivo
+%\folhaAprovacaoAssinada{folharosto}
+
+% Aqui começa o documento propriamente dito
+\begin{document}
+
+\maketitle
+
+\dedic{Espaço reservado a dedicatória.}     % Dedicatórias\\
+
+\thanks{Espaço reservado aos agradecimentos.}         % Agradecimentos
+
+\epigrafe{ % citação opcional
+Espaço reservado a epígrafe.\\
+(Autor Desconhecido)}
+
+% palavras-chave
+\palchaves{Resumo. Palavras. Representativas.}
+\resumo{O resumo deve conter palavras representativas do conteúdo do trabalho, localizadas abaixo do resumo, separadas por dois espaços, antecedidas da expressão palavras-chave. Essas palavras representativas são grafadas com a letra inicial em maiúscula, separadas entre si por ponto.}  % Resumo (digite aqui o resumo)
+
+% keywords devem vir antes do abstract
+\keywords{Summary. Words. Representative.} % keywords
+\abstract{The abstract should contain representative words of the work content, located below the abstract, separated by two spaces, preceded by the keyword expression. These representative words are spelled with the first letter capitalized, separated by point.}
+
+%##################################################
+
+% Dados do guia
+%\begin{titlepage}
+%\pagestyle{empty}
+%\renewcommand{\baselinestretch}{1}
+%\enlargethispage{1.5cm}
+%\input{reitoria}
+%\cleardoublepage
+%\end{titlepage}
+
+%##################################################
+
+% descomente para habilitar a lista desejada
+\listoffigures                             % Lista de Figuras
+%\listofilustracoes
+%\listofgraficos							   % Lista de Gráficos
+\listoftables                              % Lista de Tabelas
+\listofquadros							   % Lista de Quadros
+%\listofexemplos
+%\listofteoremas
+\tableofcontents                           % Sumário
+
+\clearpage
+
+\pagestyle{ufla}
+
+%==============================================================================
+% incluindo os capitulos
+\include{introducao}
+\include{elementos}
+\include{conclusao}
+
+%==============================================================================
+% Incluindo bibliografia
+%\bibliographystyle{plain}             % estilo para labels em numeros
+%\bibliographystyle{alpha}             % estilo para labels em iniciais
+\bibliographystyle{abntex2-alf}           % estilo para referências usando ABNT, 
+                                       % precisa instalar o abntex para usar!!!
+
+%inclui Referências Bibliográficas
+%inclui Referências Bibliográficas
+\referencias
+\bibliography{refbib}			% arquivo exemplo refbib.bib
+%==============================================================================
+% Incluindo anexos num1erados com letras maiusculas.
+%\apendices
+\include{apendice1}
+
+
+%==============================================================================
+% Fim do texto
+\end{document}

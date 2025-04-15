@@ -1,0 +1,205 @@
+\chapter{ELEMENTOS DO TEXTO}
+\label{cap:elementos}
+
+Este capítulo apresenta o uso básico de equações, figuras e tabelas no código da monografia, bem como o posicionamento das legendas, segundo as normas da UFLA.
+
+\section{Utilizando Recursos do \LaTeX}
+
+\subsection{Inserindo Comandos Definidos}
+
+Esta subseção apresenta o uso de comandos definidos pelo usuário no preâmbulo do arquivo principal \LaTeX e alguns exemplos do modo matemático. Por exemplo, na texto a seguir é utilizado o comando  \verb+\defs+, definido anteriormente pelo próprio autor do texto:
+
+\begin{quote}
+Os conjuntos fundamentais da teoria são os \defs{conjuntos elementares}. Se $E$ é um conjunto elementar, $des(E)$ denota a descrição dessa classe de equivalência. Essa descrição é função do conjunto de atributos que define $R$. Note que, dados $x,y \in E$, onde $E$ é um conjunto elementar em $A$, $x$ e $y$ são indiscerníveis, i.e., no espaço $A=(U,R)$ não se consegue distinguir $x$ de $y$, pois $des(x) = des(y) = des(E)$. 
+\end{quote}
+
+\subsection{Inserindo Figuras}
+
+A Figura~\ref{fig:exemplo} é apenas um exemplo de figura para que o usuário da classe possa saber como uma figura pode ser inserida e referenciada automaticamente no texto.É importante observar que legendas de figuras ficam abaixo de seu conteúdo.
+
+\begin{figure}[!htb]
+\centering
+\caption{Uma Figura de Exemplo} %legenda
+\includegraphics[scale=0.9]{gradpenguin}\\  % o 0.9 indica 90% do tamanho original
+% pdfLaTeX aceita figuras no formato PNG, JPG ou PDF
+% figuras vetoriais podem ser exportadas para eps e depois convertidas para pdf usando epstopdf
+{\small Fonte: fonte da figura} %Fonte da imagem
+\label{fig:exemplo} %rotulo para refencia
+\end{figure}
+
+\subsection{Inserindo Saídas de Comandos e Código}
+
+A menos que sejam trechos pequenos, saídas de comandos, trechos de arquivos de configuração e código de aplicativos devem ser inseridos como figura, como mostrado, respectivamente, na Figura~\ref{fig:exemplocomando}, Figura~\ref{fig:exemploconfig} e Figura~\ref{fig:exemplocodigo1}. Para comandos e configuração, recomenda-se o uso do pacote {\tt fancyvrb}, o que pode ser visto na Figura~\ref{fig:exemplocomando} e Figura~\ref{fig:exemploconfig}.
+
+Para inserção de código, recomenda-se o uso do pacote {\tt listings}, que permite melhor apresentação do mesmo, o que é mostrado na Figura~\ref{fig:exemplocodigo1}. Além disso, esses dois pacotes permitem a inserção de texto/código em arquivos externos, sem inclusão direta no arquivo \LaTeX. Isso pode ser verificado no exemplo de uso do {\tt listings} apresentado na Figura~\ref{fig:exemplocodigo2}
+
+\begin{figure}[!htb]
+\centering
+\caption{Inserindo Comando} %legenda
+\begin{Verbatim}[fontsize=\small]
+$ dir monografia*
+-rw-r--r--  1 joukim users   3650 Set 12 17:56 monografia.aux
+-rw-r--r--  1 joukim users   6366 Set 12 17:43 monografia.bbl
+-rw-r--r--  1 joukim users    290 Set 12 17:56 monografia.lof
+-rw-r--r--  1 joukim users  27937 Set 12 17:56 monografia.log
+-rw-r--r--  1 joukim users    194 Set 12 17:56 monografia.lot
+-rw-r--r--  1 joukim users    715 Set 12 17:56 monografia.out
+-rw-r--r--  1 joukim users 159243 Set 12 17:56 monografia.pdf
+-rw-r--r--  1 joukim users   4559 Set 12 17:47 monografia.tex
+-rw-r--r--  1 joukim users    964 Set 12 17:56 monografia.toc
+\end{Verbatim} 
+%$ - esse comentário é para não confundir editor de texto
+{\small Fonte: fonte da figura} %Fonte da imagem
+\label{fig:exemplocomando} %rotulo para refencia
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\caption{Inserindo Trecho de Arquivo de Configuração} %legenda
+\begin{Verbatim}[fontsize=\small]
+// named.conf for Red Hat caching-nameserver
+options {
+        directory "/var/named";
+        dump-file "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        // query-source address * port 53;
+};
+\end{Verbatim} 
+{\small Fonte: fonte da figura} %Fonte da imagem
+\label{fig:exemploconfig} %rotulo para refencia
+\end{figure}
+
+
+\begin{figure}[!htb]
+\centering
+\caption{Inserindo Código Diretamente no Arquivo \LaTeX} %legenda
+\begin{lstlisting}
+// exit the program
+public void on_buttonExit_clicked() {
+	System.exit(0);
+}
+
+// copy data
+public void on_buttonCopy_clicked() {
+	labelShow.setText(entryData.getText());
+}
+
+// print version of Java
+public static void main(String[] args) {
+	System.out.println(System.getProperty("java.fullversion"));
+}
+\end{lstlisting} 
+{\small Fonte: fonte da figura} %Fonte da imagem
+\label{fig:exemplocodigo1} %rotulo para refencia
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\caption{Inserindo Código a Partir do Código-Fonte} %legenda
+\label{fig:exemplocodigo2} %rotulo para refencia
+\lstinputlisting{Hello.java}
+{\small Fonte: fonte da figura} %Fonte da imagem
+\end{figure}
+
+\subsection{Inserindo Quadros e Tabelas}
+
+Escrever um quadro ou tabela e referenciá-los é bem simples. Por exemplo o Quadro~\ref{tab:exemplo} ilustra a criação de um quadro, tendo aqui seu referenciamento no texto. É importante observar o posicionamento da legenda antes do corpo da tabela e da fonte após. Outros exemplos são mostrados na Tabela~\ref{tab:outro} e Tabela~\ref{tab:maisum}.
+
+\begin{quadro}[htb]
+  \begin{center}
+    \caption{Exemplo de Quadro} 
+    \label{tab:exemplo}
+    \vspace{0.2cm}
+    \footnotesize
+    \begin{tabular}{|c|c|c|c|c|c|}
+      \hline
+      $U$ & $vitA$ & $vitC$ & $vitD$ & $prot$ & $lip$ \\
+      \hline
+      \hline
+      $d_1$ & 1 & 3 & 4 & 2 & 3\\
+      $d_2$ & 1 & 3 & 3 & 3 & 2\\
+      $d_3$ & 1 & 3 & 4 & 3 & 1\\
+      $d_4$ & 3 & 5 & 2 & 5 & 2\\
+      $d_5$ & 4 & 5 & 2 & 5 & 1\\
+      $d_6$ & 3 & 5 & 2 & 3 & 4\\
+      $d_7$ & 4 & 4 & 1 & 3 & 2\\
+      \hline 
+    \end{tabular}
+  \end{center}
+  \centering {\small Fonte: fonte do quadro} %Fonte do quadro
+\end{quadro}
+
+\begin{table}[!htb]
+\begin{center}
+  \caption{Recursos do {\ttfamily syslog}}
+  \label{tab:outro}
+  \small
+  \begin{tabular}{l|p{9cm}}
+    \hline
+    \rowcolor[gray]{.9}
+    \bf Recurso & \bf {\em Daemons} Associados (Alguns Exemplos) \\
+    \hline
+    \hline
+    \tt kern & \em kernel  \\
+    \tt user & processos dos usuários ({\tt ntpd}) \\
+    \tt mail & softwares relacionados com o correio eletrônico ({\tt sendmail})\\
+    \tt daemon & {\em daemons} do sistema ({\tt gated}, {\tt inetd}, 
+    {\tt named}, {\tt ntpd})\\
+    \tt auth &  comandos relacionados à autorização e segurança 
+    ({\tt login}, {\tt rlogin}, {\tt su}, {\tt passwd}) \\
+    \tt lpr & spool de impressão ({\tt lpd})\\
+    \tt news & sistema de notícias da usenet ({\tt nnrpd})\\
+    \tt uucp & destinado ao {\tt uucp}\\
+    \tt cron & relacionado ao {\em daemon} {\tt cron}\\
+    \tt mark &  registros de data/hora gerados a intervalos regulares 
+    ({\tt syslogd})\\
+    \tt local0-7 & 8 tipos de mensagens locais \newline
+    ({\tt tcpd -- local7}, {\tt sudo -- local2}, {\tt popper - local0}) \\
+    \tt syslog &  mensagens internas ao {\tt syslog}\\
+    \tt authpriv & mensagens privadas de autorização\\
+    \tt ftp & associado ao {\tt ftpd} ({\em daemon} do {\tt ftp}) \\
+    \tt * &  todos os recursos com exceção do {\tt mark}\\
+    \hline
+  \end{tabular}
+\end{center}
+\centering {\small Fonte: fonte da tabela} %Fonte da tabela
+\end{table}
+
+\begin{table}[!htb]
+\caption{Opções do Comando {\ttfamily at}}
+\label{tab:maisum}
+\begin{center}
+  \small
+  \begin{tabular}{l|p{9cm}}
+    \hline 
+    \rowcolor[gray]{.9}
+    \bf Opção & \bf Descrição\\
+    \hline
+    \hline 
+    \tt -c & exibe os jobs registrados\\
+    \tt -d & remove um job específico\\
+    \tt -f & permite que os comandos sejam lidos a partir de um arquivo (não pela
+    entrada-padrão)\\
+    \tt -l & lista todos os jobs associados a um usuário\\
+    \tt -m & envia um e-mail ao usuário quando o job for finalizado\\
+    \hline \end{tabular}\\
+\end{center}
+\centering {\small Fonte: fonte da tabela} %Fonte da tabela
+\end{table}
+
+\subsection{Inserindo Equações}
+
+Equações devem ser numeradas, com a numeração, em parênteses à direita da mesma. Isso é ilustrado na Equação~\ref{eq:exemplo}.
+
+\begin{equation}
+\label{eq:exemplo}
+f'(x) = \int^{x^2}_{x^{-1}} xdx 
+\end{equation}
+
+
+\section{Usando Referências}
+A equipe do curso não impõe normas rígidas para o formato a ser adotado nas referências bibliográficas, desde que seja usado um padrão acadêmico conhecido. Caso os autores não possuam um padrão preferencial, recomenda-se o formato estipulado pela ABNT \cite{NBR6023:2002}. A Biblioteca Central da UFLA disponibiliza um manual \cite{BIBUFLA2001} que orienta o uso dessas normas. Se os autores estiverem utilizando \LaTeX, recomenda-se o uso do pacote Abn\TeX\footnote{Disponível em \url{http://abntex.codigolivre.org.br/}.} \cite{Weber2003}. 
+
+Obviamente, recomenda-se a leitura de textos sobre a escrita acadêmica e produção de trabalhos de conclusão para garantir não só qualidade estética e de formatação, mas também de conteúdo. Entre outros, pode-se recomendar a leitura de \cite{Silva2005}, \cite{Martins2000}, \cite{Gil2002}, \cite{Franca2001}, \cite{Eco1996}, \cite{Moura1998}, \cite{Booth2000}, \cite{Hexsel2004}, \cite{Porto2002} e \cite{Henz2003}. 
+
