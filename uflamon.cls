@@ -1204,6 +1204,7 @@
 % e margens
 \AtBeginDocument{
     \pagestyle{empty}
+    \makeglossaries% gera os glossários (gera, não imprime)
     
     \def\maketitle{    %\maketitle
     		
