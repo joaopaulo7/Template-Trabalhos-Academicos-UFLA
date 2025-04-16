@@ -72,7 +72,8 @@
 
 %abnt-emphasize=bf coloca o título das bibliografias em negrito
 %abnt-thesis-year=both
-\usepackage[alf,abnt-etal-cite=3,abnt-etal-list=3,abnt-url-package=url,abnt-emphasize=bf]{abntex2cite}
+\usepackage[alf, abnt-etal-list=3, abnt-url-package=url, abnt-emphasize=bf]{abntex2cite}
+
 
 % evite usar o hyperref com abntex, pode dar caca em urls... no linha anterior, informo
 % para incluir urls usando o pacote url e não o hyperref
@@ -313,6 +314,14 @@ f) demonstrate the impacts of the research and whether they are aligned with the
 %\bibliographystyle{alpha}             % estilo para labels em iniciais
 \bibliographystyle{abntex2-alf}           % estilo para referências usando ABNT, 
                                        % precisa instalar o abntex para usar!!!
+
+
+% precisamos criar opções aqui, já que sobreescrevemos o estilo.
+\citeoption{abnt-etal-text=it}
+\citeoption{abnt-etal-cite=3}
+\citeoption{abnt-missing-year=sd}
+\citeoption{abnt-nbr10520=1988} % A opção abnt-cite-style=AuthorYEAR está quebrada
+									% essa é equivalente
 
 %inclui Referências Bibliográficas
 %inclui Referências Bibliográficas

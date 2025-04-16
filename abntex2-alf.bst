@@ -23,10 +23,11 @@
 %% merlin.mbs  (with options: `babel,nm-revf,aunm-semi,nmlm,x3,m3,dt-end,yr-com,xmth,vnum-x,volp-com,jwdpg,jwdvol,num-xser,btit-rm,bt-rm,pg-bk,add-pub,pub-date,pub-xpar,pre-pub,isbn,issn,pp,ed,abr,ednx,nfss')
 %% These sourefiles are copyrighted by Patrick W Daly
 
+
 %%Small adaptations made by @joaopaulo7 to fit the 6th edition of UFLA's style guide. 
 %% Current changes:
-%% adding italics tags to latin expressions (e. g., et al. and s.l.)
-%% switching cite style from (AUTHOR, YEAR) to (Author, YEAR)
+%% adding italics tags to latin expressions other than et al. (e. g., s.n. and s.l.)
+
 
 ENTRY
   { address author
@@ -2039,14 +2040,14 @@ FUNCTION {set.default.abnt.variables}
   "$Revision: v-1.9.7 $" extract.cvs.key 'abnt.bst.revision :=
   #0 'abnt.and.type     :=     % #0 "e"; #1 "&"
   "\emph" 'abnt.emphasize :=
-  #1 'abnt.cite.style :=       %default norm version for NBR10520(2023)
+  #0 'abnt.cite.style :=       %default norm version for NBR10520
                                %#0 \cite=(AUTHOR, YEAR)
 			       %#1 \cite=(Author, YEAR)
   #0 'abnt.experimental :=
   abnt.doi.expand.to.url 'abnt.doi :=
   #3 'abnt.etal.cite :=
   #3 'abnt.etal.list :=
-  "\textit{et al.}" 'abnt.etal.text :=
+  "et al." 'abnt.etal.text :=
   #0 'abnt.full.initials :=
   #0 'abnt.last.names :=      %#0 abnt-style, #1 bibtex-style
   #1 'abnt.ldots.type :=      %#0 use nothing, #1 use \ldots, #2 use $\ldots$, 3# use {...}
