@@ -1196,10 +1196,8 @@
   \ifthenelse{\equal{\@primeiroanexo}{true}}{% se for primeiro anexo,
     \anexos                  % crie formatação dos anexos
     \primeiroanexo{false}    % marque que já passou do primeiro
-  } {% se não for, pule a página 
-    \clearpage          
-  }
-  {\noindent\bf ANEXO~\theanexo\ -- #1\\}
+  } {\vspace{1.0cm}} % senão, crie espaço vertical 
+  {\noindent\bf ANEXO~\theanexo\ -- #1}
 }
 
 % Apêndices
@@ -1223,10 +1221,8 @@
   \ifthenelse{\equal{\@primeiroapendice}{true}}{% se for primeiro apêndice,
     \apendices                  % crie cabeçalho dos apendices
     \primeiroapendice{false}    % marque que já passou do primeiro
-  } {% se não for, pule a página 
-    \clearpage          
-  }
-  {\noindent\bf AP\^{E}NDICE~\theapendice\ -- #1\\}
+  } {\vspace{1.0cm}} % senão, crie espaço vertical
+  {\noindent\bf AP\^{E}NDICE~\theapendice\ -- #1}
 }
 %######################################################################
 
@@ -1262,6 +1258,7 @@
         {\imprimeFolhaAprovacao}%               % caso contrário produza folha de aprovação 
     }
     
+    \testasecao
     \newlength{\identation}
     \setlength{\identation}{0cm}
     \def\l@chapter{\bfseries\@dottedtocline{0}{\identation}{\widthsechold}}
