@@ -27,6 +27,7 @@
 %%Small adaptations made by @joaopaulo7 to fit the 6th edition of UFLA's style guide. 
 %% Current changes:
 %% adding italics tags to latin expressions other than et al. (e. g., s.n. and s.l.)
+%%  removing <> from urls
 
 
 ENTRY
@@ -971,31 +972,27 @@ FUNCTION {filter.url.html}
 t
 }
 
+% adding changes suggested by https://github.com/abntex/abntex2/issues/264
 FUNCTION {compose.url}
 {'s :=
  get.url.type
  bbl.url.available
- abnt.url.package #0 =
-   { "$<$"   *
-   abnt.doi abnt.doi.expand.to.url = 'expand.doi {s} if$
-   * "$>$" *} 'skip$ if$
- abnt.url.package #1 =
-   { "\url{" * filter.url.html * "}" *} 'skip$ if$
+ abnt.url.package #0 = {abnt.doi abnt.doi.expand.to.url = 'expand.doi {s} if$ *} 'skip$ if$
+ abnt.url.package #1 = {"\url{" * filter.url.html * "}" *} 'skip$ if$
  abnt.url.package #2 =
    {url.type http.url =
-     {"\htmladdnormallink{$<$" * filter.url.tex * "$>$}{" * filter.url.html * "}" *}
+     {"\htmladdnormallink{" filter.url.tex * "}{" * filter.url.html * "}" *}
      'skip$ if$
     url.type doi.url = url.type ftp.url = or url.type mailto.url = or
-     {"\htmladdnormallink{$<$" *
+     {"\htmladdnormallink{" *
       abnt.doi abnt.doi.expand.to.url = 'expand.doi {s} if$
-      * "$>$}{" *
+      * "}{" *
       abnt.doi abnt.doi.leave.as.is = {s} 'expand.doi if$
-      * "}" * }
-     'skip$ if$
-    url.type unknown.url =
-     {"$<$" * filter.url.tex * "$>$" *}
-     'skip$ if$} 'skip$ if$
+      * }'skip$ if$
+    url.type unknown.url = {filter.url.tex *} 'skip$ if$}
+  'skip$ if$
 }
+
 FUNCTION {format.url}
 { url empty$ 'skip$
     {url compose.url output new.sentence }
