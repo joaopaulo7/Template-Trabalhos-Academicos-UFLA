@@ -1181,31 +1181,15 @@
 \newcounter{anexo} %contador para os anexos (uso em referências)
 \renewcommand\theanexo{\AlphAlph{\value{anexo}}}
 
-%\newcommand\anexos{%
-%	\appendix%
-%	\cleardoublepage%
-%	\phantomsection%
-%    {\hfill\normalfont\selectfont\normalsize\bf ANEXOS \hfill} 
-%    \vspace{0.3cm}
-%	\addcontentsline{toc}{chapter}{\numberline{} ANEXOS}
-%}
-
 \newcommand\anexos{%
 	\appendix%
-	\clearpage%
+	\cleardoublepage%
 	\phantomsection%
+    {\centering\normalfont\selectfont\normalsize\bf ANEXOS\\} 
+    \vspace{0.3cm}
+	\addcontentsline{toc}{chapter}{\numberline{} ANEXOS}
 }
 
-%\newcommand\anexo[1]{
-%  \refstepcounter{anexo}
-%  \ifthenelse{\equal{\@primeiroanexo}{true}}{% se for primeiro anexo,
-%    \anexos                  % crie cabeçalho dos anexos
-%    \primeiroanexo{false}    % marque que já passou do primeiro
-%  } {% se não for, pule a página 
-%    \cleardoublepage          
-%  }
-%  {\flushright \bf ANEXO~\theanexo\ -- #1}
-%}
 
 \newcommand\anexo[1]{
   \refstepcounter{anexo}
@@ -1215,8 +1199,7 @@
   } {% se não for, pule a página 
     \clearpage          
   }
-  {\centering \bf ANEXO~\theanexo\ -- #1\\}
-  \addcontentsline{toc}{chapter}{\numberline{} ANEXO~\theanexo\ -- #1}
+  {\noindent\bf ANEXO~\theanexo\ -- #1\\}
 }
 
 % Apêndices
@@ -1225,20 +1208,15 @@
 \newcounter{apendice} %contador para os apêndices (uso em referências)
 \renewcommand\theapendice{\AlphAlph{\value{apendice}}}
 
-%\newcommand\apendices{%
-%	\appendix%
-%	\cleardoublepage%
-%	\phantomsection%
-%    {\hfill\normalfont\selectfont\normalsize\bf AP\^{E}NDICES \hfill} 
-%    \vspace{0.3cm}
-%	\addcontentsline{toc}{chapter}{\numberline{} AP\^{E}NDICES}
-%}
-
 \newcommand\apendices{%
 	\appendix%
-	\clearpage%
+	\cleardoublepage%
 	\phantomsection%
+    {\centering \normalfont\selectfont\normalsize\bf AP\^{E}NDICES\\} 
+    \vspace{0.3cm}
+	\addcontentsline{toc}{chapter}{\numberline{} AP\^{E}NDICES}
 }
+
 
 \newcommand\apendice[1]{
   \refstepcounter{apendice}
@@ -1248,8 +1226,7 @@
   } {% se não for, pule a página 
     \clearpage          
   }
-  {\centering \bf  AP\^{E}NDICE~\theapendice\ -- #1\\}
-  \addcontentsline{toc}{chapter}{\numberline{} APENDICE~\theapendice\ -- #1}
+  {\noindent\bf AP\^{E}NDICE~\theapendice\ -- #1\\}
 }
 %######################################################################
 
