@@ -253,8 +253,8 @@
 \newlength{\bottommargin}        % margem inferior eh deduzida em LaTeX
 \setlength{\bottommargin}{2.0cm} % margem inferior
 \setlength{\headheight}{2.0cm}   % altura do cabecalho
-\setlength{\headsep}{2.0cm}      % espaco entre cabecalho e texto
-\setlength{\footskip}{2.0cm}     % espaco entre rodape e texto
+\setlength{\headsep}{1.0cm}      % espaco entre cabecalho e texto
+\setlength{\footskip}{0.0cm}     % espaco entre rodape e texto
 \setlength\textheight{ % altura disponivel para texto
  \paperheight-\topmargin-\bottommargin-\headheight-\headsep-\footskip
 } 
