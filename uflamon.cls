@@ -177,9 +177,9 @@
 \RequirePackage{alphalph} % Para número de apêndices/anexos acima de 26.
 
 % para listas de siglas, símbolos e etc; glossário e índice.
-\RequirePackage[nopostdot, abbreviations,
-                automake, symbols, index]{glossaries-extra}
+\RequirePackage[nopostdot, abbreviations, acronym, symbols]{glossaries-extra}
 \RequirePackage{glossary-mcols}
+\RequirePackage{imakeidx}
 %######################################################################
 
 
@@ -991,7 +991,7 @@
 % Sumario, 
 % adaptado do Renato
 \renewcommand{\tableofcontents}{
-    %\pagestyle{empty}
+    \newpage
     \begin{center}\textbf{\MakeUppercase{\contentsname}}\end{center}
     \normalfont\normalsize\@starttoc{toc}
     \clearpage
@@ -1079,11 +1079,23 @@
 
 %######################################################################
 %Imprimindo os glossários
+% comando para imprimir corretamente os títulos
+\renewcommand{\glossarysection}[2][]{
+{
+	\centering\bfseries \MakeUppercase{#2}\par}
+	% somente glossário e índice vão para o sumário
+	\ifthenelse{\equal{#2}{Glossário}}{
+		\addcontentsline{toc}{chapter}{\numberline{} \MakeUppercase{#1}}}
+		{}
+	
+}
+
+
 % lista de abreviaturas
 \newcommand{\listofabreviaturas}{
 	\newpage
-	\printglossary[
-		title={\centering \textbf{LISTA DE ABREVIATURAS}},
+	\printnoidxglossary[
+		title={LISTA DE ABREVIATURAS},
 		type={abbreviations},
 		nonumberlist,
 		style=long]}
@@ -1091,8 +1103,8 @@
 % lista de siglas
 \newcommand{\listofsiglas}{
 	\newpage
-	\printglossary[
-		title={\centering \textbf{LISTA DE SIGLAS}},
+	\printnoidxglossary[
+		title={LISTA DE SIGLAS\\},
 		type={\acronymtype},
 		nonumberlist,
 		style=long]}
@@ -1100,26 +1112,31 @@
 % lista de símbolos
 \newcommand{\listofsimbolos}{
 	\newpage
-	\printglossary[
-		title={\centering \textbf{LISTA DE SÍMBOLOS}},
+	\printnoidxglossary[
+		title={LISTA DE SÍMBOLOS},
 		type={symbols},
 		nonumberlist,
+		sort=use,
 		style=long]}
 	
 % glossário
 \newcommand{\glossario}{
 	\newpage
-	\printglossary[
-		title={\centering \textbf{GlOSSÁRIO}},
+	\printnoidxglossary[
+		title={Glossário},
 		nonumberlist,
 		style=long]}
-	
-% índice
+%######################################################################
+
+
+%######################################################################
+% Corrigindo a altura do índice
+\indexprologue[]{\vspace{-1.5cm}}
+
 \newcommand{\indice}{
 	\newpage
-	\printindex[
-		title={\centering \textbf{ÍNDICE}},
-		style=mcolindex]}
+	\printindex
+	\addcontentsline{toc}{chapter}{\numberline{} ÍNDICE}}
 %######################################################################
 
 
@@ -1253,8 +1270,10 @@
 % e margens
 \AtBeginDocument{
     \pagestyle{empty}
-    \makeglossaries% gera os glossários (gera, não imprime)
     
+    
+    \makenoidxglossaries% gera os glossários (gera, não imprime)
+    \makeindex[title=\centering\bfseries ÍNDICE\\]
     \def\maketitle{    %\maketitle
     		
         \imprimeCapa
