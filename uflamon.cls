@@ -1142,11 +1142,11 @@
 
 %######################################################################
 % Remodelando o formato dos títulos de tabelas e figuras
-\RequirePackage[labelsep=endash,font=small]{caption}  
+\RequirePackage[labelsep=endash]{caption}  
 
 \DeclareCaptionListFormat{ufla}{#1#2~\textendash~}
 
-\captionsetup{listformat=ufla,format=hang,font=small}
+\captionsetup{listformat=ufla,format=hang}
 
 % alinhar à esquerda                          
 %\captionsetup{justification=justified,singlelinecheck=false}
