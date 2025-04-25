@@ -18,7 +18,7 @@ As principais mudanças com relação à 3ª edição são:
 - Adição de suporte para acentos e ç nos ambientes de código (listings);
 - Adição do glossário, lista de siglas, lista de abreviações, lista de símbolos e índice;
 - Espaçamento consistente no sumário e listas de figuras/tabelas (não perdem formatação em trabalhos maiores);
-- Adicionado para 26+ anexos/apêndices (louvado seja que conseguir usar isso).
+- Adicionado suporte para 26+ anexos/apêndices (louvado seja que conseguir usar isso).
 
 
 
