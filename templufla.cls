@@ -84,6 +84,9 @@
 
 % para capitalização da primeira letra
 \RequirePackage{mfirstuc}
+
+% para total de páginas
+\usepackage{zref-totpages}
 %######################################################################
 
 
@@ -432,7 +435,7 @@
   / \@fcautores. 
   \ifthenelse{\equal{\@fcedicao}{\@empty}}{}{ \@fcedicao} 
    -- Lavras : UFLA, \@date.\\
-  \tab \pageref{LastPage} p. : \@fcilustrado\\
+  \tab \ztotpages p. : \@fcilustrado\\
   \vfill
   \ifthenelse{\equal{\@fctipo}{\@empty}} % se tipo nao existir,
   	{}%                                                      % nao produza nada
