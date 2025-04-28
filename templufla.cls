@@ -81,12 +81,13 @@
 \RequirePackage[nopostdot, abbreviations, acronym, symbols]{glossaries-extra}
 \RequirePackage{glossary-mcols}
 \RequirePackage{imakeidx}
+\RequirePackage[initsep=0pt]{idxlayout}
 
 % para capitalização da primeira letra
 \RequirePackage{mfirstuc}
 
 % para total de páginas
-\usepackage{zref-totpages}
+\RequirePackage{zref-totpages}
 %######################################################################
 
 
@@ -160,8 +161,8 @@
 \newlength{\bottommargin}        % margem inferior eh deduzida em LaTeX
 \setlength{\bottommargin}{2.0cm} % margem inferior
 \setlength{\headheight}{2.0cm}   % altura do cabecalho
-\setlength{\headsep}{1.0cm}      % espaco entre cabecalho e texto
-\setlength{\footskip}{0.0cm}     % espaco entre rodape e texto
+\setlength{\headsep}{16pt}      % espaco entre cabecalho e texto
+\setlength{\footskip}{7pt}     % espaco entre rodape e texto
 \setlength\textheight{ % altura disponivel para texto
  \paperheight-\topmargin-\bottommargin-\headheight-\headsep-\footskip
 } 
@@ -195,20 +196,16 @@
 \newlength{\mylen}
 
 % Redefinindo Large
- \def\@tamanhoLarge{14.0}
-\renewcommand\Large{\@setfontsize\Large\@tamanhoLarge{17}}
+\renewcommand{\Large}{\fontsize{14pt}{16pt}\selectfont}
 
 % Redefinindo LARGE
- \def\@tamanhoLARGE{16.0}
-\renewcommand\LARGE{\@setfontsize\LARGE\@tamanhoLARGE{20}}
+\renewcommand{\LARGE}{\fontsize{16pt}{17pt}\selectfont}
 
 % Redefinindo small
- \def\@tamanhosmall{11.0}
-\renewcommand\small{\@setfontsize\small\@tamanhosmall{13}}
+\renewcommand{\small}{\fontsize{11pt}{13pt}\selectfont}
 
 % Redefinindo footnotesize
- \def\@tamanhofootnotesize{11.0}
-\renewcommand\footnotesize{\@setfontsize\footnotesize\@tamanhofootnotesize{13}}
+\renewcommand{\footnotesize}{\fontsize{11pt}{13pt}\selectfont}
 
 
 % Definindo tamanho para exemplo
@@ -235,11 +232,6 @@
 %######################################################################
 % Cabecalho e rodape
 \RequirePackage{fancyhdr}
-\fancyhead{}
-\fancyhead[R]{\nouppercase{\small\slshape\rightmark}}
-\fancyhead[L]{\nouppercase{\small\slshape\leftmark}}
-\fancyfoot{}
-\fancyfoot[C]{\small\thepage}
 
 \fancypagestyle{plain}{
 \fancyhf{}
@@ -385,90 +377,28 @@
 %######################################################################
 % Codigo para impressao da capa
 \newcommand\imprimeCapa{
-    \begin{titlepage}
-    %\pagestyle{empty}
-    \centering
-    
-    \includegraphics[scale=0.40]{imgs/logoUFLA}
-    
-    \vspace{0.7cm}
-    
-    \Large\textbf{\MakeUppercase\@author} % autor da monografia
-
-    \vspace{\stretch{0.3}}
-
-    \LARGE\textbf{\MakeUppercase\@title}%
-    \ifthenelse{\equal{\@subtitle}{\@empty}}% verifica se tem subtitulo
-    {}% se nao tiver, não faz nada
-    {\LARGE: {\MakeUppercase\@subtitle}} % subtitulo da monografia
-    
-     \ifthenelse{\equal{\@edicao}{\@empty}}% verifica se tem edicao
-    {}{\large\@edicao}                                     % se tiver, imprime
-    
-    \vspace{\stretch{1}}
-
-    \Large\textbf{\MakeUppercase\@local}\\ 
-    \textbf{\MakeUppercase\@date}
-    \null
-    \end{titlepage}
-}
-%######################################################################
-
-
-%######################################################################
-\fichacat{% texto da ficha catalográfica
-  % Antes verifica se tem os dados, senão, não imprime
-  \ifthenelse{\equal{\@fcautor}{\@empty}}{}{%
-  %\vspace{.5cm}
-  % Espacamento entre linhas
-  % O manual diz tamanho 11pt para a ficha, o template mostra 12pt.
-  %  Escolhi 12pt pois provavelmente será o mais comum. 
-  \renewcommand{\baselinestretch}{1}\normalsize%\small
-   \@fcautor \\
-  \tab 
-  \ifthenelse{\equal{\@subtitle}{\@empty}}% verififica se tem título e subtítulo
-  {% se não tem imprime só título
-     \@title
-  } {% se tiver, imprime os dois
-     \@title\ : \@subtitle
-  }  
-  / \@fcautores. 
-  \ifthenelse{\equal{\@fcedicao}{\@empty}}{}{ \@fcedicao} 
-   -- Lavras : UFLA, \@date.\\
-  \tab \ztotpages p. : \@fcilustrado\\
-  \vfill
-  \ifthenelse{\equal{\@fctipo}{\@empty}} % se tipo nao existir,
-  	{}%                                                      % nao produza nada
-    {\tab \@fctipo--Universidade Federal de Lavras, \@fcdatadefesa. \\}
-  \ifthenelse{\equal{\@orientador}{\@empty}} % se orientador nao existir,
-    {}%                                                             % nao produza nada
-    {\tab Orientador: \@orientador. \\}
-  \ifthenelse{\equal{\@orientadora}{\@empty}} % se orientadora nao existir,
-    {}%                                                               % nao produza nada
-    {\tab Orientadora: \@orientadora. \\}
-  \ifthenelse{\equal{\@coorientador}{\@empty}} % se coorientador nao existir,
-    {}%                                                               % nao produza nada
-    {\tab Coorientador: \@coorientador. \\}
-  \ifthenelse{\equal{\@coorientadora}{\@empty}} % se coorientadora nao existir,
-	{}%                                                               % nao produza nada
-	{\tab Coorientadora: \@coorientadora. \\}
-  \tab Bibliografia.\\
-  \vfill
-  \tab \@fccatalogacao\\
-  \ifthenelse{\equal{\@fcclasi}{\@empty}}{}{
-        %\vfill
-        \tab \hfill
-  \begin{tabular}{r@{-}l} 
-        CDD & \@fcclasi 
-        \ifthenelse{\equal{\@fcclasii}{\@empty}}{}{
-        \\ & \@fcclasii \\
-        }
-        \ifthenelse{\equal{\@fcclasiii}{\@empty}}{}{
-        \\ & \@fcclasiii 
-        }
-  \end{tabular}
-  }
- }
+    \begin{center}
+	    \includegraphics[scale=0.40]{imgs/logoUFLA}
+	    
+	    \vspace{0.7cm}
+	    
+	    \Large\textbf{\MakeUppercase\@author} % autor da monografia
+	
+	    \vspace{\stretch{1}}
+	
+	    \LARGE\textbf{\MakeUppercase\@title}%
+	    \ifthenelse{\equal{\@subtitle}{\@empty}}% verifica se tem subtitulo
+	    {}% se nao tiver, não faz nada
+	    {\LARGE: {\MakeUppercase\@subtitle}} % subtitulo da monografia
+	    
+	     \ifthenelse{\equal{\@edicao}{\@empty}}% verifica se tem edicao
+	    {}{\large\@edicao}                                     % se tiver, imprime
+	    
+	    \vspace{\stretch{1}}
+	
+	    \Large\textbf{\MakeUppercase\@local}\\
+	    \textbf{\MakeUppercase\@date}
+	\end{center}
 }
 %######################################################################
 
@@ -477,10 +407,7 @@
 %######################################################################
 % Codigo para impressao da folha de rosto
 \newcommand\imprimeFolhaRosto{
-    \begin{titlepage}
-    %\pagestyle{empty}
-    %\vspace*{\stretch{.08}}
-    
+    \newpage
     \begin{center}       
         \textbf{\MakeUppercase\@author} % autor da monografia
 
@@ -540,10 +467,70 @@
 
         \textbf{\MakeUppercase\@local}\\ 
         \textbf{\MakeUppercase\@date}
-    \end{center}    
-    
-     \newpage
-     %\thispagestyle{empty}
+    \end{center} 
+}
+%######################################################################
+
+
+
+%######################################################################
+% Codigo para impressao da ficha catalográfica
+\fichacat{% texto da ficha catalográfica
+	% Antes verifica se tem os dados, senão, não imprime
+	\ifthenelse{\equal{\@fcautor}{\@empty}}{}{%
+		%\vspace{.5cm}
+		% Espacamento entre linhas
+		% O manual diz tamanho 11pt para a ficha, o template mostra 12pt.
+		%  Escolhi 12pt pois provavelmente será o mais comum. 
+		\renewcommand{\baselinestretch}{1}\normalsize%\small
+		\@fcautor \\
+		\tab 
+		\ifthenelse{\equal{\@subtitle}{\@empty}}% verififica se tem título e subtítulo
+		{% se não tem imprime só título
+			\@title
+		} {% se tiver, imprime os dois
+			\@title\ : \@subtitle
+		}  
+		/ \@fcautores. 
+		\ifthenelse{\equal{\@fcedicao}{\@empty}}{}{ \@fcedicao} 
+		-- Lavras : UFLA, \@date.\\
+		\tab \ztotpages p. : \@fcilustrado\\
+		\vfill
+		\ifthenelse{\equal{\@fctipo}{\@empty}} % se tipo nao existir,
+		{}%                                                      % nao produza nada
+		{\tab \@fctipo--Universidade Federal de Lavras, \@fcdatadefesa. \\}
+		\ifthenelse{\equal{\@orientador}{\@empty}} % se orientador nao existir,
+		{}%                                                             % nao produza nada
+		{\tab Orientador: \@orientador. \\}
+		\ifthenelse{\equal{\@orientadora}{\@empty}} % se orientadora nao existir,
+		{}%                                                               % nao produza nada
+		{\tab Orientadora: \@orientadora. \\}
+		\ifthenelse{\equal{\@coorientador}{\@empty}} % se coorientador nao existir,
+		{}%                                                               % nao produza nada
+		{\tab Coorientador: \@coorientador. \\}
+		\ifthenelse{\equal{\@coorientadora}{\@empty}} % se coorientadora nao existir,
+		{}%                                                               % nao produza nada
+		{\tab Coorientadora: \@coorientadora. \\}
+		\tab Bibliografia.\\
+		\vfill
+		\tab \@fccatalogacao\\
+		\ifthenelse{\equal{\@fcclasi}{\@empty}}{}{
+			%\vfill
+			\tab \hfill
+			\begin{tabular}{r@{-}l} 
+				CDD & \@fcclasi 
+				\ifthenelse{\equal{\@fcclasii}{\@empty}}{}{
+					\\ & \@fcclasii \\
+				}
+				\ifthenelse{\equal{\@fcclasiii}{\@empty}}{}{
+					\\ & \@fcclasiii 
+				}
+			\end{tabular}
+		}
+	}
+}
+
+\newcommand\imprimeFichaCat{
   \ifthenelse{\equal{\@fcautor}{\@empty}}{}{%
       \ifthenelse{\equal{\@antesfichacat}{\@empty}} % verifica se não precisa imprimir nada 
       {}{\renewcommand{\baselinestretch}{1}\normalsize\@antesfichacat}   % antes da ficha catalográfica
@@ -555,18 +542,18 @@
         \@preparofichacat
       \end{center}
 
-      \setlength{\mylen}{12.5cm}
-      \newlength{\mylenn}
-      \addtolength{\mylenn}{\mylen}
-      \addtolength{\mylenn}{-1.9cm}
+      \newlength{\largura}
+      \setlength{\largura}{12.5cm}
+      \newlength{\larguraTexto}
+      \setlength{\larguraTexto}{10.5cm}
 
       % alteração graças às diferenças de margem.
       % a4 = 21cm, margem direita = 3cm margem esquerda = 2cm, caixa = 12.5cm
       % espaço à esquerda = (21-3-2-12.5)/2 = 1.75cm
       \noindent \hspace{1.75cm} 
-      \fbox{\parbox[c][7.5cm][t]{\mylen}{
+      \fbox{\parbox[c][7.5cm][t]{\largura}{
         \vspace{0.3cm}
-        \hspace{1.5cm} \parbox[c][7.3cm][t]{\mylenn}{
+        \hspace{1.5cm} \parbox[c][7.3cm][t]{\larguraTexto}{
           \@fichacat
           } \hfill
        }
@@ -577,7 +564,6 @@
       \ifthenelse{\equal{\@depoisfichacat}{\@empty}} % verifica se não precisa imprimir nada 
       {}{\renewcommand{\baselinestretch}{1}\normalsize\@depoisfichacat}   % depois da ficha catalográfica
   }
-  \end{titlepage}
 }
 %######################################################################
 
@@ -631,7 +617,7 @@
 % Folha de aprovacao
 \newcommand{\imprimeFolhaAprovacao}{
     \ifthenelse{\equal{\@arquivoFolhaAprovacao}{\@empty}} %
-    % se não existir arquivo da folha de rosto, então produza-a
+    % se não existir arquivo da folha de aprovação, então produza-a
     {\geraFolhaAprovacao} %
     % se existir arquivo, então insira-o
     {%\pagestyle{empty} %
@@ -641,10 +627,7 @@
 
 % Codigo para impressao da folha de aprovacao
 \def\geraFolhaAprovacao{
-    %\begin{titlepage}
-    %\pagestyle{empty}
-    %\centering
-    
+    \newpage
 	 % Espacamento entre linhas
    \renewcommand{\baselinestretch}{1}\normalsize 
     \begin{center}
@@ -754,7 +737,7 @@
     \end{center}   
     
     \clearpage
-    %\end{titlepage}
+    
 } % \def\folhaaprovacao
 %######################################################################
 
@@ -763,7 +746,7 @@
 % Páginas de Dedicatória, Agradecimentos e de Epígrafe
 % Dedicatoria
 \newcommand{\dedic}[1]{
-    %\begin{titlepage}
+    %
     %\pagestyle{empty}                       
                           
     \null\vfill
@@ -771,13 +754,13 @@
     \vspace*{1cm}
         
     \clearpage
-    %\end{titlepage}
+    %
 } % \dedic
 
 
 % Agradecimentos
 \renewcommand{\thanks}[1]{
-    %\begin{titlepage}
+    %
     %\pagestyle{empty}                       
                           
     \null\vfill
@@ -787,13 +770,13 @@
     \vfill\null
     
     \clearpage
-    %\end{titlepage}
+    %
 } % \thanks
 
 
 % Pagina de epigrafe
 \newcommand{\epigrafe}[1]{
-    %\begin{titlepage}
+    %
     %\pagestyle{empty}                       
                           
     \null\vfill
@@ -801,7 +784,7 @@
     \vspace*{1cm}
         
     \clearpage
-    %\end{titlepage}
+    %
 } % epigrafe
 %######################################################################
 
@@ -1047,12 +1030,12 @@
 %######################################################################
 % Imprimindo índice
 %  corrigindo a altura do índice
-\indexprologue[]{\vspace{-1.5cm}}
+
+%\indexprologue{\vspace{-1.0cm}}
 
 \newcommand{\indice}{%
-	\newpage
 	\printindex
-	\addcontentsline{toc}{chapter}{\numberline{} ÍNDICE}}
+	\addcontentsline{toc}{chapter}{\numberline{} ÍNDICE REMISSIVO}}
 %######################################################################
 
 
@@ -1161,13 +1144,24 @@
     \pagestyle{empty}
     
     
-    \makenoidxglossaries% gera os glossários (gera, não imprime)
-    \makeindex[title=\centering\bfseries ÍNDICE\\]
+    \makenoidxglossaries % gera os glossários (gera, não imprime)
+    
+    \indexsetup{firstpagestyle=ufla}
+    \makeindex[title={\hfill \bfseries{ÍNDICE REMISSIVO} \hfill}, columnsep=15pt] % gera índices
+    
     \def\maketitle{    %\maketitle
-    		
+    	\setcounter{page}{0}
         \imprimeCapa
         
         \imprimeFolhaRosto
+        
+        \newpage
+        \newcounter{oldPageNumber}
+        \setcounter{oldPageNumber}{\value{page}}
+        \setcounter{page}{-1}
+        \imprimeFichaCat
+        \clearpage
+        \setcounter{page}{\value{oldPageNumber}}
      
         \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
         {}%                                     % não produza 
