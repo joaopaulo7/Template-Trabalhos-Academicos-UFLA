@@ -640,6 +640,7 @@
         {\\}% se nao tiver, so pula a linha
         {: {\MakeUppercase\@subtitle}} % subtitulo da monografia
         % escreve título e subtítulo em inglês, caso existam
+        \vspace{\stretch{0.2}}
         \ifthenelse{\equal{\@engtitle}{\@empty}}{}{\\%
         \textbf{\MakeUppercase\@engtitle}% titulo da monografia
         \ifthenelse{\equal{\@engsubtitle}{\@empty}}% verifica se tem subtitulo
