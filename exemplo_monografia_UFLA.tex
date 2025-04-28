@@ -1,4 +1,4 @@
-\documentclass{uflamon}          % classe base para a monografia
+\documentclass{templufla}          % classe base para a monografia
 
 %==============================================================================
 % Utilizacao de pacotes
@@ -36,9 +36,9 @@
             filecolor=rltgreen,     % \href{...} local file
             linkcolor=rltred,       % \ref{...} and \pageref{...}
             citecolor=rltgreen,
-            pdftitle={Exemplo de Uso da Classe Uflamon},
-          pdfauthor={Joaquim Quinteiro Uchôa},
-          pdfsubject={Este texto tem por objetivo servir de exemplo da classe Uflamon.},
+            pdftitle={Template de Trabalhos acadêmcios UFLA},
+          pdfauthor={João Autor},
+          pdfsubject={Template de Trabalhos acadêmcios UFLA.},
           pdfkeywords={Comunicação Científica. 2. Pesquisa . 3. Pesquisa Científica. 
  					 4. Redação. 5. Monografia.}%
 ]{hyperref} % para referência cruzadas
@@ -88,10 +88,10 @@
 
 %==============================================================================
 % criação do glossário, listas de siglas, símbolos e etc
-\input{glossarios/abreviaturas}
-\input{glossarios/glossario}
-\input{glossarios/siglas}
-\input{glossarios/simbolos}
+\loadglsentries{glossarios/abreviaturas}
+\loadglsentries{glossarios/glossario}
+\loadglsentries{glossarios/siglas}
+\loadglsentries{glossarios/simbolos}
 %==============================================================================
 
 %==============================================================================
@@ -114,12 +114,12 @@ FAE-PE Recovery TelEduc Williams UFLA}
 %==============================================================================
 % Dados da monografia, capa: autor, titulo, banca, etc... - SUBSTITUA DE ACORDO
 %==============================================================================
-\author{Joaquim Quinteiro Uchôa}
-\title{Uso da Classe Uflamon}
-\subtitle{Exemplo para os Usuários}
-\engtitle{Use of Uflamon Class}
-\engsubtitle{Sample for Users}
-\edicao{6$^a$(?) edição atualizada e ampliada, mas não muito revista}
+\author{Joana Autora da Silva}
+\title{Template de Exemplo do Estilo Padrão UFLA}
+\subtitle{Usando \LaTeX! =)}
+\engtitle{Example Template for UFLAS' Standard Style}
+\engsubtitle{Using \LaTeX =)}
+\edicao{6$^a$ edição atualizada, ampliada e revista}
 \date{2025}
 \tipo{Tese apresentada à Universidade Federal de Lavras, como parte das exigências do Programa de Pós-Graduação em Monografia, área de concentração em TCC, para a obtenção do título de Doutor.}
 % use \orientador ou \orientadora quando for o caso
@@ -142,25 +142,25 @@ FAE-PE Recovery TelEduc Williams UFLA}
 % Elaboração da Ficha Catalográfica
 \preparofichacat{Ficha catalográfica elaborada pela Coordenadoria de Processos Técnicos \\ da Biblioteca Universitária da UFLA}
 % primeiro autor - como na primeira linha da ficha catalográfica
-\fcautor{Uchôa, Joaquim Quinteiro}
+\fcautor{Silva, Joana Autora da}
 % autores, separados por vírgula - na ficha catalográfica, no formato que
 % vem após o título e a barra ("/")
-\fcautores{Joaquim Quinteiro Uchôa}
+\fcautores{Joana Autora da Silva, João Autor do Silvo}
 % caso trabalho seja ilustrado (figuras, gráficos, tabelas, etc.), 
 % então informar por meio do comando a seguir
 % caso não seja ilustrado, basta comentá-lo
 \fcilustrado{il.}
 % dados da edição para a ficha 
-\fcedicao{6$^a$ ed. rev.?, atual. e ampl.}
+\fcedicao{6$^a$ ed. rev., atual. e ampl.}
 % tipo do trabalho (tese, dissertação, etc.), de acordo com sistema
 % de geração de ficha catalográfica
 \fctipo{Tese(doutorado)}
 % ano da defesa, só precisa informar se for diferente do ano da publicação
 % se forem iguais, comente a linha a seguir
-\fcdatadefesa{205}
+\fcdatadefesa{2025}
 % preencher aqui com os dados de catalogação gerados pelo sistema
 \fccatalogacao{1. TCC. 2. Monografia. 3. Dissertação. 4. Tese. 5. Trabalho Científico – Normas. I. Universidade Federal de Lavras. II. Título.}
-\fcclasi{808.066}
+%\fcclasi{808.066}
 
 %##################################################
 
@@ -217,12 +217,12 @@ FAE-PE Recovery TelEduc Williams UFLA}
 
 \maketitle
 
-\dedic{Espaço reservado a dedicatória.}     % Dedicatórias\\
+\dedic{Espaço reservado à dedicatória.}     % Dedicatórias\\
 
 \thanks{Espaço reservado aos agradecimentos.}         % Agradecimentos
 
 \epigrafe{ % citação opcional
-Espaço reservado a epígrafe.\\
+Espaço reservado à epígrafe.\\
 (Autor Desconhecido)}
 
 
@@ -232,6 +232,8 @@ Espaço reservado a epígrafe.\\
 > Alteração para fonte do texto 12pt, folha a4 e onesided;\\
 > Alteração no tamanho das margens;\\
 > Adição dos indicadores de impacto;\\
+> Coorientador(a) agora aparece na ficha catalográfica;\\
+> Nome da/do autor(a) mais alto na capa;\\ 
 > Adição de glossários, listas de termos e índices;\\
 > Remoção de páginas duplas dos elementos pré-textuais;\\
 > Remoção de <> entre links na referências;\\
@@ -239,17 +241,21 @@ Espaço reservado a epígrafe.\\
 > Uso de itálico nas expressões em latim nas referências (ex: \textit{et al} e [\textit{s.n.}]);\\
 > Alteração na capitalização de citações de pessoas físicas (de AUTOR para Autor);\\
 > Remoção do salto de linha entre o título e subtítulo;\\
+> Suporte para mais de 26 anexos/apêndices (abençoado seja quem usar isso);\\
 > Agora as listas de figuras e etc mantêm a formatação para qualquer índice (antes, figuras/tabelas > 10 quebravam a formatação);\\
 > Agora o sumário mantém a formatação para qualquer índice (antes, sec/subsec > 10 quebravam a formatação);\\
+> Logo da UFLA agora é em formato vetorial (resolução "infinita");\\
 > Alteração de Large de 14.4pt para 14pt;\\
 > Alteração de small de 10.95pt para 11pt;\\
 > Uso de 12pt para títulos de figuras e tabelas;\\
 > Uso de 11pt para notas, fichas e rodapés;\\
 > Ajustes de posicionamento necessário graças às diferenças de tamanho das fontes e das margens;\\
-> Suporte para mais de 26 anexos/apêndices;\\
 > Adicionado suporte para acentos e ç nos listings;\\
 \\
 Se encontrar mais mudanças necessárias, por favor informar!\\
+Contato:\\
+https://github.com/joaopaulo7/Template-Trabalhos-Academicos-UFLA (preferêncial)\\
+joao.lima10@estudante.ufla.br\\
 }  % Resumo (digite aqui o resumo)
 
 % keywords devem vir antes do abstract
