@@ -32,10 +32,8 @@ Enquanto isso, você pode adicionar o template ao site diretamente desse reposit
    
 ![Screenshot from 2025-05-14 09-39-32](https://github.com/user-attachments/assets/c43f0f6a-dcd2-497e-8f50-c9db7c43eb06)
 
-
 &nbsp;
 
----
 
 ## Pincipais "novidades" 🌟
 
