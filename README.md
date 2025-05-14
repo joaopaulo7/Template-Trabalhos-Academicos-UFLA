@@ -60,7 +60,7 @@ As principais mudanças com relação à 3ª edição são:
 > Caso acredite que o projeto precisa de algum ajuste, sintá-se livre para criar issues, pull requests ou contactar o autor.
 
 
-## Sobre abntex2 
+## Sobre abntex2 🤷‍♀️
 
 Algumas das mudanças no estilo das referências tiveram que ser hard-coded, já que não eram opções do pacote abntex2. Por isso dos arquivos de estilo (abntex2cite.sty e abntex2-alf.bst) "soltos" no diretório raiz.
 O projeto não tem sido atualizado há alguns anos, então, enquanto as issues [abntex2#233](https://github.com/abntex/abntex2/issues/233) e [abntex2#210](https://github.com/abntex/abntex2/issues/210) não forem solucionadas, ainda vamos precisar desses arquivios =/.
