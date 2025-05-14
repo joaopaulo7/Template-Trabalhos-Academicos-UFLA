@@ -1,10 +1,50 @@
-# Template para Trabalhos Acadêmicos da UFLA
+# Template para Trabalhos Acadêmicos da UFLA 🎓
 Um template em LaTex para a criação de trabalhos acadêmicos seguindo o Manual de Normalização e Estrutura de Trabalhos Acadêmicos da UFLA.
-Essa é uma versão atualizada para a 6ª edição do manual (2025).
+Essa é uma versão atualizada para a 6ª edição do manual (2025).  
+
+&nbsp;
+
+> [!TIP]
+> Embora a versão atual esteja completa, ainda podem surgir pequenos ajustes e correções.  
+> Caso encontre algum problema, cheque se você seguiu as intruções corretamente e que sua versão está atualizada.  
+> Caso acredite que o projeto precisa de algum ajuste, sintá-se livre para criar issues, pull requests ou contactar o autor.
+
+
+## Como usar esse template no Overleaf? 🍃
+
+Infelizmente, para um template ser adicionado ao catálogo do Overleaf, ele precisa passar por um longo processo de avaliação.  
+Enquanto isso, você pode adicionar o template ao site diretamente desse repositório seguindo esses simples passos:
+
+&nbsp;
+
+### 1. Faça o download do repositório como zip, clicando em "Code" e "Download ZIP":
+   
+![Screenshot from 2025-05-14 09-25-42](https://github.com/user-attachments/assets/f716332a-8417-43d0-af38-f92775fff28a)
+
+&nbsp;
+
+### 2. Com o arquivio zip baixado, vá ao site do Overleaf, entre na sua conta e então clique em "Novo Projeto" e "Carregar Projeto":
+   
+![Screenshot from 2025-05-14 09-30-15](https://github.com/user-attachments/assets/f779fd40-3a35-47d3-86f1-422159b95fd5)
+
+&nbsp;
+
+### 3. Isso abrirá um pop-up com o título "Subir Projeto Zipado". Suba o arquivo que você baixou no passo 1, clicando no botão verde ou arrastando-o para a janela:
+   
+![Screenshot from 2025-05-14 09-30-29](https://github.com/user-attachments/assets/8ca4a058-561f-47d2-9b5a-6e6477920285)
+
+&nbsp;
+
+### 4. Pronto! O template está no seu perfil do Overleaf, pronto para ser usado.
+   
+![Screenshot from 2025-05-14 09-39-32](https://github.com/user-attachments/assets/c43f0f6a-dcd2-497e-8f50-c9db7c43eb06)
+
+
+&nbsp;
 
 ---
 
-## Pincipais "novidades"
+## Pincipais "novidades" 🌟
 
 Essa versão foi baseada no [template da 3ª edição disponível no site overleaf](https://pt.overleaf.com/latex/templates/template-para-monografias-da-ufla-uflamon/pxcnmxhsvpgx).
 As principais mudanças com relação à 3ª edição são:
@@ -22,14 +62,14 @@ As principais mudanças com relação à 3ª edição são:
 
 
 
-## Sobre abntex2
+## Sobre abntex2 
 
 Algumas das mudanças no estilo das referências tiveram que ser hard-coded, já que não eram opções do pacote abntex2. Por isso dos arquivos de estilo (abntex2cite.sty e abntex2-alf.bst) "soltos" no diretório raiz.
 O projeto não tem sido atualizado há alguns anos, então, enquanto as issues [abntex2#233](https://github.com/abntex/abntex2/issues/233) e [abntex2#210](https://github.com/abntex/abntex2/issues/210) não forem solucionadas, ainda vamos precisar desses arquivios =/.
 
 
 
-## Contribuições anteriores
+## Contribuições anteriores 🙌
 
 A maior parte desse template foi escrito antes da criação desse repositório.
 
