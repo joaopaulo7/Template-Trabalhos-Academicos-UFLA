@@ -7,9 +7,8 @@ Essa é uma versão atualizada para a 6ª edição do manual (2025).
 ## Como usar esse template no Overleaf? 🍃
 
 Infelizmente, para um template ser adicionado ao catálogo do Overleaf, ele precisa passar por um longo processo de avaliação.  
-Enquanto isso, você pode adicionar o template ao site diretamente desse repositório seguindo esses simples passos:
+Enquanto isso, você pode adicionar o template ao site diretamente desse repositório, seguindo esses simples passos:
 
-&nbsp;
 
 ### 1. Faça o download do repositório como zip, clicando em "Code" e "Download ZIP":
    
