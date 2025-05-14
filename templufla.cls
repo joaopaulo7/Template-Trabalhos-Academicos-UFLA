@@ -812,13 +812,14 @@
     \noindent #1
     \vspace*{0.3cm}
     
+    % evita texto escapando da margem
+    {\sloppy%
     \noindent {\bfseries Palavras-chave:} \@palchaves
-    %\vspace*{1cm}
     
-    %\vfill\null 
+	}%
     
     % Retoma espaçamento normal entre linhas
-	\renewcommand{\baselinestretch}{1.5}\normalsize        
+	\renewcommand{\baselinestretch}{1.5}\normalsize   
     \clearpage
 }
 
@@ -838,7 +839,11 @@
     \noindent #1
     \vspace*{0.3cm}
     
+    % evita texto escapando da margem
+    {\sloppy%
     \noindent {\bfseries Keywords:} \@keywords
+    	    
+    }%
                        
     %\vspace*{1cm}
     
