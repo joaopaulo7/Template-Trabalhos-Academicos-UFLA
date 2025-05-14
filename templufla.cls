@@ -1,7 +1,7 @@
 %######################################################################
 % Classe templUFLA - Template de trabalhos acadêmicos da UFLA
 % 
-% v6.1
+% v6.2
 %
 %  Essa classe é parte de um template de trabalhos acadêmcios da UFLA
 % seguindo o Manual de Normalização Ed. 6.
@@ -35,7 +35,7 @@
 %######################################################################
 % identificacao
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{templufla}[2025/04/28]
+\ProvidesClass{templufla}[2025/05/14]
 %######################################################################
 
 
@@ -80,7 +80,7 @@
 \RequirePackage{alphalph} % Para número de apêndices/anexos acima de 26.
 
 % para listas de siglas, símbolos e etc; glossário e índice.
-\RequirePackage[nopostdot, abbreviations, acronym, symbols]{glossaries-extra}
+\RequirePackage[nopostdot, abbreviations, acronym, symbols, nogroupskip]{glossaries-extra}
 \RequirePackage{glossary-mcols}
 \RequirePackage{imakeidx}
 \RequirePackage[initsep=0pt]{idxlayout}
