@@ -52,19 +52,20 @@ As principais mudanças com relação à 3ª edição são:
 - Adicionado suporte para 26+ anexos/apêndices (louvado seja que conseguir usar isso).
 
 
-&nbsp;
-
 > [!TIP]
 > Embora a versão atual esteja completa, ainda podem surgir pequenos ajustes e correções.  
 > Caso encontre algum problema, cheque se você seguiu as intruções corretamente e que sua versão está atualizada.  
 > Caso acredite que o projeto precisa de algum ajuste, sintá-se livre para criar issues, pull requests ou contactar o autor.
 
+&nbsp;
 
-## Sobre abntex2 🤷‍♀️
+
+## Sobre o abntex2 🤷‍♀️
 
 Algumas das mudanças no estilo das referências tiveram que ser hard-coded, já que não eram opções do pacote abntex2. Por isso dos arquivos de estilo (abntex2cite.sty e abntex2-alf.bst) "soltos" no diretório raiz.
 O projeto não tem sido atualizado há alguns anos, então, enquanto as issues [abntex2#233](https://github.com/abntex/abntex2/issues/233) e [abntex2#210](https://github.com/abntex/abntex2/issues/210) não forem solucionadas, ainda vamos precisar desses arquivios =/.
 
+&nbsp;
 
 
 ## Contribuições anteriores 🙌
