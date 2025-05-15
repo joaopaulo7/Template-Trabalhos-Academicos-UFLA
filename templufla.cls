@@ -159,11 +159,11 @@
 \setlength{\voffset}{-1in} % remove padrao do LaTeX 
 \setlength{\oddsidemargin}{3.0cm}  % margem esquerda
 \setlength{\evensidemargin}{2.0cm} % margem direita
-\setlength{\topmargin}{1.0cm}    % margem superior
+\setlength{\topmargin}{0.0cm}    % margem superior
 \newlength{\bottommargin}        % margem inferior eh deduzida em LaTeX
 \setlength{\bottommargin}{2.0cm} % margem inferior
-\setlength{\headheight}{2.0cm}   % altura do cabecalho
-\setlength{\headsep}{16pt}      % espaco entre cabecalho e texto
+\setlength{\headheight}{2.4cm}   % altura do cabecalho
+\setlength{\headsep}{0.4cm}      % espaco entre cabecalho e texto
 \setlength{\footskip}{7pt}     % espaco entre rodape e texto
 \setlength\textheight{ % altura disponivel para texto
  \paperheight-\topmargin-\bottommargin-\headheight-\headsep-\footskip
@@ -265,17 +265,17 @@
 \newlength{\auxwidthsec}
 \setlength{\auxwidthsec}{1.5em}% recuo dos textos com relação aos índices
 % encontra o maior índice, em pt, nas seções e salva em \widthsec
-\newcommand{\testasecao}{
+\newcommand{\testasecao}{%
     % calcula o tamanho do texto dos índices. Ignora zeros.
-    \ifthenelse{\value{chapter}>0}
+    \ifthenelse{\value{chapter}>0}%
         {\addtolength{\auxwidthsec}{\widthof{\arabic{chapter}}}}{}
-    \ifthenelse{\value{section}>0}
+    \ifthenelse{\value{section}>0}%
         {\addtolength{\auxwidthsec}{\widthof{.\arabic{section}}}}{}
-    \ifthenelse{\value{subsection}>0}
+    \ifthenelse{\value{subsection}>0}%
         {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsection}}}}{}
-    \ifthenelse{\value{subsubsection}>0}
+    \ifthenelse{\value{subsubsection}>0}%
         {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsubsection}}}}{}
-    \ifthenelse{\value{subsubsubsection}>0}
+    \ifthenelse{\value{subsubsubsection}>0}%
         {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsubsubsection}}}}{}
     
     % define se é o maior
@@ -287,7 +287,7 @@
 \titleformat{\chapter}[hang]% redefinindo titulo de capitulo como de secao
 {\normalsize\bf}% formato do titulo
 {\normalsize\thechapter}% formato do label
-{10pt}% separador
+{1ex}% separador
 {\MakeUppercase}% codigo anterior
 []% codigo posterior
 \assignpagestyle{\chapter}{ufla} % pagestyle
@@ -304,26 +304,19 @@
 \renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
 \renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
 
+\titlespacing*{\section}{\z@}{3.5ex \@plus 1ex \@minus .2ex}{2.3ex \@plus .2ex}
+\titleformat{\section}{\normalfont\normalsize\bfseries}{\thesection}{1ex}{}[\testasecao]
 
-\renewcommand\section{\@startsection {section}{1}{\z@}%
-                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
-                                   {2.3ex \@plus.2ex}%
-                                   {\testasecao\normalfont\normalsize\bfseries}}
 
-\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
-                                     {1.5ex \@plus .2ex}%
-                                     {\testasecao\normalfont\normalsize\bfseries}}
+\titlespacing*{\subsection}{\z@}{3.25ex \@plus 1ex \@minus .2ex}{1.5ex \@plus .2ex}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1ex}{}[\testasecao]
 
-\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
-                                    {1.5ex \@plus .2ex}%
-                                    {\testasecao\normalfont\normalsize\bfseries}}
+\titlespacing*{\subsubsection}{\z@}{3.25ex \@plus 1ex \@minus .2ex}{1.5ex \@plus .2ex}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1ex}{}[\testasecao]
 
-\titleformat{\subsubsubsection}
-  {\testasecao\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
-\titlespacing*{\subsubsubsection}
-{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsubsection}{\z@}{3.25ex \@plus 1ex \@minus .2ex}{1.5ex \@plus .2ex}
+\titleformat{\subsubsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1ex}{\testasecao}
+
 
 \renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
   {3.25ex \@plus1ex \@minus.2ex}%
@@ -344,6 +337,7 @@
 
 \setcounter{secnumdepth}{6}
 \setcounter{tocdepth}{6}
+
 
 % entradas no sumário
 % esse é minha forma preferida e é aceito pela ABNT, entretanto, Biblioteca prefere
