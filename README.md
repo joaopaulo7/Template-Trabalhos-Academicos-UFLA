@@ -2,6 +2,8 @@
 Um template em LaTex para a criação de trabalhos acadêmicos seguindo o Manual de Normalização e Estrutura de Trabalhos Acadêmicos da UFLA.
 Essa é uma versão atualizada para a 6ª edição do manual (2025).  
 
+[PDF de exemplo](https://github.com/joaopaulo7/Template-Trabalhos-Academicos-UFLA/blob/main/exemplo_monografia_UFLA.pdf)
+
 &nbsp;
 
 ## Como usar esse template no Overleaf? 🍃
