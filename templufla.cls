@@ -538,7 +538,7 @@
       \setlength{\larguraTexto}{10.8cm}%
       
       % deixa a linha da caixa mais grossa
-	  \setlength{\fboxrule}{1.25pt}%
+	  \setlength{\fboxrule}{1.0pt}%
 	  
       % alteração graças às diferenças de margem.
       % a4 = 21cm, margem direita = 2cm, margem esquerda = 3cm, caixa = 12.5cm
