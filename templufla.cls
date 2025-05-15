@@ -491,7 +491,7 @@
 		\ifthenelse{\equal{\@fcedicao}{\@empty}}{}{ \@fcedicao} 
 		-- Lavras : UFLA, \@date.\\
 		\tab \ztotpages p. : \@fcilustrado\\
-		\vfill
+		\vspace{\fill}
 		\ifthenelse{\equal{\@fctipo}{\@empty}} % se tipo nao existir,
 		{}%                                                      % nao produza nada
 		{\tab \@fctipo--Universidade Federal de Lavras, \@fcdatadefesa. \\}
@@ -508,7 +508,7 @@
 		{}%                                                               % nao produza nada
 		{\tab Coorientadora: \@coorientadora. \\}
 		\tab Bibliografia.\\
-		\vfill
+		\vspace{\fill}
 		\tab \@fccatalogacao\\
 		\ifthenelse{\equal{\@fcclasi}{\@empty}}{}{
 			%\vfill
@@ -549,7 +549,7 @@
       \noindent \hspace{1.75cm} 
       \fbox{\parbox[c][7.5cm][t]{\largura}{
         \vspace{0.3cm}
-        \hspace{1.5cm} \parbox[c][7.3cm][t]{\larguraTexto}{
+        \hspace{1.5cm} \parbox[c][7.4cm][t]{\larguraTexto}{
           \@fichacat
           } \hfill
        }
