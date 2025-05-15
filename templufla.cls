@@ -374,7 +374,8 @@
 % Codigo para impressao da capa
 \newcommand\imprimeCapa{
     \begin{center}
-	    \includegraphics[scale=0.40]{imgs/logoUFLA}
+    	% fonte da imagem: https://ufla.br/comunicacao/identidade-visual
+	    \includegraphics[scale=1.80]{imgs/logoUFLA.eps} 
 	    
 	    \vspace{0.7cm}
 	    
