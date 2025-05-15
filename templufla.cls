@@ -491,8 +491,8 @@
 		/ \@fcautores. 
 		\ifthenelse{\equal{\@fcedicao}{\@empty}}{}{ \@fcedicao} 
 		-- Lavras : UFLA, \@date.\\
-		\tab \ztotpages p. : \@fcilustrado\\
-		\vspace{\fill}
+		\tab \ztotpages p. : \@fcilustrado
+		\vfil
 		\ifthenelse{\equal{\@fctipo}{\@empty}} % se tipo nao existir,
 		{}%                                                      % nao produza nada
 		{\tab \@fctipo--Universidade Federal de Lavras, \@fcdatadefesa. \\}
@@ -508,25 +508,18 @@
 		\ifthenelse{\equal{\@coorientadora}{\@empty}} % se coorientadora nao existir,
 		{}%                                                               % nao produza nada
 		{\tab Coorientadora: \@coorientadora. \\}
-		\tab Bibliografia.\\
-		\vspace{\fill}
-		\tab \@fccatalogacao\\
+		\tab Bibliografia.
+		\vfil
+		{\tab \@fccatalogacao}
+		\vfil
 		\ifthenelse{\equal{\@fcclasi}{\@empty}}{}{
-			%\vfill
-			\tab \hfill
-			\begin{tabular}{r@{-}l} 
-				CDD & \@fcclasi 
-				\ifthenelse{\equal{\@fcclasii}{\@empty}}{}{
-					\\ & \@fcclasii \\
-				}
-				\ifthenelse{\equal{\@fcclasiii}{\@empty}}{}{
-					\\ & \@fcclasiii 
-				}
-			\end{tabular}
+			\tab\hfill CDD \@fcclasi
 		}
 	}
 }
 
+% a ficha catalográfica foi feita seguindo o manual e o exemplo do manual.
+%  a ficha do manual em si está fora do padrão.
 \newcommand\imprimeFichaCat{
   \ifthenelse{\equal{\@fcautor}{\@empty}}{}{%
       \ifthenelse{\equal{\@antesfichacat}{\@empty}} % verifica se não precisa imprimir nada 
@@ -536,21 +529,24 @@
   
      \begin{center}
         \bfseries
-        \@preparofichacat
+        \noindent\@preparofichacat
       \end{center}
 
-      \newlength{\largura}
-      \setlength{\largura}{12.5cm}
-      \newlength{\larguraTexto}
-      \setlength{\larguraTexto}{10.5cm}
-
+      \newlength{\largura}%
+      \setlength{\largura}{12.5cm}%
+      \newlength{\larguraTexto}%
+      \setlength{\larguraTexto}{10.8cm}%
+      
+      % deixa a linha da caixa mais grossa
+	  \setlength{\fboxrule}{1.25pt}%
+	  
       % alteração graças às diferenças de margem.
-      % a4 = 21cm, margem direita = 3cm margem esquerda = 2cm, caixa = 12.5cm
-      % espaço à esquerda = (21-3-2-12.5)/2 = 1.75cm
-      \noindent \hspace{1.75cm} 
-      \fbox{\parbox[c][7.5cm][t]{\largura}{
-        \vspace{0.3cm}
-        \hspace{1.5cm} \parbox[c][7.4cm][t]{\larguraTexto}{
+      % a4 = 21cm, margem direita = 2cm, margem esquerda = 3cm, caixa = 12.5cm
+      % espaço à esquerda = (21-3-12.5)/2 = 1.75cm
+      \noindent\hspace{1.75cm}%
+      \fbox{\parbox[c][7.5cm][t]{\largura}{%
+        \vspace{0.3cm}%
+        \hspace{1.5cm} \parbox[c][7.4cm][t]{\larguraTexto}{%
           \@fichacat
           } \hfill
        }
