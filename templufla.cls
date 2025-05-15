@@ -1,7 +1,7 @@
 %######################################################################
 % Classe templUFLA - Template de trabalhos acadêmicos da UFLA
 % 
-% v6.5
+% v6.6
 %
 %  Essa classe é parte de um template de trabalhos acadêmcios da UFLA
 % seguindo o Manual de Normalização Ed. 6.
