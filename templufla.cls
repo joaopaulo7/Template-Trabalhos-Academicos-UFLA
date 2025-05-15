@@ -121,6 +121,8 @@
 \fichacat{}
 \def\fcedicao#1{\gdef\@fcedicao{#1}} % edicao
 \fcedicao{}
+\def\fcnpaginas#1{\gdef\@fcnpaginas{#1}} % edicao
+\fcnpaginas{\pageref{LastPage}}
 \def\fcautor#1{\gdef\@fcautor{#1}} % primeiro autor
 \fcautor{}
 \def\fcautores#1{\gdef\@fcautores{#1}} % autores
@@ -491,7 +493,7 @@
 		/ \@fcautores. 
 		\ifthenelse{\equal{\@fcedicao}{\@empty}}{}{ \@fcedicao} 
 		-- Lavras : UFLA, \@date.\\
-		\tab \ztotpages p. : \@fcilustrado
+		\tab \@fcnpaginas p. : \@fcilustrado
 		\vfil
 		\ifthenelse{\equal{\@fctipo}{\@empty}} % se tipo nao existir,
 		{}%                                                      % nao produza nada
