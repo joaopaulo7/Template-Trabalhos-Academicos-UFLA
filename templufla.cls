@@ -1,7 +1,7 @@
 %######################################################################
 % Classe templUFLA - Template de trabalhos acadêmicos da UFLA
 % 
-% v6.4
+% v6.5
 %
 %  Essa classe é parte de um template de trabalhos acadêmcios da UFLA
 % seguindo o Manual de Normalização Ed. 6.
@@ -800,7 +800,7 @@
     %\null\vfill
                           
     \begin{center}
-        \large{\textbf{RESUMO}}
+        \textbf{RESUMO}
     \end{center}
     
     % espaçamento simples no resumo
@@ -811,7 +811,7 @@
     
     % evita texto escapando da margem
     {\sloppy%
-    \noindent {\bfseries Palavras-chave:} \@palchaves
+    \noindent Palavras-chave: \@palchaves
     
 	}%
     
@@ -826,7 +826,7 @@
     %\null\vfill
                           
     \begin{center}
-        \large{\textbf{ABSTRACT}}
+        \textbf{ABSTRACT}
     \end{center}
     
         
@@ -838,7 +838,7 @@
     
     % evita texto escapando da margem
     {\sloppy%
-    \noindent {\bfseries Keywords:} \@keywords
+    \noindent  Keywords: \@keywords
     	    
     }%
                        
@@ -859,7 +859,7 @@
     \newpage
                           
     \begin{center}
-        \large{\textbf{INDICADORES DE IMPACTO}}
+        \textbf{INDICADORES DE IMPACTO}
     \end{center}
     
     % espaçamento simples 
@@ -874,7 +874,7 @@
     \newpage
                           
     \begin{center}
-        \large{\textbf{IMPACT INDICATORS}}
+        \textbf{IMPACT INDICATORS}
     \end{center}
     
     % espaçamento simples 
