@@ -9,7 +9,7 @@ Essa é uma versão atualizada para a 6ª edição do manual (2025).
 > [!TIP]
 > Embora a versão atual esteja relativamente completa, ainda podem surgir pequenos ajustes e correções.  
 > Caso encontre algum problema, cheque se você seguiu as intruções corretamente e que sua versão está atualizada.  
-> Caso acredite que o projeto precisa de algum ajuste, sintá-se livre para criar issues, pull requests ou contactar o autor.
+> Caso acredite que o projeto precisa de algum ajuste, sinta-se livre para criar issues, pull requests ou contatar o autor.
 
 ## Como usar esse template no Overleaf? 🍃
 
