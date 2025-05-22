@@ -121,7 +121,7 @@
 \fichacat{}
 \def\fcedicao#1{\gdef\@fcedicao{#1}} % edicao
 \fcedicao{}
-\def\fcnpaginas#1{\gdef\@fcnpaginas{#1}} % edicao
+\def\fcnpaginas#1{\gdef\@fcnpaginas{#1}} % número de páginas
 \fcnpaginas{\pageref{LastPage}}
 \def\fcautor#1{\gdef\@fcautor{#1}} % primeiro autor
 \fcautor{}
@@ -165,7 +165,7 @@
 \newlength{\bottommargin}        % margem inferior eh deduzida em LaTeX
 \setlength{\bottommargin}{2.0cm} % margem inferior
 \setlength{\headheight}{2.5cm}   % altura do cabecalho
-\setlength{\headsep}{0.7cm}      % espaco entre cabecalho e texto
+\setlength{\headsep}{0.5cm}      % espaco entre cabecalho e texto
 \setlength{\footskip}{7pt}     % espaco entre rodape e texto
 \setlength\textheight{ % altura disponivel para texto
  \paperheight-\topmargin-\bottommargin-\headheight-\headsep-\footskip
@@ -286,37 +286,33 @@
 }
 
 % Redefinindo titulo de capitulo
-\titleformat{\chapter}[hang]% redefinindo titulo de capitulo como de secao
+\titleformat{\chapter}[block]% redefinindo titulo de capitulo como de secao
 {\normalsize\bf}% formato do titulo
 {\normalsize\thechapter}% formato do label
 {1ex}% separador
 {\MakeUppercase}% codigo anterior
-[]% codigo posterior
 \assignpagestyle{\chapter}{ufla} % pagestyle
-\titlespacing{\chapter}{0pt}{-1cm}{0.5cm} % espacamento
+\titlespacing{\chapter}{0pt}{-2em}{1ex} % espacamento
 
-% Criando subsubsubsection (argh!)
-% copiado daqui
-% http://tex.stackexchange.com/questions/164636/subsubsubsection-paragraph-and-subparagraph-count-not-reset-when-starting-a
+
 \titleclass{\subsubsubsection}{straight}[\subsection]
-
 \newcounter{subsubsubsection}[subsubsection]
 
 \renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
 \renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
 \renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
 
-\titlespacing*{\section}{\z@}{3.5ex \@plus 1ex \@minus .2ex}{2.3ex \@plus .2ex}
+\titlespacing*{\section}{\z@}{3ex}{1ex}
 \titleformat{\section}{\normalfont\normalsize\bfseries}{\thesection}{1ex}{}[\testasecao]
 
 
-\titlespacing*{\subsection}{\z@}{3.25ex \@plus 1ex \@minus .2ex}{1.5ex \@plus .2ex}
+\titlespacing*{\subsection}{\z@}{3ex}{1ex}
 \titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1ex}{}[\testasecao]
 
-\titlespacing*{\subsubsection}{\z@}{3.25ex \@plus 1ex \@minus .2ex}{1.5ex \@plus .2ex}
+\titlespacing*{\subsubsection}{\z@}{3ex}{1ex}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1ex}{}[\testasecao]
 
-\titlespacing*{\subsubsubsection}{\z@}{3.25ex \@plus 1ex \@minus .2ex}{1.5ex \@plus .2ex}
+\titlespacing*{\subsubsubsection}{\z@}{3ex}{1ex}
 \titleformat{\subsubsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1ex}{\testasecao}
 
 
@@ -352,11 +348,6 @@
 %\def\l@paragraph{\@dottedtocline{5}{10em}{6em}}
 %\def\l@subparagraph{\@dottedtocline{6}{14em}{7em}}
 %######################################################################
-
-%ARRUMAR
-% entradas no sumário
-% figuras
-% referencias cruzadas
 
 %######################################################################
 % Tipos de fontes
@@ -983,6 +974,7 @@
 	\vspace{0.25cm}
 	% somente glossário vai para o sumário
 	\ifthenelse{\equal{#2}{Glossário}}{
+		\phantomsection%
 		\addcontentsline{toc}{chapter}{\numberline{} \MakeUppercase{#1}}}
 		{}
 }
@@ -1110,9 +1102,9 @@
 	\appendix%
 	\cleardoublepage%
 	\phantomsection%
-    {\centering \normalfont\selectfont\normalsize\bf AP\^{E}NDICES\\} 
+    {\centering\normalfont\selectfont\normalsize\bf APÊNDICES\\} 
     \vspace{0.3cm}
-	\addcontentsline{toc}{chapter}{\numberline{} AP\^{E}NDICES}
+	\addcontentsline{toc}{chapter}{\numberline{} APÊNDICES}
 }
 
 
@@ -1122,18 +1114,21 @@
     \apendices                  % crie cabeçalho dos apendices
     \primeiroapendice{false}    % marque que já passou do primeiro
   } {\vspace{1.0cm}} % senão, crie espaço vertical
-  {\noindent\bf AP\^{E}NDICE~\theapendice\ -- #1}
+  {\noindent\bf APÊNDICE~\theapendice\ -- #1}
 }
 %######################################################################
 
 %######################################################################
 % Comando auxiliar para formatação da seção de referências
 \newcommand\referencias{%
-   \newpage%
    \phantomsection%
-   \addcontentsline{toc}{chapter}{\numberline{} REFER\^ENCIAS}
-   %\renewcommand\bibname{Referências}
-   \renewcommand{\bibname}{\hfill\normalfont\selectfont\normalsize\bf REFER\^ENCIAS \hfill}%
+   \addcontentsline{toc}{chapter}{\numberline{} REFERÊNCIAS}%
+   
+   % O tamanho da fonte é para corrigir a margem superior.
+   % Dá até nojo usar \fontsize pra corrigir o espaçamento do topo,
+   % mas o bibname não respeita o espaçamento de outra forma.
+   % Enquanto não trocar pra biblatex, vai ter que ser assim.
+   \renewcommand{\bibname}{{\centering\fontsize{12pt}{23pt}\bf REFERÊNCIAS\\}}%
 }
 %######################################################################
 
