@@ -292,7 +292,7 @@
 {1ex}% separador
 {\MakeUppercase}% codigo anterior
 \assignpagestyle{\chapter}{ufla} % pagestyle
-\titlespacing{\chapter}{0pt}{-2em}{1ex} % espacamento
+\titlespacing{\chapter}{0pt}{-2em}{\baselineskip} % espacamento
 
 
 \titleclass{\subsubsubsection}{straight}[\subsection]
@@ -302,17 +302,17 @@
 \renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
 \renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
 
-\titlespacing*{\section}{\z@}{3ex}{1ex}
+\titlespacing*{\section}{\z@}{\baselineskip}{\baselineskip}
 \titleformat{\section}{\normalfont\normalsize\bfseries}{\thesection}{1ex}{}[\testasecao]
 
 
-\titlespacing*{\subsection}{\z@}{3ex}{1ex}
+\titlespacing*{\subsection}{\z@}{\baselineskip}{\baselineskip}
 \titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1ex}{}[\testasecao]
 
-\titlespacing*{\subsubsection}{\z@}{3ex}{1ex}
+\titlespacing*{\subsubsection}{\z@}{\baselineskip}{\baselineskip}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1ex}{}[\testasecao]
 
-\titlespacing*{\subsubsubsection}{\z@}{3ex}{1ex}
+\titlespacing*{\subsubsubsection}{\z@}{\baselineskip}{\baselineskip}
 \titleformat{\subsubsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1ex}{\testasecao}
 
 
@@ -671,25 +671,23 @@
     {\flushleft
         \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
         {}%                                     % não produza nada
-        {APROVADA em \@defesa. \\}%   % caso contrario, escreva-a
-        
-        \vspace{1.2cm}
-        
-        {\setlength{\tabcolsep}{3pt} 
+        {APROVADA em \@defesa.\\}%   % caso contrario, escreva-a
+        \vspace{0.2cm}
+        {\setlength{\tabcolsep}{0pt}%
         \begin{tabular}{p{\mylen} l}
-        \@nomeBancaUm & \@instBancaUm \\ %\\ - tirou espaço de assinatura
+        \@nomeBancaUm &\hspace{1em}\@instBancaUm \\ %\\ - tirou espaço de assinatura
       
-         \ifthenelse{\equal{\@nomeBancaDois}{\@empty}}% % se 2. banca nao existir, nao
-         {}%                                            % produza nada
-         {\@nomeBancaDois &\@instBancaDois\\}%   % caso contrario, escreva-a
+        \ifthenelse{\equal{\@nomeBancaDois}{\@empty}}% % se 2. banca nao existir, nao
+        {}%                                            % produza nada
+        {\@nomeBancaDois &\hspace{1em}\@instBancaDois\\}%   % caso contrario, escreva-a
          
          \ifthenelse{\equal{\@nomeBancaTres}{\@empty}}% % se 3. banca nao existir, nao
          {}%                                            % produza nada
-         {\@nomeBancaTres & \@instBancaTres\\}%   % caso contrario, escreva-a
+         {\@nomeBancaTres &\hspace{1em}\@instBancaTres\\}%   % caso contrario, escreva-a
                   
          \ifthenelse{\equal{\@nomeBancaQuatro}{\@empty}}% % se 4. banca nao existir, nao
          {}%                                            % produza nada
-         {\@nomeBancaQuatro & \@instBancaQuatro\\}%   % caso contrario, escreva-a
+         {\@nomeBancaQuatro &\hspace{1em}\@instBancaQuatro\\}%   % caso contrario, escreva-a
          \end{tabular}}\hfill        
     }      
       
@@ -732,10 +730,7 @@
 %######################################################################
 % Páginas de Dedicatória, Agradecimentos e de Epígrafe
 % Dedicatoria
-\newcommand{\dedic}[1]{
-    %
-    %\pagestyle{empty}                       
-                          
+\newcommand{\dedic}[1]{%   
     \null\vfill
     \begin{flushright}{\textit{#1}}\end{flushright}
     \vspace*{1cm}
@@ -746,11 +741,7 @@
 
 
 % Agradecimentos
-\renewcommand{\thanks}[1]{
-    %
-    %\pagestyle{empty}                       
-                          
-    \null\vfill
+\renewcommand{\thanks}[1]{%
     \begin{center}\textbf{AGRADECIMENTOS}\end{center}
     \noindent #1
     \vspace*{1cm}    
@@ -1089,7 +1080,7 @@
     \anexos                  % crie formatação dos anexos
     \primeiroanexo{false}    % marque que já passou do primeiro
   } {\vspace{1.0cm}} % senão, crie espaço vertical 
-  {\noindent\bf ANEXO~\theanexo\ -- #1}
+  {\noindent\bf ANEXO~\theanexo\ -- \MakeUppercase{#1}\\}
 }
 
 % Apêndices
@@ -1114,7 +1105,7 @@
     \apendices                  % crie cabeçalho dos apendices
     \primeiroapendice{false}    % marque que já passou do primeiro
   } {\vspace{1.0cm}} % senão, crie espaço vertical
-  {\noindent\bf APÊNDICE~\theapendice\ -- #1}
+  {\noindent\bf APÊNDICE~\theapendice\ -- \MakeUppercase{#1}\\}
 }
 %######################################################################
 
