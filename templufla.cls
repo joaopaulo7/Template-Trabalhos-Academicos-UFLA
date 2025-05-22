@@ -1,7 +1,7 @@
 %######################################################################
 % Classe templUFLA - Template de trabalhos acadêmicos da UFLA
 % 
-% v6.6
+% v6.7
 %
 %  Essa classe é parte de um template de trabalhos acadêmcios da UFLA
 % seguindo o Manual de Normalização Ed. 6.
@@ -142,9 +142,9 @@
 \def\depoisfichacat#1{\gdef\@depoisfichacat{#1}} % depois da ficha
 \depoisfichacat{}
 \def\preparofichacat#1{\gdef\@preparofichacat{#1}} % depois da ficha
-\preparofichacat{Ficha Catalogr\'{a}fica preparada pelo Sistema de Gera\c{c}\~{a}o de 
-        Ficha Catalogr\'{a}fica da Biblioteca Universit\'{a}ria da UFLA, 
-        com dados informados pelo(a) pr\'{o}prio(a) autor(a).}
+\preparofichacat{Ficha Catalográfica preparada pelo Sistema de Geração de 
+        Ficha Catalográfica da Biblioteca Universitária da UFLA, 
+        com dados informados pelo(a) próprio(a) autor(a).}
 % Classificação CDD
 \def\fcclasi#1{\gdef\@fcclasi{#1}}% classicacao 1
 \fcclasi{}
@@ -365,26 +365,28 @@
 
 %######################################################################
 % Codigo para impressao da capa
+% "Os elementos da capa serão distribuídos uniformemente" p.35 da normalização.
+% Não reclame comigo. Se os outros não estão assim é porque não seguiram as regras.
 \newcommand\imprimeCapa{
     \begin{center}
     	% fonte da imagem: https://ufla.br/comunicacao/identidade-visual
-	    \includegraphics[scale=1.80]{imgs/logoUFLA.eps} 
+	    \includegraphics[trim={0.7cm 0.5cm 0.7cm 0.5cm}, clip, width=7cm]{imgs/logoUFLA.eps} 
 	    
-	    \vspace{0.7cm}
+	    \vfill
 	    
 	    \Large\textbf{\MakeUppercase\@author} % autor da monografia
 	
-	    \vspace{\stretch{1}}
+	    \vfill
 	
 	    \LARGE\textbf{\MakeUppercase\@title}%
 	    \ifthenelse{\equal{\@subtitle}{\@empty}}% verifica se tem subtitulo
 	    {}% se nao tiver, não faz nada
 	    {\LARGE: {\MakeUppercase\@subtitle}} % subtitulo da monografia
 	    
-	     \ifthenelse{\equal{\@edicao}{\@empty}}% verifica se tem edicao
+	    \ifthenelse{\equal{\@edicao}{\@empty}}% verifica se tem edicao
 	    {}{\large\@edicao}                                     % se tiver, imprime
 	    
-	    \vspace{\stretch{1}}
+	    \vfill
 	
 	    \Large\textbf{\MakeUppercase\@local}\\
 	    \textbf{\MakeUppercase\@date}
@@ -933,11 +935,11 @@
 
 % Lista de Gráficos
 \newfloat{grafico}{htb!}{lgg}[chapter]
-\floatname{grafico}{Gr\'afico}
+\floatname{grafico}{Gráfico}
 \newcommand{\listofgraficos}{
 	{%
-	\renewcommand{\numberline}{Gr\'afico~}
-	\listof{grafico}{Lista de Gr\'aficos}}}
+	\renewcommand{\numberline}{Gráfico~}
+	\listof{grafico}{Lista de Gráficos}}}
 
 % Lista de Teoremas
 \newfloat{teorema}{htb!}{ltt}[chapter]
@@ -949,11 +951,11 @@
 
 % Lista de Ilustrações
 \newfloat{ilustracao}{htb!}{loi}[chapter]
-\floatname{ilustracao}{Ilustra\c{c}\~ao}
+\floatname{ilustracao}{Ilustração}
 \newcommand{\listofilustracoes}{
 	{%
-	\renewcommand{\numberline}{Ilustra\c{c}\~ao~}
-	\listof{ilustracao}{Lista de Ilustra\c{c}\~oes}}}
+	\renewcommand{\numberline}{Ilustração~}
+	\listof{ilustracao}{Lista de Ilustrações}}}
 %######################################################################
 
 
