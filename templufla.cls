@@ -369,6 +369,7 @@
 % Não reclame comigo. Se os outros não estão assim é porque não seguiram as regras.
 \newcommand\imprimeCapa{
     \begin{center}
+    	\renewcommand{\baselinestretch}{1}\normalsize 
     	% fonte da imagem: https://ufla.br/comunicacao/identidade-visual
 	    \includegraphics[trim={0.7cm 0.5cm 0.7cm 0.5cm}, clip, width=7cm]{imgs/logoUFLA.eps} 
 	    
@@ -390,6 +391,7 @@
 	
 	    \Large\textbf{\MakeUppercase\@local}\\
 	    \textbf{\MakeUppercase\@date}
+	    \renewcommand{\baselinestretch}{1.5}\normalsize 
 	\end{center}
 }
 %######################################################################
@@ -724,7 +726,7 @@
     \end{center}   
     
     \clearpage
-    
+    \renewcommand{\baselinestretch}{1.5}\normalsize 
 } % \def\folhaaprovacao
 %######################################################################
 
@@ -745,9 +747,7 @@
 % Agradecimentos
 \renewcommand{\thanks}[1]{%
     \begin{center}\textbf{AGRADECIMENTOS}\end{center}
-    \noindent #1
-    \vspace*{1cm}    
-    \vfill\null
+    #1
     
     \clearpage
     %
@@ -785,20 +785,12 @@
         \textbf{RESUMO}
     \end{center}
     
-    % espaçamento simples no resumo
-    \renewcommand{\baselinestretch}{1}\normalsize 
-    
     \noindent #1
-    \vspace*{0.3cm}
+    \vspace{\baselineskip}
     
     % evita texto escapando da margem
-    {\sloppy%
-    \noindent Palavras-chave: \@palchaves
-    
-	}%
-    
-    % Retoma espaçamento normal entre linhas
-	\renewcommand{\baselinestretch}{1.5}\normalsize   
+    {\sloppy\noindent Palavras-chave: \@palchaves\\}%
+	  
     \clearpage
 }
 
@@ -811,25 +803,12 @@
         \textbf{ABSTRACT}
     \end{center}
     
-        
-    % espaçamento simples no resumo
-    \renewcommand{\baselinestretch}{1}\normalsize
-    
     \noindent #1
-    \vspace*{0.3cm}
+    \vspace{\baselineskip}
     
     % evita texto escapando da margem
-    {\sloppy%
-    \noindent  Keywords: \@keywords
-    	    
-    }%
-                       
-    %\vspace*{1cm}
-    
-    %\vfill\null 
-    
-    % Retoma espaçamento normal entre linhas
-	\renewcommand{\baselinestretch}{1.5}\normalsize        
+    {\sloppy\noindent  Keywords: \@keywords\\}%
+       
     \clearpage
 }
 %######################################################################
@@ -844,11 +823,8 @@
         \textbf{INDICADORES DE IMPACTO}
     \end{center}
     
-    % espaçamento simples 
-    {
-    \renewcommand{\baselinestretch}{1}\normalsize 
     \noindent #1
-    }
+    
     \clearpage
 }
 
@@ -859,11 +835,8 @@
         \textbf{IMPACT INDICATORS}
     \end{center}
     
-    % espaçamento simples 
-    {
-    \renewcommand{\baselinestretch}{1}\normalsize 
     \noindent #1
-    }
+    
     \clearpage
 }
 %######################################################################
