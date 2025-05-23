@@ -371,7 +371,7 @@
     \begin{center}
     	\renewcommand{\baselinestretch}{1}\normalsize 
     	% fonte da imagem: https://ufla.br/comunicacao/identidade-visual
-	    \includegraphics[trim={0.7cm 0.5cm 0.7cm 0.5cm}, clip, width=7cm]{imgs/logoUFLA.eps} 
+	    \includegraphics[width=7cm]{imgs/logoUFLA} 
 	    
 	    \vfill
 	    
