@@ -229,7 +229,14 @@
 
 % Configurando margens de alíneas
 \RequirePackage{enumitem}
-\setlist[enumerate]{leftmargin=1.25cm}
+
+\def\enumalphalphcnt#1{\expandafter\@enumalphalphcnt\csname c@#1\endcsname}
+\def\@enumalphalphcnt#1{\alphalph{#1}}
+\AddEnumerateCounter{\enumalphalphcnt}{\@enumalphalphcnt}{}
+
+\newlist{alineas}{enumerate}{2}
+\setlist[alineas]{label=\enumalphalphcnt*), left=1.25cm, align=left, labelsep=1ex, noitemsep}
+\setlist[alineas, 2]{label=--, left=0.4cm, align=left, labelsep=1ex}
 %######################################################################
 
 
@@ -243,7 +250,7 @@
 
 \fancypagestyle{ufla}{
 \fancyhf{}
-\fancyhead[R]{\thepage}
+\fancyhead[R]{\small\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 }
@@ -416,11 +423,12 @@
          {}{\@edicao}                                     % se tiver, imprime
 
         \vspace{\stretch{.10}}
-
+		
+		\renewcommand{\baselinestretch}{1}\normalsize%small
         % espaçamento simples
         %  a normalização diz que notas são tamanho 11, mas no docx é 12(?)
         %  mantive 12
-        {\renewcommand{\baselinestretch}{1}\normalsize%small 
+        {
             \hfill%
             \begin{minipage}{8cm}
                 \@tipo
@@ -459,8 +467,10 @@
 
         \vspace{\stretch{.86}} 
 
-        \textbf{\MakeUppercase\@local}\\ 
+        \textbf{\MakeUppercase\@local}\\
         \textbf{\MakeUppercase\@date}
+        
+        \renewcommand{\baselinestretch}{1.5}\normalsize
     \end{center} 
 }
 %######################################################################

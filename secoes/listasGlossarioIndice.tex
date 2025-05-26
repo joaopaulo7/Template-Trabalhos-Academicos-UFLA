@@ -17,8 +17,8 @@ Todos esses novos elementos, exceto o índice, utilizam o mesmo pacote, \textit{
 		respectivas definições}
 	}
 		
-%\makeglossaries % não é necessario nesse template
-		                           pois já é chamado na classe
+%\makeglossaries % não é necessario nesse template pois já é 
+                                                   chamado na classe
 \begin{document}
 ...
 \caption{Inserindo ítem no gls(glo:glossario) e o referindo no texto}
@@ -32,59 +32,59 @@ O comando \textit{\textbf{gls}} escreve o nome do ítem quando é usado. Para qu
 É recomendável separar as adições aos glossários em arquivos para melhor organização e reduzir o tamanho do preâmbulo. Nesse template, cada glossário tem seu próprio arquivo, adicionado ao projeto via comandos \textit{\textbf{input}}, e os arquivos têm sua própria pasta. Essa organização pode ser alterada, desde que a mudança seja refletida nos inputs.
 
 \newpage
-Abaixo listamos o formato para a adição de ítens em cada glossário. 
+Abaixo listamos o formato para a adição de ítens em cada glossário:
 
-\begin{itemize}
+\begin{alineas}
 	\item \textbf{abreviaturas}: Adicionar uma abreviatura é simples e a sintaxe é relativamente fixa.\\ Um exemplo para a abreviatura de \gls{jan}:
 		\begin{lstlisting}[language=tex]
-		\newabbreviation{jan} % rótulo
-		{jan.}% forma abreviada
-		{Janeiro} % forma completa
-		...
-		... Um exemplo para a abreviatura de \gls{jan}:
+\newabbreviation{jan} % rótulo
+{jan.}% forma abreviada
+{Janeiro} % forma completa
+...
+... Um exemplo para a abreviatura de \gls{jan}:
 		\end{lstlisting}
 	
 	\item \textbf{siglas}: Adicionar siglas é igualmente simples.\\ 
 	Um exemplo para a sigla \gls{abnt}:
 	\begin{lstlisting}[language=tex]
-		\newacronym{abnt} % rótulo
-		{ABNT} % sigla
-		{Associação Brasileira de Normas Técnicas} % nome completo
-		...
-		... Um exemplo para a sigla \gls{abnt}:
+\newacronym{abnt} % rótulo
+{ABNT} % sigla
+{Associação Brasileira de Normas Técnicas} % nome completo
+...
+... Um exemplo para a sigla \gls{abnt}:
 	\end{lstlisting}
 	
 	\item \textbf{símbolos}: Adicionar símbolos é um pouco mais complicado, já que necessita de uma descrição. Como a lista é por ordem de uso, \gls{gama} deve aparecer antes de \gls{alfa}\\ 
 	Um exemplo para o símbolo \gls{gama}:
 	\begin{lstlisting}[language=tex]
-		\newglossaryentry{gama}{
-			name={$\gamma$}, % o símbolo em questão
-			description={Um número gama}, % descrição do símbolo
-			type={symbols}} % indicador que é um símbolo
-		...
-		... Um exemplo para o símbolo \gls{gama}:
+\newglossaryentry{gama}{
+	name={$\gamma$}, % o símbolo em questão
+	description={Um número gama}, % descrição do símbolo
+	type={symbols}} % indicador que é um símbolo
+...
+... Um exemplo para o símbolo \gls{gama}:
 	\end{lstlisting}
 	
 	\item \textbf{glossário}: Adicionar termos no glossário é igual ao exemplo mostrado antes.\\
 	Nesse caso, no entanto, adicionamos uma \emph{tag} \LaTeX antes do nome, então temos que adicionar o valor "\emph{sort}", para que a ordenação seja correta.
 	Um exemplo para o termo \gls{llm}:
 	\begin{lstlisting}[language=tex]
-		\newglossaryentry{llm}{
-			name={\emph{large language model}}, % o nome do termo
-			description={Grande model de 
-				linguagem. Ex:DeepSeek-R1}, % descrição do termo
-			sort={large language model}} % chave para ordenação
-		...
-		... Um exemplo para o termo \gls{llm}:
+\newglossaryentry{llm}{
+	name={\emph{large language model}}, % o nome do termo
+	description={Grande model de 
+		linguagem. Ex:DeepSeek-R1}, % descrição do termo
+	sort={large language model}} % chave para ordenação
+...
+... Um exemplo para o termo \gls{llm}:
 	\end{lstlisting}
 	
 	\item \textbf{índice}: Adicionar termos ao índice é o mais fácil de todos. Para adicionar um índice, basta utilizar o comando \emph{index}. Caso algum índice tiver um pai(ou mãe), basta adicionar o delimitador !.\\
 	Um exemplo para os termos conjunto\index{Conjunto}, conjunto aberto\index{Conjunto!aberto} e conjunto fechado\index{Conjunto!fechado}:
 	\begin{lstlisting}[language=tex]
-		...Um exemplo para os termos conjunto\index{Conjunto},
-		      conjunto aberto\index{Conjunto!aberto} e
-		      conjunto fechado\index{Conjunto!fechado}:
+...Um exemplo para os termos conjunto\index{Conjunto},
+conjunto aberto\index{Conjunto!aberto} e conjunto 
+fechado\index{Conjunto!fechado}:
 	\end{lstlisting}
 	
-\end{itemize}
+\end{alineas}
 

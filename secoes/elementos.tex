@@ -37,7 +37,7 @@ Para inserção de código, recomenda-se o uso do pacote {\tt listings}, que per
 \begin{figure}[!htb]
 \centering
 \caption{Inserindo Comando} %legenda
-\begin{Verbatim}[fontsize=\small]
+\begin{Verbatim}[frame=single]
 $ dir monografia*
 -rw-r--r--  1 joukim users   3650 Set 12 17:56 monografia.aux
 -rw-r--r--  1 joukim users   6366 Set 12 17:43 monografia.bbl
@@ -57,7 +57,7 @@ $ dir monografia*
 \begin{figure}[!htb]
 \centering
 \caption{Inserindo Trecho de Arquivo de Configuração} %legenda
-\begin{Verbatim}[fontsize=\small]
+\begin{Verbatim}[frame=single]
 // named.conf for Red Hat caching-nameserver
 options {
         directory "/var/named";
@@ -105,18 +105,15 @@ public static void main(String[] args) {
 
 \subsection{Inserindo Quadros e Tabelas}
 
-Escrever um quadro ou tabela e referenciá-los é bem simples. Por exemplo o Quadro~\ref{tab:exemplo} ilustra a criação de um quadro, tendo aqui seu referenciamento no texto. É importante observar o posicionamento da legenda antes do corpo da tabela e da fonte após. Outros exemplos são mostrados na Tabela~\ref{tab:outro} e Tabela~\ref{tab:maisum}.
+Escrever um quadro ou tabela e referenciá-los é bem simples. Por exemplo o Tabela~\ref{tab:exemplo} ilustra a criação de um quadro, tendo aqui seu referenciamento no texto. É importante observar o posicionamento da legenda antes do corpo da tabela e da fonte após. Outros exemplos são mostrados no Quadro~\ref{tab:outro} e Quadro~\ref{tab:maisum}.
 
-\begin{quadro}
+\begin{table}[h!]
   \begin{center}
     \caption{Exemplo de Quadro} 
     \label{tab:exemplo}
-    \vspace{0.2cm}
-    \footnotesize
-    \begin{tabular}{|c|c|c|c|c|c|}
+    \begin{tabular}{c c c c c c }
       \hline
-      $U$ & $vitA$ & $vitC$ & $vitD$ & $prot$ & $lip$ \\
-      \hline
+      $U$ & \multicolumn{1}{|c}{$vitA$} & \multicolumn{1}{|c}{$vitC$} & \multicolumn{1}{|c}{$vitD$} & \multicolumn{1}{|c}{$prot$} & \multicolumn{1}{|c}{$lip$} \\
       \hline
       $d_1$ & 1 & 3 & 4 & 2 & 3\\
       $d_2$ & 1 & 3 & 3 & 3 & 2\\
@@ -128,66 +125,78 @@ Escrever um quadro ou tabela e referenciá-los é bem simples. Por exemplo o Qua
       \hline 
     \end{tabular}
   \end{center}
-  \centering {\small Fonte: fonte do quadro} %Fonte do quadro
-\end{quadro}
+  \centering {\small Fonte: fonte da tabela} %Fonte do tabela
+\end{table}
 
-\begin{table}
+\begin{quadro}[h!]
 \begin{center}
   \caption{Recursos do {\ttfamily syslog}}
   \label{tab:outro}
-  \small
-  \begin{tabular}{l|p{9cm}}
+  \begin{tabular}{|l|p{9cm}|}
     \hline
     \rowcolor[gray]{.9}
     \bf Recurso & \bf {\em Daemons} Associados (Alguns Exemplos) \\
     \hline
-    \hline
     \tt kern & \em kernel  \\
+    \hline
     \tt user & processos dos usuários ({\tt ntpd}) \\
+    \hline
     \tt mail & softwares relacionados com o correio eletrônico ({\tt sendmail})\\
+    \hline
     \tt daemon & {\em daemons} do sistema ({\tt gated}, {\tt inetd}, 
     {\tt named}, {\tt ntpd})\\
+    \hline
     \tt auth &  comandos relacionados à autorização e segurança 
     ({\tt login}, {\tt rlogin}, {\tt su}, {\tt passwd}) \\
+    \hline
     \tt lpr & spool de impressão ({\tt lpd})\\
+    \hline
     \tt news & sistema de notícias da usenet ({\tt nnrpd})\\
+    \hline
     \tt uucp & destinado ao {\tt uucp}\\
+    \hline
     \tt cron & relacionado ao {\em daemon} {\tt cron}\\
+    \hline
     \tt mark &  registros de data/hora gerados a intervalos regulares 
     ({\tt syslogd})\\
-    \tt local0-7 & 8 tipos de mensagens locais \newline
-    ({\tt tcpd -- local7}, {\tt sudo -- local2}, {\tt popper - local0}) \\
+    \hline
+    \tt local0-7 & 8 tipos de mensagens locais ({\tt tcpd -- local7}, {\tt sudo -- local2}, {\tt popper - local0}) \\
+    \hline
     \tt syslog &  mensagens internas ao {\tt syslog}\\
+    \hline
     \tt authpriv & mensagens privadas de autorização\\
+    \hline
     \tt ftp & associado ao {\tt ftpd} ({\em daemon} do {\tt ftp}) \\
+    \hline
     \tt * &  todos os recursos com exceção do {\tt mark}\\
     \hline
   \end{tabular}
 \end{center}
-\centering {\small Fonte: fonte da tabela} %Fonte da tabela
-\end{table}
+\centering {\small Fonte: fonte do quadro} %Fonte da quadro
+\end{quadro}
 
-\begin{table}
-\caption{Opções do Comando {\ttfamily at}}
-\label{tab:maisum}
+\begin{quadro}[h!]
 \begin{center}
-  \small
-  \begin{tabular}{l|p{9cm}}
+\caption{Opções do Comando {\ttfamily at}}\label{tab:maisum}
+  \begin{tabular}{|l|p{9cm}|}
     \hline 
     \rowcolor[gray]{.9}
     \bf Opção & \bf Descrição\\
     \hline
-    \hline 
     \tt -c & exibe os jobs registrados\\
+    \hline
     \tt -d & remove um job específico\\
-    \tt -f & permite que os comandos sejam lidos a partir de um arquivo (não pela
-    entrada-padrão)\\
+    \hline
+    \tt -f & permite que os comandos sejam lidos a partir de um arquivo (não pela entrada-padrão)\\
+    \hline
     \tt -l & lista todos os jobs associados a um usuário\\
+    \hline
     \tt -m & envia um e-mail ao usuário quando o job for finalizado\\
-    \hline \end{tabular}\\
+    \hline
+    \end{tabular}
 \end{center}
-\centering {\small Fonte: fonte da tabela} %Fonte da tabela
-\end{table}
+\centering {\small Fonte: fonte do quadro} %Fonte da quadro
+\end{quadro}
 
 \subsection{Inserindo Equações}
 
@@ -203,4 +212,16 @@ f'(x) = \int^{x^2}_{x^{-1}} xdx
 A equipe do curso não impõe normas rígidas para o formato a ser adotado nas referências bibliográficas, desde que seja usado um padrão acadêmico conhecido. Caso os autores não possuam um padrão preferencial, recomenda-se o formato estipulado pela ABNT \cite{NBR6023:2002}. A Biblioteca Central da UFLA disponibiliza um manual \cite{BIBUFLA2001} que orienta o uso dessas normas. Se os autores estiverem utilizando \LaTeX, recomenda-se o uso do pacote Abn\TeX\footnote{Disponível em \url{http://abntex.codigolivre.org.br/}.} \cite{Weber2003}. \index{Convergência}\index{Divergência}\index{Índice}
 
 Obviamente, recomenda-se a leitura de textos sobre a escrita acadêmica e produção de trabalhos de conclusão para garantir não só qualidade estética e de formatação, mas também de conteúdo. Entre outros, pode-se recomendar a leitura de \cite{Silva2005}, \cite{Martins2000}, \cite{Gil2002}, \cite{Franca2001}, \cite{Eco1996}, \cite{Moura1998}, \cite{Booth2000}, \cite{Hexsel2004}, \cite{Porto2002} e \cite{Henz2003}. 
+
+
+\section{Alíneas e Subalíneas}
+Para listar elementos, deve-se usar o ambiente \verb|\begin{alineas}\end{alineas}|, que pode ser aninhado para criar subalíneas:
+\begin{alineas}
+		\item item um;
+		\item item dois:
+		\begin{alineas}
+			\item subitem 1;
+			\item subitem 2.
+		\end{alineas}
+\end{alineas}
 
