@@ -37,6 +37,7 @@ Para inserção de código, recomenda-se o uso do pacote {\tt listings}, que per
 \begin{figure}[!htb]
 \centering
 \caption{Inserindo Comando} %legenda
+\vspace{-12pt} % O verbatim tem um espaçamentoi estranho. Isso corrige.
 \begin{Verbatim}[frame=single]
 $ dir monografia*
 -rw-r--r--  1 joukim users   3650 Set 12 17:56 monografia.aux
@@ -49,7 +50,7 @@ $ dir monografia*
 -rw-r--r--  1 joukim users   4559 Set 12 17:47 monografia.tex
 -rw-r--r--  1 joukim users    964 Set 12 17:56 monografia.toc
 \end{Verbatim} 
-%$ - esse comentário é para não confundir editor de texto
+\vspace{-12pt}
 {\small Fonte: fonte da figura} %Fonte da imagem
 \label{fig:exemplocomando} %rotulo para refencia
 \end{figure}
@@ -57,6 +58,8 @@ $ dir monografia*
 \begin{figure}[!htb]
 \centering
 \caption{Inserindo Trecho de Arquivo de Configuração} %legenda
+\label{fig:exemploconfig} %rotulo para refencia
+\vspace{-12pt}
 \begin{Verbatim}[frame=single]
 // named.conf for Red Hat caching-nameserver
 options {
@@ -66,8 +69,8 @@ options {
         // query-source address * port 53;
 };
 \end{Verbatim} 
+\vspace{-12pt}
 {\small Fonte: fonte da figura} %Fonte da imagem
-\label{fig:exemploconfig} %rotulo para refencia
 \end{figure}
 
 
