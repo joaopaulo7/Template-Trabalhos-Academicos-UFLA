@@ -85,7 +85,7 @@ pdfkeywords={Comunicação Científica. 2. Pesquisa . 3. Pesquisa Científica.
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
-% Definindo espaçãmento vertical de elementos tabulares
+% Definindo espaçamento vertical de elementos tabulares
 \renewcommand{\arraystretch}{1.5}
 
 % Configuração padrão do listings (ambiente de código)
@@ -366,11 +366,13 @@ f) demonstrate the impacts of the research and whether they are aligned with the
 
 % Anexos e apêndices
 % Os anexos devem ser includios antes
+% e utilizar \input ao invés de \include, para não criar uma nova página
 % Anexos
-\include{anexos/anexo1}
+\input{anexos/anexo1}
+\input{anexos/anexo2}
 
 % Apendices
-\include{apendices/apendice1}
+\input{apendices/apendice1}
 
 % Índice
 \indice

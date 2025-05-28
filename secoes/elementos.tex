@@ -23,7 +23,7 @@ No template, dispõem-se comandos para realizar tal divisão automaticamente, ma
 \section{Alíneas e Subalíneas}
 Segundo a normalização \cite{UFLA:2025}, ``as alíneas são usadas quando se deseja enumerar diversos assuntos de uma seção sem título próprio. Quando necessário, a alínea pode ser dividida em subalíneas.''
 
-Nesse template, para listar elementos com alíneas, deve-se usar o ambiente \texttt{alineas}, que pode ser aninhado para criar subalíneas.: 
+Nesse template, para listar elementos com alíneas, deve-se usar o ambiente \texttt{alineas}, que pode ser aninhado para criar subalíneas: 
 \begin{lstlisting}[language={[LaTeX]TeX}]
 	\begin{alineas}
 		\item item um;
@@ -44,8 +44,7 @@ Abaixo é mostrado exemplo em texto retirado, na maior parte, do manual:
 	\item as letras indicativas das alíneas devem apresentar recuo em relação à margem esquerda;
 	\item o texto da alínea deve começar por letra minúscula e terminar em ponto e vírgula, exceto a última alínea que termina em ponto final;
 	\item o texto da alínea deve terminar em dois pontos, se houver subalínea;
-	\item a segunda e as seguintes linhas do texto da alínea começam sob a primeira letra do texto da própria alínea
-	
+	\item a segunda e as seguintes linhas do texto da alínea começam sob a primeira letra do texto da própria alínea;
 	\item sobre as subalíneas:
 	\begin{alineas}
 		\item as subalíneas devem começar por travessão seguido de espaço;
@@ -59,7 +58,7 @@ Abaixo é mostrado exemplo em texto retirado, na maior parte, do manual:
 
 \section{Figuras, Ilustrações e etc}
 
-Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante ao que foi explicado na \autoref{sec:latexFiguras}. Só é importante se atentar para dois detalhes: os títulos das figuras, que devem vir antes do \texttt{inludegraphics}, e a fonte, que deve ser posicionada duas quebras de linha após o \texttt{inludegraphics} e pode utilizar o comando pré definido \texttt{fonte}. Exemplo do código para a \autoref{fig:leaoCTAN}:
+Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante ao que foi explicado na \autoref{sec:latexFiguras}. Só é importante se atentar para dois detalhes: os títulos das figuras, que devem vir antes do \texttt{inludegraphics}, e a fonte, que deve ser posicionada após o \texttt{inludegraphics} e pode que utilizar o comando pré definido \texttt{fonte}. Exemplo do código para a \autoref{fig:leaoCTAN}:
 \begin{lstlisting}[language={[LaTeX]Tex}]
 \begin{figure}
 	\centering
@@ -67,8 +66,6 @@ Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante 
 	\caption{Leão do site CTAN estudando \TeX} 
 	\label{fig:leaoCTAN}
 	\includegraphics[width=0.6\textwidth]{imgs/ctanlion}
-	
-	% \fonte um espaço vazio após a figura
 	\fonte{Duane Bibby, diponibilizador por \url{www.ctan.org}}
 \end{figure}
 \end{lstlisting}
@@ -78,7 +75,6 @@ Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante 
 	\caption{Leão do site CTAN estudando \TeX}
 	\label{fig:leaoCTAN}
 	\includegraphics[width=0.6\textwidth]{imgs/ctanlion}
-	
 	\fonte{Duane Bibby, diponibilizado em \url{www.ctan.org/lion}}
 \end{figure}
 
@@ -106,7 +102,6 @@ Tabelas envolvem principalmente números, utiliza-se linhas horizontais somente 
 		$p_4$& 3& 5& 2\\
 		\hline 
 	\end{tabular}
-	
 	\vspace{0.3cm}
 	\fonte{original} %Fonte do tabela
 \end{table}
@@ -126,7 +121,6 @@ Tabelas envolvem principalmente números, utiliza-se linhas horizontais somente 
 		$p_4$ & 3 & 5 & 2 \\
 		\hline 
 	\end{tabular}
-	
 	\vspace{0.3cm}
 	\fonte{original} %Fonte do tabela
 \end{table}

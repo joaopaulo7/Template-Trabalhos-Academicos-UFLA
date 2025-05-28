@@ -1,7 +1,7 @@
 %######################################################################
 % Classe templUFLA - Template de trabalhos acadêmicos da UFLA
 % 
-% v6.9.1
+% v6.9.2
 %
 %  Essa classe é parte de um template de trabalhos acadêmcios da UFLA
 % seguindo o Manual de Normalização Ed. 6.
@@ -228,11 +228,12 @@
 \RequirePackage{enumitem}
 
 \def\enumalphalphcnt#1{\expandafter\@enumalphalphcnt\csname c@#1\endcsname}
-\def\@enumalphalphcnt#1{\alphalph{#1}}
-\AddEnumerateCounter{\enumalphalphcnt}{\@enumalphalphcnt}{}
+\def\@enumalphalphcnt#1{\alphalph{#1})}
+\AddEnumerateCounter{\enumalphalphcnt}{\@enumalphalphcnt)}{}
 
 \newlist{alineas}{enumerate}{2}
-\setlist[alineas]{label=\enumalphalphcnt*), left=1.25cm, align=left, labelsep=1ex, noitemsep, nosep}
+\setlist[alineas]{label={\enumalphalphcnt*}, labelindent=\parindent, align=left, leftmargin=!, labelsep=-1ex, noitemsep, nosep}
+
 \setlist[alineas, 2]{label=\textbf{--}, left=1ex, align=left, labelsep=1ex}
 %######################################################################
 
@@ -383,7 +384,7 @@
 	    
 	    \vfill
 	
-	    \Large\textbf{\MakeUppercase\@local}\\
+	    \Large\textbf{\MakeUppercase\@local}\par
 	    \textbf{\MakeUppercase\@date}
 	    \renewcommand{\baselinestretch}{1.5}\normalsize 
 	\end{center}
@@ -427,13 +428,13 @@
 
         \ifthenelse{\equal{\@orientador}{\@empty}} % % se orientador nao existir,
         {}%                                            % nao produza nada
-        {\@orientador\\
+        {\@orientador\par
          Orientador
         }
 
         \ifthenelse{\equal{\@orientadora}{\@empty}} % % se coorientadora nao existir,
         {}%                                            % nao produza nada
-        {\@orientadora\\
+        {\@orientadora\par
          Orientadora
         }
         
@@ -441,20 +442,20 @@
 
         \ifthenelse{\equal{\@coorientador}{\@empty}} % % se coorientador nao existir,
         {}%                                            % nao produza nada
-        {\@coorientador\\
+        {\@coorientador\par
           Coorientador
         }
 
         \ifthenelse{\equal{\@coorientadora}{\@empty}} % % se coorientadora nao existir,
         {}%                                            % nao produza nada
-        {\@coorientadora\\
+        {\@coorientadora\par
           Coorientadora
         }
 
 
         \vspace{\stretch{.86}} 
 
-        \textbf{\MakeUppercase\@local}\\
+        \textbf{\MakeUppercase\@local}\par
         \textbf{\MakeUppercase\@date}
         
         \renewcommand{\baselinestretch}{1.5}\normalsize
@@ -624,14 +625,14 @@
         
         \textbf{\MakeUppercase\@title}% titulo da monografia
         \ifthenelse{\equal{\@subtitle}{\@empty}}% verifica se tem subtitulo
-        {\\}% se nao tiver, so pula a linha
+        {\par}% se nao tiver, so pula a linha
         {: {\MakeUppercase\@subtitle}} % subtitulo da monografia
         % escreve título e subtítulo em inglês, caso existam
         \vspace{\stretch{0.2}}
-        \ifthenelse{\equal{\@engtitle}{\@empty}}{}{\\%
+        \ifthenelse{\equal{\@engtitle}{\@empty}}{}{\par%
         \textbf{\MakeUppercase\@engtitle}% titulo da monografia
         \ifthenelse{\equal{\@engsubtitle}{\@empty}}% verifica se tem subtitulo
-        {\\}% se nao tiver, so pula a linha
+        {\par}% se nao tiver, so pula a linha
         {\textbf{:} {\MakeUppercase\@engsubtitle}} % subtitulo da monografia
         }
     \end{center}
@@ -672,53 +673,54 @@
     {\flushleft
         \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
         {}%                                     % não produza nada
-        {APROVADA em \@defesa.\\}%   % caso contrario, escreva-a
+        {APROVADA em \@defesa.\par}%   % caso contrario, escreva-a
         \vspace{0.2cm}
         {\setlength{\tabcolsep}{0pt}%
         \begin{tabular}{p{\mylen} l}
-        \@nomeBancaUm &\hspace{1em}\@instBancaUm \\ %\\ - tirou espaço de assinatura
+        \@nomeBancaUm &\hspace{1em}\@instBancaUm \\ 
       
         \ifthenelse{\equal{\@nomeBancaDois}{\@empty}}% % se 2. banca nao existir, nao
         {}%                                            % produza nada
         {\@nomeBancaDois &\hspace{1em}\@instBancaDois\\}%   % caso contrario, escreva-a
          
-         \ifthenelse{\equal{\@nomeBancaTres}{\@empty}}% % se 3. banca nao existir, nao
-         {}%                                            % produza nada
-         {\@nomeBancaTres &\hspace{1em}\@instBancaTres\\}%   % caso contrario, escreva-a
+        \ifthenelse{\equal{\@nomeBancaTres}{\@empty}}% % se 3. banca nao existir, nao
+        {}%                                            % produza nada
+        {\@nomeBancaTres &\hspace{1em}\@instBancaTres\\}%   % caso contrario, escreva-a
                   
-         \ifthenelse{\equal{\@nomeBancaQuatro}{\@empty}}% % se 4. banca nao existir, nao
-         {}%                                            % produza nada
-         {\@nomeBancaQuatro &\hspace{1em}\@instBancaQuatro\\}%   % caso contrario, escreva-a
-         \end{tabular}}\hfill        
+        \ifthenelse{\equal{\@nomeBancaQuatro}{\@empty}}% % se 4. banca nao existir, nao
+        {}%                                            % produza nada
+        {\@nomeBancaQuatro &\hspace{1em}\@instBancaQuatro\\}%   % caso contrario, escreva-a
+        \end{tabular}}
+        \hfill        
     }      
       
     \vspace{\stretch{.7}}
        
     \begin{center}
         \ifthenelse{\equal{\@orientadora}{\@empty}}
-    	{\@orientador\\
+    	{\@orientador\par
     	 Orientador}
-	    {\@orientadora\\
+	    {\@orientadora\par
 	    Orientadora}
 
         \ifthenelse{\equal{\@coorientador}{\@empty}}{}% se coorientador nao existir, 
                                                       % nao produza nada
         {\vspace{\stretch{.4}}                        % caso contrario, escreva-o
-            \@coorientador \\
+            \@coorientador \par
             Co-Orientador
         }
         
         \ifthenelse{\equal{\@coorientadora}{\@empty}}{}% se coorientadora nao existir, 
                                                       % nao produza nada
         {\vspace{\stretch{.4}}                        % caso contrario, escreva-a
-            \@coorientadora \\
+            \@coorientadora \par
             Co-Orientadora
         }
         
 
         \vspace{\stretch{.5}} 
 
-        {\bf\MakeUppercase\@local}\\
+        {\bf\MakeUppercase\@local}\par
         {\bf\@date}
     \end{center}   
     
@@ -786,7 +788,7 @@
     \vspace{\baselineskip}
     
     % evita texto escapando da margem
-    {\sloppy\noindent Palavras-chave: \@palchaves\\}%
+    {\sloppy\noindent Palavras-chave: \@palchaves\par}%
 	  
     \clearpage
 }
@@ -804,7 +806,7 @@
     \vspace{\baselineskip}
     
     % evita texto escapando da margem
-    {\sloppy\noindent  Keywords: \@keywords\\}%
+    {\sloppy\noindent  Keywords: \@keywords\par}%
        
     \clearpage
 }
@@ -859,7 +861,7 @@
 
 %Criando comando da Fonte
 \newcommand{\fontename}{Fonte}
-\newcommand{\fonte}[1]{{\small\fontename: #1}}
+\newcommand{\fonte}[1]{\par\small\fontename: #1\par}
 
 % Redefinindo formatação do título e da página
 \renewcommand*{\listof}[2]{%
@@ -1054,7 +1056,7 @@
 	\appendix%
 	\cleardoublepage%
 	\phantomsection%
-    {\centering\normalfont\selectfont\normalsize\bf ANEXOS\\} 
+    {\centering\normalfont\selectfont\normalsize\bf ANEXOS\par} 
     \vspace{0.3cm}
 	\addcontentsline{toc}{chapter}{\numberline{} ANEXOS}
 }
@@ -1064,9 +1066,11 @@
   \ifthenelse{\equal{\@primeiroanexo}{true}}{% se for primeiro anexo,
     \anexos                  % crie formatação dos anexos
     \primeiroanexo{false}    % marque que já passou do primeiro
-  } {\vspace{1.0cm}} % senão, crie espaço vertical 
+  } {\par\vspace{\baselineskip}} % senão, crie espaço vertical 
   \refstepcounter{anexo}
-  {\noindent\bf ANEXO~\theanexo\ -- \MakeUppercase{#1}\\}
+  {
+  	\noindent\bf ANEXO~\theanexo\ -- \MakeUppercase{#1}
+  	\vspace{\baselineskip}}
 }
 
 % Apêndices
@@ -1080,7 +1084,7 @@
 	\appendix%
 	\cleardoublepage%
 	\phantomsection%
-    {\centering\normalfont\selectfont\normalsize\bf APÊNDICES\\} 
+    {\centering\normalfont\selectfont\normalsize\bf APÊNDICES\par} 
     \vspace{0.3cm}
 	\addcontentsline{toc}{chapter}{\numberline{} APÊNDICES}
 }
@@ -1090,9 +1094,11 @@
   \ifthenelse{\equal{\@primeiroapendice}{true}}{% se for primeiro apêndice,
     \apendices                  % crie cabeçalho dos apendices
     \primeiroapendice{false}    % marque que já passou do primeiro
-  } {\vspace{1.0cm}} % senão, crie espaço vertical
+  } {\par\vspace{\baselineskip}} % senão, crie espaço vertical
   \refstepcounter{apendice}
-  {\noindent\bf APÊNDICE~\theapendice\ -- \MakeUppercase{#1}\\}}
+  {
+  	\noindent\bf APÊNDICE~\theapendice\ -- \MakeUppercase{#1}%
+    \vspace{\baselineskip}}}
 %######################################################################
 
 %######################################################################
@@ -1102,7 +1108,10 @@
    \addcontentsline{toc}{chapter}{\numberline{} REFERÊNCIAS}%
    
    % vspaces para corrigir a margem superior.
-   \renewcommand{\bibname}{{\centering\fontsize{12pt}{15pt}\bf\vspace{1.8ex}REFERÊNCIAS\vspace{-1.8ex}\\}}%
+   \renewcommand{\bibname}{%
+   	\centering\vspace{1.8ex}%
+   	\bf REFERÊNCIAS\par
+   	\vspace{-1.8ex}}%
 }
 %######################################################################
 

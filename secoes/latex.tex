@@ -25,7 +25,20 @@ Os \textbf{comandos} são a espinha dorsal do LaTeX. Eles são instruções que 
 	\item \textbf{comentários:} além dos comandos, existem também os comentários, representados pelo sinal porcentagem (\texttt{\%}). Eles dizem para o interpretador do código que ignore todo o texto após o sinal. Em alguns casos (como quebras de linhas após abertura de colchetes), utiliza-se o sinal \texttt{\%} para que não haja espaços horizontais desnecessários.
 \end{alineas}
 
+\section{Adicionando arquivos no documento principal}
 
+Em projetos \LaTeX, é comum ter um arquivo principal, onde se cria-se o preâmbulo (o que vem antes do \verb|\begin{document}|), estabelece-se a classe do documento, importa-se os pacotes e os configura. Para manter este arquivo o mais bem organizado e sucinto possível, recomenda-se que as seções, anexos e apêndices sejam colocados em arquivos externos próprios e importados para o arquivo principal utilizando os comandos \verb*|\include{arquivo}| ou \verb*|\input{arquivo}|. Esses comandos têm algumas importantes semelhanças e diferenças:
+
+\begin{alineas}
+	\item \textbf{semelhanças:} Ambos os comandos agem como um ``copia e cola'', adicionando o código dos arquivos externos ao arquivo principal sem a criação de nenhum ambiente especial. Dessa forma, caso não seja criado um ambiente especial manualmente, todas as configurações do arquivo principal são mantidas nos externos e todas as alterações feitas nos externos serão adicionadas ao ambiente principal. Além disso, o caminho usado nos arquivos externos é o mesmo do principal, por exemplo: se o arquivo principal está na pasta \textbf{\texttt{projeto}}, as imagens estão contidas na pasta \textbf{\texttt{projeto/imgs}} e um arquivo externo está em \textbf{\texttt{projeto/secoes}}, no arquivo externo as imagens serão acessadas em \textbf{\texttt{imgs}} e não em \textbf{\texttt{../imgs}};
+	
+	\item \textbf{diferenças:} esses comandos diferem, principalmente em como os conteúdos são adicionados:
+	\begin{alineas}
+		\item \textbf{\texttt{input}:} os códigos externos são adicionados ``como são'', ou seja, o comando funciona diretamente como um ``copia e cola'' automático e pode ser adicionado em qualquer lugar do código, até mesmo aninhados dentro dos arquivos externos;
+		
+		\item \textbf{\texttt{include}:} o comando \texttt{include} também insere códigos externos, mas os processa de maneira diferente. Ele sempre inicia uma nova página antes do conteúdo importado e não pode ser aninhado. Assim, é ideal que seja usado somente para elementos que comecem uma nova página, como capítulos de livros e seções primárias de trabalhos acadêmicos no formato da ABNT.
+	\end{alineas}
+\end{alineas}
 
 \section{Comandos de Texto}
 
@@ -65,12 +78,12 @@ Aqui estão alguns dos comandos de texto mais frequentemente utilizados:
 		\item \verb|\newline|: também força uma quebra de linha, mas é mais robusto em alguns contextos;
 		\item \verb|\linebreak|: sugere um ponto de quebra de linha, mas permite ao LaTeX ignorá-lo se não for ideal;
 		\item \verb|\hspace{comprimento}|: insere um espaço horizontal com o comprimento especificado (ex: \verb|\hspace{1cm}|);
-		\item \verb|\vspace{comprimento}|: insere um espaço vertical com o comprimento especificado (ex: \verb|\vspace{0.5cm}|).´
+		\item \verb|\vspace{comprimento}|: insere um espaço vertical com o comprimento especificado (ex: \verb|\vspace{0.5cm}|).
 	\end{alineas}
 	
 	\item \textbf{listas e tabulações simples (para texto corrido):} embora existam ambientes específicos para listas (\texttt{itemize}, \texttt{enumerate}) e tabelas (\texttt{tabular}), para alinhamentos simples em texto corrido, podem ser usados:
 	\begin{alineas}
-		\item \verb|\quad| e \verb|\qquad|: inserem espaços horizontais fixos maiores.
+		\item \verb|\quad| e \verb|\qquad|: inserem espaços horizontais fixos maiores;
 		\item \verb|\tabto{posição}|: para alinhar texto em uma posição específica, embora seja mais complexo e menos comum para iniciantes.
 	\end{alineas}
 \end{alineas}
@@ -83,15 +96,14 @@ O domínio desses comandos de texto permite um controle preciso sobre a apresent
 
 \section{Figuras} \label{sec:latexFiguras}
 
-\begin{figure}[htb!]
+\begin{figure}[hbt!]
 	\centering
 	\caption{Uma Figura de Exemplo}\label{fig:exemplo} %legenda e referência
 	\includegraphics[scale=0.3]{imgs/exemplo}
-	
 	\fonte{fonte da figura (domínio público)} %Fonte da imagem
 \end{figure}
 
-A inclusão de \textbf{figuras} é um aspecto fundamental em muitos documentos, especialmente em trabalhos acadêmicos, relatórios técnicos e apresentações. O LaTeX, em conjunto com o pacote \texttt{graphicx}, oferece um controle robusto sobre a inserção, posicionamento e legendagem de imagens:
+A inclusão de \textbf{figuras} é um aspecto fundamental em muitos documentos, especialmente em trabalhos acadêmicos, relatórios técnicos e apresentações. A \autoref{fig:exemplo} é um exemplo de uma figura adicionada, O \LaTeX, em conjunto com o pacote \texttt{graphicx}, oferece um controle robusto sobre a inserção, posicionamento e legendagem de imagens:
 
 \begin{alineas}
 	\item \textbf{o ambiente} \texttt{figure}\textbf{:} figuras no LaTeX são geralmente inseridas dentro do ambiente \texttt{figure}. Este é um ambiente "flutuante", o que significa que o LaTeX pode mover a figura para uma posição ideal na página para evitar quebras de página embaraçosas e garantir uma boa legibilidade. Em um comando:
@@ -120,12 +132,12 @@ A inclusão de \textbf{figuras} é um aspecto fundamental em muitos documentos, 
 		\item \texttt{scale=fator}: redimensiona a imagem por um fator (ex: \texttt{scale=0.5} para metade do tamanho original);
 		\item \texttt{angle=graus}: rotaciona a imagem pelos graus especificados.
 	\end{alineas}
-	Os formatos de imagem suportados dependem do compilador LaTeX que você está usando (e.g., PDFLaTeX suporta PDF, PNG, JPG; LaTeX tradicional suporta EPS). Para gráficos e diagramas, formatos vetoriais são preferidos, como PDF ou EPS.
+	Os formatos de imagem suportados dependem do compilador LaTeX que você está usando. Por exemplo: PDFLaTeX (o mais comum; usado pelo Overleaf) suporta PDF, PNG, JPG; LaTeX tradicional suporta EPS. Para gráficos e diagramas, formatos vetoriais, como PDF e EPS, são preferidos.
 	
 	\item \textbf{legendas e rótulos:}
 	\begin{alineas}
-		\item \verb|\caption{Texto da Legenda}|: adiciona uma legenda à figura. É fundamental para descrever o conteúdo da imagem e garantir que ela seja incluída na lista de figuras;
-		\item \verb|\label{chave_referencia}|: cria um rótulo único para a figura. Isso permite referenciá-la em qualquer parte do texto usando \verb|\ref{chave_referencia}| (que gerará o número da figura) ou \verb|\autoref{chave_referencia}| (que gerará "Figura X"). Por exemplo, podemos referir à imagem de exemplo como \autoref{fig:exemplo} e o texto resultante, em PDF, será um link para a figura em questão.
+		\item \verb|\caption{Texto da Legenda}|: adiciona um título à figura. É fundamental para descrever o conteúdo da imagem e garantir que ela seja incluída na lista de figuras;
+		\item \verb|\label{chave_referencia}|: cria um rótulo único para a figura. Isso permite referenciá-la em qualquer parte do texto usando \verb|\ref{chave_referencia}| (que gerará o número da figura) ou \verb|\autoref{chave_referencia}| (que gerará "Figura X"). Por exemplo, podemos referir à imagem de exemplo como \autoref{fig:exemplo} e o texto resultante, em PDF, redirecionará para a figura em questão quando clicado.
 	\end{alineas}
 	
 	\item \textbf{centralizando figuras:} é comum centralizar figuras na página para uma melhor apresentação. Isso pode ser feito usando o comando \verb|\centering| dentro do ambiente \texttt{figure}:
@@ -134,7 +146,6 @@ A inclusão de \textbf{figuras} é um aspecto fundamental em muitos documentos, 
 	\centering
 	\caption{Uma Figura de Exemplo}\label{fig:exemplo} 
 	\includegraphics[scale=0.3]{imgs/exemplo}
-	
 	\fonte{fonte da figura (domínio público)} %Fonte da imagem
 \end{figure}
 	\end{lstlisting}
@@ -148,9 +159,11 @@ A correta utilização desses comandos e ambientes para figuras garante que suas
 
 \section{Ambientes Tabulares}
 
+Tabelas são elementos cruciais para apresentar dados de forma organizada e legível em documentos científicos e acadêmicos. No \LaTeX, a criação de elementos tabulares é feita principalmente através do ambiente \texttt{tabular}, que oferece um controle preciso sobre a formatação e o alinhamento do conteúdo. A \autoref{tab:exemplo} é um exemplo.
+
 \begin{table}[h!]
 	\centering
-	\caption{Exemplo de Tabela Flutuante com Legenda}\label{tab:exemplo}
+	\caption{Exemplo de Tabela Flutuante com Fonte}\label{tab:exemplo}
 	\begin{tabular}{l c r}
 		\hline
 		\linhadir{Cabeçalho 1} & \linhadir{Cabeçalho 2} & Cabeçalho 3 \\
@@ -159,12 +172,9 @@ A correta utilização desses comandos e ambientes para figuras garante que suas
 		Item 2 & Valor B & Nota Y \\
 		\hline
 	\end{tabular}
-	
 	\vspace{.3cm}
 	\fonte{original}
 \end{table}
-
-Tabelas são elementos cruciais para apresentar dados de forma organizada e legível em documentos científicos e acadêmicos. No \LaTeX, a criação de elementos tabulares é feita principalmente através do ambiente \texttt{tabular}, que oferece um controle preciso sobre a formatação e o alinhamento do conteúdo.
 
 A estrutura fundamental de uma tabela em \LaTeX\  envolve o ambiente \texttt{tabular} e o uso de especificadores para definir o alinhamento das colunas e as linhas divisórias. Veja um exemplo simples:
 
@@ -211,7 +221,6 @@ Para que sua tabela seja tratada como um ``float'' (flutuante), permitindo que o
 		Item 2 & Valor B & Nota Y \\
 		\hline
 	\end{tabular}
-
 	\vspace{.3cm}
 	\fonte{original}
 \end{table}
@@ -221,20 +230,48 @@ Os comandos usados e suas explicacões são:
 \begin{alineas}
 	\item \texttt{\textbackslash begin\{table\}[h!]} e \texttt{\textbackslash end\{table\}}: delimitam o ambiente flutuante da tabela. As opções entre colchetes, como \texttt{[h!]}, sugerem ao \LaTeX\  a preferência de posicionamento (\texttt{h} para ``here'' - aqui, \texttt{!} para ``definitivamente aqui se possível''). Outras opções incluem \texttt{t} (top - topo da página), \texttt{b} (bottom - base da página) e \texttt{p} (page of floats - página dedicada a flutuantes);
 	\item \texttt{\textbackslash centering}: centraliza a tabela na página;
-	\item \texttt{\textbackslash caption\{...\}}: adiciona uma legenda à tabela;
-	\item \texttt{\textbackslash label\{...\}}: permite criar uma referência cruzada para a tabela usando\\ \texttt{\textbackslash ref\{tab:minhatabela\}} no texto, que será automaticamente atualizada com o número da tabela ou quadro, como \autoref{tab:exemplo}.
+	\item \texttt{\textbackslash caption\{...\}}: adiciona um título à tabela;
+	\item \texttt{\textbackslash label\{...\}}: permite criar uma referência cruzada para a tabela usando\\ \texttt{\textbackslash ref\{tab:minhatabela\}} no texto, que será automaticamente atualizada com o número da tabela ou quadro, como \autoref{tab:exemplo};
+	\item \texttt{\textbackslash fonte\{...\}}: usado para criar o texto da fonte. Deve vir após o \texttt{\textbackslash end\{tabular\}} e é ideal que tenha um espaço \texttt{\textbackslash vspace\{0.3cm\}} entre eles.
 \end{alineas}
 
 \subsection{Formatação Avançada}
 
-O \LaTeX\  oferece diversas opções para customizar suas tabelas, incluindo:
+\begin{table}[h!]
+	\centering
+	\caption{Exemplo de Tabela com recursos avançados}\label{tab:exemploAvan}
+	% para alterar o espaçamento nos elementos tabulares
+	\renewcommand{\arraystretch}{2.0} % altera espaçamento vertical (valor normal: 1.5)
+	\setlength{\tabcolsep}{2ex} % altera espaçamento horizontal (valor normal: ~1ex)
+	%
+	% para tamanho horizontal fixo e quebra de linha na coluna
+	%                 \/ 
+	\begin{tabular}{m{2.5cm} c r}
+		\hline
+		\multirow{2}{2.5cm}{\bf Cabeçalho 2 linhas} & \multicolumn{2}{|c}{\bf Cabeçalho 2 colunas}\\
+		\cline{2-3}
+		% multicolumn abaixo necessário pelas linhas verticais (|c|)
+		& \multicolumn{1}{|c|}{\bf Cabeçalho 2} & \bf Cabeçalho 3 \\
+		\hline
+		Item de valor um & Valor A & Nota X \\
+		Item de valor dois & Valor B & Nota Y \\
+		\hline
+	\end{tabular}
+	
+	\vspace{.3cm}
+	\fonte{original}
+\end{table}
+
+O \LaTeX\  oferece diversas opções avançadas para customizar suas tabelas, incluindo:
 
 \begin{alineas}
 	\item \textbf{linhas horizontais parciais:} use \texttt{\textbackslash cline\{i-j\}} para desenhar uma linha horizontal apenas das colunas \texttt{i} a \texttt{j};
 	\item \textbf{células mescladas:} o pacote \texttt{multirow} permite mesclar células verticalmente\\ (\texttt{\textbackslash multirow\{num\_linhas\}\{largura\}\{conteúdo\}}) e o \texttt{multicolumn}\\ horizontalmente (\texttt{\textbackslash multicolumn\{num\_colunas\}\{alinhamento\}\{conteúdo\}});
 	\item \textbf{espaçamento:} é possível ajustar o espaçamento entre linhas e colunas, além de usar pacotes como \texttt{booktabs} para criar tabelas com uma aparência mais profissional, focando em linhas mais finas e espaçamento aprimorado para melhorar a legibilidade.
 \end{alineas}
+A \autoref{tab:exemploAvan} é um exemplo de tabela que utiliza recursos avançados.
 
+\vspace{\baselineskip}
 Aprender a manipular tabelas no \LaTeX\  pode parecer complexo no início, mas o controle que ele oferece resulta em documentos com um visual extremamente polido e profissional, mantendo a consistência em todo o seu trabalho.
 
 

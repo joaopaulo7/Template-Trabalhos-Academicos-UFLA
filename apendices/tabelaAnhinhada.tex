@@ -1,0 +1,18 @@
+\apendice{Tabela Aninhada}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{2.0}
+	\begin{tabular}{ |@{ }c@{ }|@{ }c@{ }|@{ }c@{ }| }% <-- aded @{}
+		\hline
+		Cabeçalho 1 & Cabeçalho2 & Cabeçalho 33333333333\\
+		\hline
+		\multicolumn{3}{c}{
+		\begin{tabular}{l c r}   
+			Item 1& Valor A& Nota X\\
+			Item 2& Valor B& Nota Y\\ 
+		\end{tabular}
+		} \\
+		\hline
+	\end{tabular}
+\end{table}
