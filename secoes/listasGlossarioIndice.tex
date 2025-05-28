@@ -1,12 +1,13 @@
-\chapter{LISTAS, GLOSSÁRIO E ÍNDICE}\label{cap:listasEGlossario}
+\chapter{LISTAS, GLOSSÁRIO E ÍNDICE}\label{sec:listasEGlossario}
 
-Esta nova versão do template também inclui a criação de novos elementos pré-textuais listas de abreviações (ou, como está no manual, abreviaturas), siglas e símbolos. Além disso, também inclui a criação do glossário.
+O template também inclui a criação dos elementos pré-textuais lista de abreviações (ou, como está no manual, abreviaturas), siglas e símbolos. Além disso, também inclui a criação do glossário e índice.
 
-Todos esses novos elementos, exceto o índice, utilizam o mesmo pacote, \textit{\textbf{glossaries}}, então, têm comportamento semelhante. Cada ítem deve ser adicionado aos glossários no preâmbulo e, após adicionados, podem ser referenciados no documento com o comando \textit{\textbf{gls}}. Por exemplo:
+Todos esses novos elementos, exceto o índice, utilizam o mesmo pacote, \texttt{glossaries}, então, têm comportamento semelhante. Cada ítem deve ser adicionado aos glossários no preâmbulo e, após adicionados, podem ser referenciados no documento com o comando \texttt{gls}. Por exemplo:
 	
 \begin{figure}[!htb]
 	\centering
 	\caption{Inserindo ítem no \gls{glo:glossario} e o referindo no texto} %legenda
+	\label{fig:exemploglossario1} %rotulo para refencia
 	\begin{lstlisting}[language=tex]
 \newglossaryentry{glo:glossario}{
 	name={glossário}, 
@@ -17,19 +18,21 @@ Todos esses novos elementos, exceto o índice, utilizam o mesmo pacote, \textit{
 		respectivas definições}
 	}
 		
-%\makeglossaries % não é necessario nesse template pois já é 
-                                                   chamado na classe
+%\makeglossaries % não é necessario nesse template pois já é chamado na classe
 \begin{document}
 ...
 \caption{Inserindo ítem no gls(glo:glossario) e o referindo no texto}
 	\end{lstlisting}
-	\label{fig:exemploglossario1} %rotulo para refencia
+	
+	\fonte{original}
 \end{figure}
 
-O comando \textit{\textbf{gls}} escreve o nome do ítem quando é usado. Para que outro valor seja escrito, ou até para que nada seja escrtio, pode-se utilizar o comando \textit{\textbf{glslink}}:\\
-\verb|\glslink{<rótulo>}{<texto alternativo>}|
+O comando \textit{\textbf{gls}} escreve o nome do ítem quando é usado. Para que outro valor seja escrito, ou até para que nada seja escrtio, pode-se utilizar o comando \texttt{glslink}:
+\begin{lstlisting}[language=tex]
+	\glslink{<rótulo>}{<texto alternativo>}
+\end{lstlisting}
 
-É recomendável separar as adições aos glossários em arquivos para melhor organização e reduzir o tamanho do preâmbulo. Nesse template, cada glossário tem seu próprio arquivo, adicionado ao projeto via comandos \textit{\textbf{input}}, e os arquivos têm sua própria pasta. Essa organização pode ser alterada, desde que a mudança seja refletida nos inputs.
+É recomendável separar as adições aos glossários em arquivos para melhor organização e reduzir o tamanho do preâmbulo. Nesse template, cada glossário tem seu próprio arquivo, adicionado ao projeto via comandos \texttt{loadglsentries}, e os arquivos têm sua própria pasta. Essa organização pode ser alterada, desde que a mudança seja refletida no preâmbulo.
 
 \newpage
 Abaixo listamos o formato para a adição de ítens em cada glossário:
@@ -66,7 +69,7 @@ Abaixo listamos o formato para a adição de ítens em cada glossário:
 	\end{lstlisting}
 	
 	\item \textbf{glossário}: Adicionar termos no glossário é igual ao exemplo mostrado antes.\\
-	Nesse caso, no entanto, adicionamos uma \emph{tag} \LaTeX antes do nome, então temos que adicionar o valor "\emph{sort}", para que a ordenação seja correta.
+	Nesse caso, no entanto, adicionamos uma \emph{tag} \LaTeX\ antes do nome, então temos que adicionar o valor "\emph{sort}", para que a ordenação seja correta.
 	Um exemplo para o termo \gls{llm}:
 	\begin{lstlisting}[language=tex]
 \newglossaryentry{llm}{
@@ -88,3 +91,4 @@ fechado\index{Conjunto!fechado}:
 	
 \end{alineas}
 
+Para mais informações sobre como usar esses pacotes, consulte as documentações oficiais do \texttt{glossaries}\footnote{https://ctan.org/pkg/glossaries?lang=en} e do \texttt{imakeidx}\footnote{https://ctan.org/pkg/imakeidx}.

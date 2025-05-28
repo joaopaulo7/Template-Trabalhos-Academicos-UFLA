@@ -1,230 +1,171 @@
-\chapter{ELEMENTOS DO TEXTO}
-\label{cap:elementos}
+\chapter{Utilizando a Classe no Formato da UFLA}\label{sec:template}
 
-Este capítulo apresenta o uso básico de equações, figuras e tabelas no código da monografia, bem como o posicionamento das legendas, segundo as normas da UFLA.
+Agora que já temos o conhecimento básico sobre como a linguagem \LaTeX\ funciona, podemos nos aprofundar nos detalhes de como utilizar esse template (e, especialmente, a classe \texttt{templufla}) para gerar documentos padronizados de alta qualidade.
 
+\section{Seção secundária}\label{sec2:secoes}
+\subsection{Seção terciária com texto extra comicamente grande para testar como será a quebra de linha do título}\label{sec3:teste}
+\subsubsection{Seção quaternária}\label{sec4:teste}
+\subsubsubsection{Seção quinária}\label{sec5:teste}
 
-\section{Utilizando Recursos do \LaTeX}
+Um dos fatores fundamentais no desenvolvimento de um trabalho acadêmico é sua organização. Na normalização da UFLA e da ABNT, os trabalhos podem ter formato de livro, como esse template, mas devem ser divididos em seções, não em capítulos. Todo o texto pode ser dividido até a seção quinária.
 
-\subsection{Inserindo Comandos Definidos}
+No template, dispõem-se comandos para realizar tal divisão automaticamente, mas com uma importante observação: a seção primária utiliza o comando \verb|\chapter|. Isso foi feito para simplificar a migração de versões mais antigas e provavelmente será alterado no futuro. Abaixo estão listados os comandos de seccionamento disponíveis: 
 
-Esta subseção apresenta o uso de comandos definidos pelo usuário no preâmbulo do arquivo principal \LaTeX e alguns exemplos do modo matemático. Por exemplo, na texto a seguir é utilizado o comando  \verb+\defs+, definido anteriormente pelo próprio autor do texto:
-
-\begin{quote}
-Os conjuntos fundamentais da teoria são os \defs{conjuntos elementares}. Se $E$ é um conjunto elementar, $des(E)$ denota a descrição dessa classe de equivalência. Essa descrição é função do conjunto de atributos que define $R$. Note que, dados $x,y \in E$, onde $E$ é um conjunto elementar em $A$, $x$ e $y$ são indiscerníveis, i.e., no espaço $A=(U,R)$ não se consegue distinguir $x$ de $y$, pois $des(x) = des(y) = des(E)$. 
-\end{quote}
-
-\subsection{Inserindo Figuras}
-
-A Figura~\ref{fig:exemplo} é apenas um exemplo de figura para que o usuário da classe possa saber como uma figura pode ser inserida e referenciada automaticamente no texto.É importante observar que legendas de figuras ficam abaixo de seu conteúdo.
-
-\begin{figure}[!htb]
-\centering
-\caption{Uma Figura de Exemplo} %legenda
-\includegraphics[scale=0.9]{imgs/gradpenguin}\\  % o 0.9 indica 90% do tamanho original
-% pdfLaTeX aceita figuras no formato PNG, JPG ou PDF
-% figuras vetoriais podem ser exportadas para eps e depois convertidas para pdf usando epstopdf
-{\small Fonte: fonte da figura} %Fonte da imagem
-\label{fig:exemplo} %rotulo para refencia
-\end{figure}
-
-\subsection{Inserindo Saídas de Comandos e Código}
-
-A menos que sejam trechos pequenos, saídas de comandos, trechos de arquivos de configuração e código de aplicativos devem ser inseridos como figura, como mostrado, respectivamente, na Figura~\ref{fig:exemplocomando}, Figura~\ref{fig:exemploconfig} e Figura~\ref{fig:exemplocodigo1}. Para comandos e configuração, recomenda-se o uso do pacote {\tt fancyvrb}, o que pode ser visto na Figura~\ref{fig:exemplocomando} e Figura~\ref{fig:exemploconfig}.
-
-Para inserção de código, recomenda-se o uso do pacote {\tt listings}, que permite melhor apresentação do mesmo, o que é mostrado na Figura~\ref{fig:exemplocodigo1}. Além disso, esses dois pacotes permitem a inserção de texto/código em arquivos externos, sem inclusão direta no arquivo \LaTeX. Isso pode ser verificado no exemplo de uso do {\tt listings} apresentado na Figura~\ref{fig:exemplocodigo2}
-
-\begin{figure}[!htb]
-\centering
-\caption{Inserindo Comando} %legenda
-\vspace{-12pt} % O verbatim tem um espaçamentoi estranho. Isso corrige.
-\begin{Verbatim}[frame=single]
-$ dir monografia*
--rw-r--r--  1 joukim users   3650 Set 12 17:56 monografia.aux
--rw-r--r--  1 joukim users   6366 Set 12 17:43 monografia.bbl
--rw-r--r--  1 joukim users    290 Set 12 17:56 monografia.lof
--rw-r--r--  1 joukim users  27937 Set 12 17:56 monografia.log
--rw-r--r--  1 joukim users    194 Set 12 17:56 monografia.lot
--rw-r--r--  1 joukim users    715 Set 12 17:56 monografia.out
--rw-r--r--  1 joukim users 159243 Set 12 17:56 monografia.pdf
--rw-r--r--  1 joukim users   4559 Set 12 17:47 monografia.tex
--rw-r--r--  1 joukim users    964 Set 12 17:56 monografia.toc
-\end{Verbatim} 
-\vspace{-12pt}
-{\small Fonte: fonte da figura} %Fonte da imagem
-\label{fig:exemplocomando} %rotulo para refencia
-\end{figure}
-
-\begin{figure}[!htb]
-\centering
-\caption{Inserindo Trecho de Arquivo de Configuração} %legenda
-\label{fig:exemploconfig} %rotulo para refencia
-\vspace{-12pt}
-\begin{Verbatim}[frame=single]
-// named.conf for Red Hat caching-nameserver
-options {
-        directory "/var/named";
-        dump-file "/var/named/data/cache_dump.db";
-        statistics-file "/var/named/data/named_stats.txt";
-        // query-source address * port 53;
-};
-\end{Verbatim} 
-\vspace{-12pt}
-{\small Fonte: fonte da figura} %Fonte da imagem
-\end{figure}
-
-
-\begin{figure}[!htb]
-\centering
-\caption{Inserindo Código Diretamente no Arquivo \LaTeX} %legenda
-\begin{lstlisting}
-// exit the program
-public void on_buttonExit_clicked() {
-	System.exit(0);
-}
-
-// copy data
-public void on_buttonCopy_clicked() {
-	labelShow.setText(entryData.getText());
-}
-
-// print version of Java
-public static void main(String[] args) {
-	System.out.println(System.getProperty("java.fullversion"));
-}
-\end{lstlisting} 
-{\small Fonte: fonte da figura} %Fonte da imagem
-\label{fig:exemplocodigo1} %rotulo para refencia
-\end{figure}
-
-
-\begin{figure}[H]
-\centering
-\caption{Inserindo Código a Partir do Código-Fonte} %legenda
-\label{fig:exemplocodigo2} %rotulo para refencia
-\lstinputlisting{codigos/Hello.java}
-{\small Fonte: fonte da figura} %Fonte da imagem
-\end{figure}
-
-\subsection{Inserindo Quadros e Tabelas}
-
-Escrever um quadro ou tabela e referenciá-los é bem simples. Por exemplo o Tabela~\ref{tab:exemplo} ilustra a criação de um quadro, tendo aqui seu referenciamento no texto. É importante observar o posicionamento da legenda antes do corpo da tabela e da fonte após. Outros exemplos são mostrados no Quadro~\ref{tab:outro} e Quadro~\ref{tab:maisum}.
-
-\begin{table}[h!]
-  \begin{center}
-    \caption{Exemplo de Quadro} 
-    \label{tab:exemplo}
-    \begin{tabular}{c c c c c c }
-      \hline
-      $U$ & \multicolumn{1}{|c}{$vitA$} & \multicolumn{1}{|c}{$vitC$} & \multicolumn{1}{|c}{$vitD$} & \multicolumn{1}{|c}{$prot$} & \multicolumn{1}{|c}{$lip$} \\
-      \hline
-      $d_1$ & 1 & 3 & 4 & 2 & 3\\
-      $d_2$ & 1 & 3 & 3 & 3 & 2\\
-      $d_3$ & 1 & 3 & 4 & 3 & 1\\
-      $d_4$ & 3 & 5 & 2 & 5 & 2\\
-      $d_5$ & 4 & 5 & 2 & 5 & 1\\
-      $d_6$ & 3 & 5 & 2 & 3 & 4\\
-      $d_7$ & 4 & 4 & 1 & 3 & 2\\
-      \hline 
-    \end{tabular}
-  \end{center}
-  \centering {\small Fonte: fonte da tabela} %Fonte do tabela
-\end{table}
-
-\begin{quadro}[h!]
-\begin{center}
-  \caption{Recursos do {\ttfamily syslog}}
-  \label{tab:outro}
-  \begin{tabular}{|l|p{9cm}|}
-    \hline
-    \rowcolor[gray]{.9}
-    \bf Recurso & \bf {\em Daemons} Associados (Alguns Exemplos) \\
-    \hline
-    \tt kern & \em kernel  \\
-    \hline
-    \tt user & processos dos usuários ({\tt ntpd}) \\
-    \hline
-    \tt mail & softwares relacionados com o correio eletrônico ({\tt sendmail})\\
-    \hline
-    \tt daemon & {\em daemons} do sistema ({\tt gated}, {\tt inetd}, 
-    {\tt named}, {\tt ntpd})\\
-    \hline
-    \tt auth &  comandos relacionados à autorização e segurança 
-    ({\tt login}, {\tt rlogin}, {\tt su}, {\tt passwd}) \\
-    \hline
-    \tt lpr & spool de impressão ({\tt lpd})\\
-    \hline
-    \tt news & sistema de notícias da usenet ({\tt nnrpd})\\
-    \hline
-    \tt uucp & destinado ao {\tt uucp}\\
-    \hline
-    \tt cron & relacionado ao {\em daemon} {\tt cron}\\
-    \hline
-    \tt mark &  registros de data/hora gerados a intervalos regulares 
-    ({\tt syslogd})\\
-    \hline
-    \tt local0-7 & 8 tipos de mensagens locais ({\tt tcpd -- local7}, {\tt sudo -- local2}, {\tt popper - local0}) \\
-    \hline
-    \tt syslog &  mensagens internas ao {\tt syslog}\\
-    \hline
-    \tt authpriv & mensagens privadas de autorização\\
-    \hline
-    \tt ftp & associado ao {\tt ftpd} ({\em daemon} do {\tt ftp}) \\
-    \hline
-    \tt * &  todos os recursos com exceção do {\tt mark}\\
-    \hline
-  \end{tabular}
-\end{center}
-\centering {\small Fonte: fonte do quadro} %Fonte da quadro
-\end{quadro}
-
-\begin{quadro}[h!]
-\begin{center}
-\caption{Opções do Comando {\ttfamily at}}\label{tab:maisum}
-  \begin{tabular}{|l|p{9cm}|}
-    \hline 
-    \rowcolor[gray]{.9}
-    \bf Opção & \bf Descrição\\
-    \hline
-    \tt -c & exibe os jobs registrados\\
-    \hline
-    \tt -d & remove um job específico\\
-    \hline
-    \tt -f & permite que os comandos sejam lidos a partir de um arquivo (não pela entrada-padrão)\\
-    \hline
-    \tt -l & lista todos os jobs associados a um usuário\\
-    \hline
-    \tt -m & envia um e-mail ao usuário quando o job for finalizado\\
-    \hline
-    \end{tabular}
-\end{center}
-\centering {\small Fonte: fonte do quadro} %Fonte da quadro
-\end{quadro}
-
-\subsection{Inserindo Equações}
-
-Equações devem ser numeradas, com a numeração, em parênteses à direita da mesma. Isso é ilustrado na Equação~\ref{eq:exemplo}.
-
-\begin{equation}
-\label{eq:exemplo}
-f'(x) = \int^{x^2}_{x^{-1}} xdx 
-\end{equation}
-
-
-\section{Usando Referências}
-A equipe do curso não impõe normas rígidas para o formato a ser adotado nas referências bibliográficas, desde que seja usado um padrão acadêmico conhecido. Caso os autores não possuam um padrão preferencial, recomenda-se o formato estipulado pela ABNT \cite{NBR6023:2002}. A Biblioteca Central da UFLA disponibiliza um manual \cite{BIBUFLA2001} que orienta o uso dessas normas. Se os autores estiverem utilizando \LaTeX, recomenda-se o uso do pacote Abn\TeX\footnote{Disponível em \url{http://abntex.codigolivre.org.br/}.} \cite{Weber2003}. \index{Convergência}\index{Divergência}\index{Índice}
-
-Obviamente, recomenda-se a leitura de textos sobre a escrita acadêmica e produção de trabalhos de conclusão para garantir não só qualidade estética e de formatação, mas também de conteúdo. Entre outros, pode-se recomendar a leitura de \cite{Silva2005}, \cite{Martins2000}, \cite{Gil2002}, \cite{Franca2001}, \cite{Eco1996}, \cite{Moura1998}, \cite{Booth2000}, \cite{Hexsel2004}, \cite{Porto2002} e \cite{Henz2003}. 
+\begin{alineas}
+	\item \verb|\chapter|:  cria uma seção primária, que pode ser referenciada como \autoref{sec:template};
+	\item \verb|\section|:  cria uma seção secundária, que pode ser referenciada como \autoref{sec2:secoes};
+	\item \verb|\subsection|:  cria uma seção terciária, que pode ser referenciada como \autoref{sec3:teste};
+	\item \verb|\subsubsection|:  cria uma seção quaternária, que pode ser referenciada como \autoref{sec4:teste};
+	\item \verb|\subsubsubsection|:  cria uma seção quinária, que pode ser referenciada como \autoref{sec5:teste}.
+\end{alineas}
 
 
 \section{Alíneas e Subalíneas}
-Para listar elementos, deve-se usar o ambiente \verb|\begin{alineas}\end{alineas}|, que pode ser aninhado para criar subalíneas:
-\begin{alineas}
+Segundo a normalização \cite{UFLA:2025}, ``as alíneas são usadas quando se deseja enumerar diversos assuntos de uma seção sem título próprio. Quando necessário, a alínea pode ser dividida em subalíneas.''
+
+Nesse template, para listar elementos com alíneas, deve-se usar o ambiente \texttt{alineas}, que pode ser aninhado para criar subalíneas.: 
+\begin{lstlisting}[language={[LaTeX]TeX}]
+	\begin{alineas}
 		\item item um;
 		\item item dois:
-		\begin{alineas}
+		\begin{alineas} % subalíneas
 			\item subitem 1;
 			\item subitem 2.
 		\end{alineas}
+	\end{alineas}
+\end{lstlisting}
+\vspace{18pt}
+
+Abaixo é mostrado exemplo em texto retirado, na maior parte, do manual:
+\begin{alineas}
+	\item as alíneas são formadas pelos diversos assuntos que não possuem título próprio, dentro de uma mesma seção;
+	\item o texto que antecede as alíneas termina em dois pontos;
+	\item as alíneas devem ser indicadas alfabeticamente, em letra minúscula, seguida de parêntese. Utilizam-se letras dobradas, quando esgotadas as letras do alfabeto;
+	\item as letras indicativas das alíneas devem apresentar recuo em relação à margem esquerda;
+	\item o texto da alínea deve começar por letra minúscula e terminar em ponto e vírgula, exceto a última alínea que termina em ponto final;
+	\item o texto da alínea deve terminar em dois pontos, se houver subalínea;
+	\item a segunda e as seguintes linhas do texto da alínea começam sob a primeira letra do texto da própria alínea
+	
+	\item sobre as subalíneas:
+	\begin{alineas}
+		\item as subalíneas devem começar por travessão seguido de espaço;
+		\item as subalíneas devem apresentar recuo em relação à alínea;
+		\item o texto da subalínea deve começar por letra minúscula e terminar em ponto e vírgula. A última subalínea deve terminar em ponto final, se não houver alínea subsequente;
+		\item a segunda e as seguintes linhas do texto da subalínea começam sob a primeira letra do texto da própria subalínea;
+		\item o recuo das margens também deve ser obedecido.
+	\end{alineas}
 \end{alineas}
+
+
+\section{Figuras, Ilustrações e etc}
+
+Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante ao que foi explicado na \autoref{sec:latexFiguras}. Só é importante se atentar para dois detalhes: os títulos das figuras, que devem vir antes do \texttt{inludegraphics}, e a fonte, que deve ser posicionada duas quebras de linha após o \texttt{inludegraphics} e pode utilizar o comando pré definido \texttt{fonte}. Exemplo do código para a \autoref{fig:leaoCTAN}:
+\begin{lstlisting}[language={[LaTeX]Tex}]
+\begin{figure}
+	\centering
+	% \caption antes da figura
+	\caption{Leão do site CTAN estudando \TeX} 
+	\label{fig:leaoCTAN}
+	\includegraphics[width=0.6\textwidth]{imgs/ctanlion}
+	
+	% \fonte um espaço vazio após a figura
+	\fonte{Duane Bibby, diponibilizador por \url{www.ctan.org}}
+\end{figure}
+\end{lstlisting}
+
+\begin{figure}[hb!]
+	\centering
+	\caption{Leão do site CTAN estudando \TeX}
+	\label{fig:leaoCTAN}
+	\includegraphics[width=0.6\textwidth]{imgs/ctanlion}
+	
+	\fonte{Duane Bibby, diponibilizado em \url{www.ctan.org/lion}}
+\end{figure}
+
+
+
+
+\section{Quadros e Tabelas}
+
+Tabelas e quadros são elementos tabulares com conteúdos e formatos específicos. 
+
+Tabelas envolvem principalmente números, utiliza-se linhas horizontais somente no topo, final e cabeçalhos e linhas verticais somente nos cabeçalhos. Para reduzir o tamanho do código dos cabeçalhos, o template dispõe do comando \texttt{linhadir}, que adiciona uma linha vertical à célula. Abaixo mostra-se um exemplo do código para a \autoref{tab:exemplo2}:
+
+\begin{lstlisting}[language={[LaTeX]Tex}]
+\begin{table}[h]
+	\centering
+	\caption{Exemplo de Tabela} 
+	\label{tab:exemplo2}
+	\begin{tabular}{c c c c }
+		\hline
+		\linhadir{Pessoa}& \linhadir{Livros}& \linhadir{Artigos}& Palestras\\
+		\hline
+		$p_1$& 1& 3& 4\\
+		$p_2$& 1& 3& 3\\
+		$p_3$& 1& 3& 4\\
+		$p_4$& 3& 5& 2\\
+		\hline 
+	\end{tabular}
+	
+	\vspace{0.3cm}
+	\fonte{original} %Fonte do tabela
+\end{table}
+\end{lstlisting}
+
+\begin{table}[h]
+	\centering
+	\caption{Exemplo de Tabela} 
+	\label{tab:exemplo2}
+	\begin{tabular}{c c c c }
+		\hline
+		\linhadir{\bf Pessoa} & \linhadir{\bf Livros} & \linhadir{\bf Artigos} & \bf Palestras \\
+		\hline
+		$p_1$ & 1 & 3 & 4 \\
+		$p_2$ & 1 & 3 & 3 \\
+		$p_3$ & 1 & 3 & 4 \\
+		$p_4$ & 3 & 5 & 2 \\
+		\hline 
+	\end{tabular}
+	
+	\vspace{0.3cm}
+	\fonte{original} %Fonte do tabela
+\end{table}
+
+
+Quadros se diferem das tabelas por conterem principalmente dados textuais e suas células serem completamente fechadas. O \autoref{quad:exemplo} é um exemplo de quadro.
+
+\begin{quadro}[h]
+\centering
+\caption{Opiniões sobre esse template}\label{quad:exemplo}
+  \begin{tabular}{|l|p{9cm}|}
+    \hline 
+    \rowcolor[gray]{.9}
+    \bf Nome& \bf Opinião\\
+    \hline
+    Jão& Desculpe, não posso comentar sobre isso.\\
+    \hline
+    Joana& Literalmente uma revolução do cinema nacional!\\
+    \hline
+    Jacquin& Esse autor é a vergonha da profisson!\\
+    \hline
+    Meu cachorro& Au! Au! Au! $\sim$Sons de papel sendo rasgado.\\
+    \hline
+    Overleaf& ASSINE, ASSINE O PREMIUM.\\
+    \hline
+    \end{tabular}
+    
+    \vspace{0.3cm}
+	\fonte{original}
+\end{quadro}
+
+
+\section{Padrão das Referências}
+
+Desde que o padrão descrito na \autoref{sec:Refs} seja seguido e partes importantes do template sejam mantidas, as referências não devem ser um problema. O template já vem configurado para o formato padrão da ABNT, desde que os arquivos \texttt{abntex.*}, o preâmbulo e a chamada dos comandos \texttt{bibliographystyle}, \texttt{citeoption}, \texttt{refencias} e \texttt{bibliography}, próximos ao final do arquivo principal, sejam mantidos.
+
+É comum referências serem um problema e, apesar do \LaTeX\ ajudar muito nisso, o processo ainda pode ser complicado. O pacote \texttt{abntex2} está desatualizado, as correções precisaram ser \emph{hard-coded} e o arquivo principal reflete isso.
+
+\textbf{Então, se você quer que as citações e referências sejam tão simples quanto adicionar um \texttt{bibtex} e usar o comando \texttt{cite}, EU TE SUPLICO, não altere o preâmbulo nem os comandos relacionados às referências no \texttt{exemplo\_monografia\_UFLA.tex}.}
+
+Referências sortidas para contribuir para a lista ao final (ignore): \cite{Eco1996,Booth2000,BIB2010,Hexsel2004,Franca2001,Gil2002,Porto2002,Silva2005,UFLA:2015,Moura1998,NBR6023:2002}
 

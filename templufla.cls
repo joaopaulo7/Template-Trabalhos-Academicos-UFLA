@@ -1,7 +1,7 @@
 %######################################################################
 % Classe templUFLA - Template de trabalhos acadêmicos da UFLA
 % 
-% v6.8
+% v6.9.1
 %
 %  Essa classe é parte de um template de trabalhos acadêmcios da UFLA
 % seguindo o Manual de Normalização Ed. 6.
@@ -87,9 +87,6 @@
 
 % para capitalização da primeira letra
 \RequirePackage{mfirstuc}
-
-% para total de páginas
-\RequirePackage{zref-totpages}
 %######################################################################
 
 
@@ -235,8 +232,8 @@
 \AddEnumerateCounter{\enumalphalphcnt}{\@enumalphalphcnt}{}
 
 \newlist{alineas}{enumerate}{2}
-\setlist[alineas]{label=\enumalphalphcnt*), left=1.25cm, align=left, labelsep=1ex, noitemsep}
-\setlist[alineas, 2]{label=--, left=0.4cm, align=left, labelsep=1ex}
+\setlist[alineas]{label=\enumalphalphcnt*), left=1.25cm, align=left, labelsep=1ex, noitemsep, nosep}
+\setlist[alineas, 2]{label=\textbf{--}, left=1ex, align=left, labelsep=1ex}
 %######################################################################
 
 
@@ -277,61 +274,62 @@
 \newcommand{\testasecao}{%
     % calcula o tamanho do texto dos índices. Ignora zeros.
     \ifthenelse{\value{chapter}>0}%
-        {\addtolength{\auxwidthsec}{\widthof{\arabic{chapter}}}}{}
+        {\addtolength{\auxwidthsec}{\widthof{\arabic{chapter}}}}{}%
     \ifthenelse{\value{section}>0}%
-        {\addtolength{\auxwidthsec}{\widthof{.\arabic{section}}}}{}
+        {\addtolength{\auxwidthsec}{\widthof{.\arabic{section}}}}{}%
     \ifthenelse{\value{subsection}>0}%
-        {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsection}}}}{}
+        {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsection}}}}{}%
     \ifthenelse{\value{subsubsection}>0}%
-        {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsubsection}}}}{}
+        {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsubsection}}}}{}%
     \ifthenelse{\value{subsubsubsection}>0}%
-        {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsubsubsection}}}}{}
-    
+        {\addtolength{\auxwidthsec}{\widthof{.\arabic{subsubsubsection}}}}{}%
+    %
     % define se é o maior
-    \setlength{\auxwidthsec}{\maxof{\auxwidthsec}{\widthsec}}
-    \global\widthsec=\auxwidthsec
+    \setlength{\auxwidthsec}{\maxof{\auxwidthsec}{\widthsec}}%
+    \global\widthsec=\auxwidthsec%
 }
 
 % Redefinindo titulo de capitulo
-\titleformat{\chapter}[block]% redefinindo titulo de capitulo como de secao
+\titleformat{\chapter}[hang]% redefinindo titulo de capitulo como de secao
 {\normalsize\bf}% formato do titulo
 {\normalsize\thechapter}% formato do label
 {1ex}% separador
 {\MakeUppercase}% codigo anterior
 \assignpagestyle{\chapter}{ufla} % pagestyle
 \titlespacing{\chapter}{0pt}{-2em}{\baselineskip} % espacamento
-
-
-\titleclass{\subsubsubsection}{straight}[\subsection]
-\newcounter{subsubsubsection}[subsubsection]
-
-\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
-\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
-\renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
+\renewcommand{\chaptername}{Seção}
 
 \titlespacing*{\section}{\z@}{\baselineskip}{\baselineskip}
 \titleformat{\section}{\normalfont\normalsize\bfseries}{\thesection}{1ex}{}[\testasecao]
 
-
 \titlespacing*{\subsection}{\z@}{\baselineskip}{\baselineskip}
 \titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1ex}{}[\testasecao]
+\newcommand{\subsectionname}{Seção}
 
 \titlespacing*{\subsubsection}{\z@}{\baselineskip}{\baselineskip}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1ex}{}[\testasecao]
+\newcommand{\subsubsectionname}{Seção}
 
+
+\titleclass{\subsubsubsection}{straight}[\section]
 \titlespacing*{\subsubsubsection}{\z@}{\baselineskip}{\baselineskip}
-\titleformat{\subsubsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1ex}{\testasecao}
+\titleformat{\subsubsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1ex}{}[\testasecao]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\newcommand{\subsubsubsectionname}{Seção}
 
 
 \renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
   {3.25ex \@plus1ex \@minus.2ex}%
   {-1em}%
   {\normalfont\normalsize\bfseries}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
 
 \renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}
   {3.25ex \@plus1ex \@minus .2ex}%
   {-1em}%
   {\normalfont\normalsize\bfseries}}
+\renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
 
 \def\toclevel@subsubsubsection{4}
 \def\toclevel@paragraph{5}
@@ -343,17 +341,6 @@
 \setcounter{secnumdepth}{6}
 \setcounter{tocdepth}{6}
 
-
-% entradas no sumário
-% esse é minha forma preferida e é aceito pela ABNT, entretanto, Biblioteca prefere
-% o padrão com margem fixa - implementado no \AtBeginDocument
-%\def\l@chapter{\bfseries\@dottedtocline{0}{1.5em}{1.7em}}
-%\def\l@section{\@dottedtocline{1}{1.7em}{2.5em}}
-%\def\l@subsection{\@dottedtocline{2}{3.8em}{3.2em}}
-%\def\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
-%\def\l@subsubsubsection{\@dottedtocline{4}{7em}{5em}}
-%\def\l@paragraph{\@dottedtocline{5}{10em}{6em}}
-%\def\l@subparagraph{\@dottedtocline{6}{14em}{7em}}
 %######################################################################
 
 %######################################################################
@@ -450,7 +437,7 @@
          Orientadora
         }
         
-        \hspace{\stretch{.05}}
+        \vspace{\stretch{.25}}
 
         \ifthenelse{\equal{\@coorientador}{\@empty}} % % se coorientador nao existir,
         {}%                                            % nao produza nada
@@ -870,6 +857,10 @@
 \RequirePackage{float}
 \floatstyle{plaintop}
 
+%Criando comando da Fonte
+\newcommand{\fontename}{Fonte}
+\newcommand{\fonte}[1]{{\small\fontename: #1}}
+
 % Redefinindo formatação do título e da página
 \renewcommand*{\listof}[2]{%
   %\pagestyle{empty}
@@ -885,7 +876,7 @@
 
 % Lista de Figuras
 %\newfloat{figure}{htb!}{lff}[chapter]
-\floatname{figure}{Figura}
+%\floatname{figure}{Figura}
 \renewcommand{\listoffigures}{%
 	{%
 	\renewcommand{\numberline}{Figura~}
@@ -893,51 +884,55 @@
 
 % Lista de Tabelas
 %\newfloat{table}{htb!}{ltt}[chapter]
-\floatname{table}{Tabela}
+%\floatname{table}{Tabela}
 \renewcommand{\listoftables}{%
 	{%
 	\renewcommand{\numberline}{Tabela~}
 	\listof{table}{Lista de Tabelas}}}
 
-
 % Lista de Exemplos
+\newcommand{\exemploname}{Exemplo}
 \newfloat{exemplo}{htb!}{loe}[chapter]
-\floatname{exemplo}{Exemplo}
+\floatname{exemplo}{\exemploname}
 \newcommand{\listofexemplos}{%
 	{%
-	\renewcommand{\numberline}{Exemplo~}
+	\renewcommand{\numberline}{\exemploname~}
 	\listof{exemplo}{Lista de Exemplos}}}
 
 % Lista de Quadros
+\newcommand{\quadroname}{Quadro}
 \newfloat{quadro}{htb!}{loq}[chapter]
-\floatname{quadro}{Quadro}
+\floatname{quadro}{\quadroname}
 \newcommand{\listofquadros}{%
 	{%
-	\renewcommand{\numberline}{Quadro~}
+	\renewcommand{\numberline}{\quadroname~}
 	\listof{quadro}{Lista de Quadros}}}
 
 % Lista de Gráficos
+\newcommand{\graficoname}{Gráfico}
 \newfloat{grafico}{htb!}{lgg}[chapter]
-\floatname{grafico}{Gráfico}
+\floatname{grafico}{\graficoname}
 \newcommand{\listofgraficos}{
 	{%
-	\renewcommand{\numberline}{Gráfico~}
+	\renewcommand{\numberline}{\graficoname~}
 	\listof{grafico}{Lista de Gráficos}}}
 
 % Lista de Teoremas
+\newcommand{\teoremaname}{Teorema}
 \newfloat{teorema}{htb!}{ltt}[chapter]
-\floatname{teorema}{Teorema}
+\floatname{teorema}{\teoremaname}
 \newcommand{\listofteoremas}{
 	{%
-	\renewcommand{\numberline}{Teorema~}
+	\renewcommand{\numberline}{\teoremaname~}
 	\listof{teorema}{Lista de Teoremas}}}
 
 % Lista de Ilustrações
+\newcommand{\ilustracaoname}{Ilustração}
 \newfloat{ilustracao}{htb!}{loi}[chapter]
-\floatname{ilustracao}{Ilustração}
+\floatname{ilustracao}{\ilustracaoname}
 \newcommand{\listofilustracoes}{
 	{%
-	\renewcommand{\numberline}{Ilustração~}
+	\renewcommand{\numberline}{\ilustracaoname~}
 	\listof{ilustracao}{Lista de Ilustrações}}}
 %######################################################################
 
@@ -959,40 +954,45 @@
 % lista de abreviaturas
 \newcommand{\listofabreviaturas}{%
 	\newpage
+	\renewcommand{\baselinestretch}{1.0}\normalsize%
 	\printnoidxglossary[
 		title={LISTA DE ABREVIATURAS},
 		type={abbreviations},
 		nonumberlist,
-		style=long3col]}
+		style=long3col]
+		\renewcommand{\baselinestretch}{1.5}\normalsize}
 
 % lista de siglas
 \newcommand{\listofsiglas}{%
 	\newpage
+	\renewcommand{\baselinestretch}{1.0}\normalsize%
 	\printnoidxglossary[
-		title={LISTA DE SIGLAS\\},
+		title={LISTA DE SIGLAS},
 		type={\acronymtype},
 		nonumberlist,
-		style=long3col]}
-
+		style=long3col]
+	\renewcommand{\baselinestretch}{1.5}\normalsize}
+	
 % lista de símbolos
 \newcommand{\listofsimbolos}{%
 	\newpage
+	\renewcommand{\baselinestretch}{1.0}\normalsize%
 	\printnoidxglossary[
 		title={LISTA DE SÍMBOLOS},
 		type={symbols},
 		nonumberlist,
 		sort=use,
-		style=long3col]}
+		style=long3col]
+	\renewcommand{\baselinestretch}{1.5}\normalsize}
 	
 % glossário
 \newcommand{\glossario}{%
-	\renewcommand{\glsnamefont}[1]{\textbf{\makefirstuc{##1}}:}
 	\newpage
+	\renewcommand{\glsnamefont}[1]{\textbf{\makefirstuc{##1}}:}
 	\printnoidxglossary[
 		title={Glossário},
 		nonumberlist,
-		style=tree]
-	}
+		style=tree]}
 %######################################################################
 
 
@@ -1048,6 +1048,7 @@
 \primeiroanexo{true} %inicialmente sim (true)
 \newcounter{anexo} %contador para os anexos (uso em referências)
 \renewcommand\theanexo{\AlphAlph{\value{anexo}}}
+\newcommand{\anexoname}{Anexo}
 
 \newcommand\anexos{%
 	\appendix%
@@ -1060,19 +1061,20 @@
 
 
 \newcommand\anexo[1]{
-  \refstepcounter{anexo}
   \ifthenelse{\equal{\@primeiroanexo}{true}}{% se for primeiro anexo,
     \anexos                  % crie formatação dos anexos
     \primeiroanexo{false}    % marque que já passou do primeiro
   } {\vspace{1.0cm}} % senão, crie espaço vertical 
+  \refstepcounter{anexo}
   {\noindent\bf ANEXO~\theanexo\ -- \MakeUppercase{#1}\\}
 }
 
 % Apêndices
 \def\primeiroapendice#1{\gdef\@primeiroapendice{#1}} % verificando se é primeiro apêndice
 \primeiroapendice{true} %inicialmente sim (true)
-\newcounter{apendice} %contador para os apêndices (uso em referências)
+\newcounter{apendice}[chapter] %contador para os apêndices (uso em referências)
 \renewcommand\theapendice{\AlphAlph{\value{apendice}}}
+\newcommand{\apendicename}{Apêndice}
 
 \newcommand\apendices{%
 	\appendix%
@@ -1085,13 +1087,12 @@
 
 
 \newcommand\apendice[1]{
-  \refstepcounter{apendice}
   \ifthenelse{\equal{\@primeiroapendice}{true}}{% se for primeiro apêndice,
     \apendices                  % crie cabeçalho dos apendices
     \primeiroapendice{false}    % marque que já passou do primeiro
   } {\vspace{1.0cm}} % senão, crie espaço vertical
-  {\noindent\bf APÊNDICE~\theapendice\ -- \MakeUppercase{#1}\\}
-}
+  \refstepcounter{apendice}
+  {\noindent\bf APÊNDICE~\theapendice\ -- \MakeUppercase{#1}\\}}
 %######################################################################
 
 %######################################################################
@@ -1100,14 +1101,16 @@
    \phantomsection%
    \addcontentsline{toc}{chapter}{\numberline{} REFERÊNCIAS}%
    
-   % O tamanho da fonte é para corrigir a margem superior.
-   % Dá até nojo usar \fontsize pra corrigir o espaçamento do topo,
-   % mas o bibname não respeita o espaçamento de outra forma.
-   % Enquanto não trocar pra biblatex, vai ter que ser assim.
-   \renewcommand{\bibname}{{\centering\fontsize{12pt}{23pt}\bf REFERÊNCIAS\\}}%
+   % vspaces para corrigir a margem superior.
+   \renewcommand{\bibname}{{\centering\fontsize{12pt}{15pt}\bf\vspace{1.8ex}REFERÊNCIAS\vspace{-1.8ex}\\}}%
 }
 %######################################################################
 
+%######################################################################
+% Comando para linha à direita em tabelas
+\newcommand{\linhadir}[1]{\multicolumn{1}{c|}{#1}}
+
+%######################################################################
 
 %######################################################################
 % no início, redefinimos o comando de fazer títulos e as entradas do sumário
