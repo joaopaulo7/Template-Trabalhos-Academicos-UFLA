@@ -47,16 +47,22 @@ Enquanto isso, você pode adicionar o template ao site diretamente desse reposit
 Essa versão foi baseada no [template da 3ª edição disponível no site overleaf](https://pt.overleaf.com/latex/templates/template-para-monografias-da-ufla-uflamon/pxcnmxhsvpgx).
 As principais mudanças com relação à 3ª edição são:
 - Adição dos indicadores de impacto em português e inglês;
+- Criação do ambiente de alíneas e subalíneas;
+- Adição do glossário, lista de siglas, lista de abreviações, lista de símbolos e índice;
+- Diversas correções de espaçamento;
+- Reescrita do documento, descrevendo melhor como usar LaTeX e o formato em si;
+- Reestruturação do preâmbulo para ser mais claro;
+- Correção no espaçamento do sumário e listas de figuras/tabelas (não perdem formatação em trabalhos maiores);
+- Atualização do logo da UFLA;
+- Atualização do código (pacotes e convenções);
 - Remoção de folhas duplas nos elementos pré-textuais;
-- remoção do número de página esquerda/direita;
+- Remoção do número de página esquerda/direita;
 - Ajustes no tamanho das margens;
 - Ajustes no formato dos apêndices e anexos;
 - Ajustes nas referências e citações para estarem em conformidade com as normas da ABNT;
 - Reorganização dos arquivos;
 - Adição de suporte para acentos e ç nos ambientes de código (listings);
-- Adição do glossário, lista de siglas, lista de abreviações, lista de símbolos e índice;
-- Espaçamento consistente no sumário e listas de figuras/tabelas (não perdem formatação em trabalhos maiores);
-- Adicionado suporte para 26+ anexos/apêndices (louvado seja que conseguir usar isso).
+- Adicionado suporte para 26+ anexos/apêndices (louvado seja quem conseguir usar isso).
 
 
 &nbsp;
