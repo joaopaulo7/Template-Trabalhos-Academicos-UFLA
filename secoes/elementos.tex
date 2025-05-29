@@ -23,9 +23,9 @@ No template, dispõem-se comandos para realizar tal divisão automaticamente, ma
 \section{Alíneas e Subalíneas}
 Segundo a normalização \cite{UFLA:2025}, ``as alíneas são usadas quando se deseja enumerar diversos assuntos de uma seção sem título próprio. Quando necessário, a alínea pode ser dividida em subalíneas.''
 
-Nesse template, para listar elementos com alíneas, deve-se usar o ambiente \texttt{alineas}, que pode ser aninhado para criar subalíneas: 
+Nesse template, para listar elementos com alíneas, deve-se usar o ambiente \textbf{\texttt{alineas}}, que pode ser aninhado para criar subalíneas: 
 \begin{lstlisting}[language={[LaTeX]TeX}]
-	\begin{alineas}
+	\begin{alineas}% [labelsep=0ex]
 		\item item um;
 		\item item dois:
 		\begin{alineas} % subalíneas
@@ -34,10 +34,11 @@ Nesse template, para listar elementos com alíneas, deve-se usar o ambiente \tex
 		\end{alineas}
 	\end{alineas}
 \end{lstlisting}
-\vspace{18pt}
+Caso tenham letras duplicadas e queira mais espaço entre o indicador e o texto, basta adicionar a opção \texttt{[labelsep=0ex]} ao ambiente.
 
+\vspace{18pt}
 Abaixo é mostrado exemplo em texto retirado, na maior parte, do manual:
-\begin{alineas}
+\begin{alineas}% adicione [labelsep=0ex] caso tenha letras duplicadas e queira mais espaço
 	\item as alíneas são formadas pelos diversos assuntos que não possuem título próprio, dentro de uma mesma seção;
 	\item o texto que antecede as alíneas termina em dois pontos;
 	\item as alíneas devem ser indicadas alfabeticamente, em letra minúscula, seguida de parêntese. Utilizam-se letras dobradas, quando esgotadas as letras do alfabeto;
@@ -58,7 +59,7 @@ Abaixo é mostrado exemplo em texto retirado, na maior parte, do manual:
 
 \section{Figuras, Ilustrações e etc}
 
-Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante ao que foi explicado na \autoref{sec:latexFiguras}. Só é importante se atentar para dois detalhes: os títulos das figuras, que devem vir antes do \texttt{inludegraphics}, e a fonte, que deve ser posicionada após o \texttt{inludegraphics} e pode que utilizar o comando pré definido \texttt{fonte}. Exemplo do código para a \autoref{fig:leaoCTAN}:
+Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante ao que foi explicado na \autoref{sec:latexFiguras}. Só é importante se atentar para dois detalhes: os títulos das figuras, que devem vir antes do \texttt{inludegraphics}, e a fonte, que deve ser posicionada após o \texttt{inludegraphics} e pode utilizar o comando pré definido \texttt{fonte}. Exemplo do código para a \autoref{fig:leaoCTAN}:
 \begin{lstlisting}[language={[LaTeX]Tex}]
 \begin{figure}
 	\centering
@@ -159,7 +160,7 @@ Desde que o padrão descrito na \autoref{sec:Refs} seja seguido e partes importa
 
 É comum referências serem um problema e, apesar do \LaTeX\ ajudar muito nisso, o processo ainda pode ser complicado. O pacote \texttt{abntex2} está desatualizado, as correções precisaram ser \emph{hard-coded} e o arquivo principal reflete isso.
 
-\textbf{Então, se você quer que as citações e referências sejam tão simples quanto adicionar um \texttt{bibtex} e usar o comando \texttt{cite}, EU TE SUPLICO, não altere o preâmbulo nem os comandos relacionados às referências no \texttt{exemplo\_monografia\_UFLA.tex}.}
+\textbf{Então, se você quer que as citações e referências sejam tão simples quanto adicionar um \texttt{bibtex} e usar o comando \texttt{cite}, EU TE SUPLICO, não altere o preâmbulo nem os comandos relacionados às referências no \texttt{tempulfa\_main.tex}.}
 
 Referências sortidas para contribuir para a lista ao final (ignore): \cite{Eco1996,Booth2000,BIB2010,Hexsel2004,Franca2001,Gil2002,Porto2002,Silva2005,UFLA:2015,Moura1998,NBR6023:2002}
 

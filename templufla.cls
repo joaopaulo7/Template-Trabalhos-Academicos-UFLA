@@ -233,8 +233,7 @@
 
 \newlist{alineas}{enumerate}{2}
 \setlist[alineas]{label={\enumalphalphcnt*}, labelindent=\parindent, align=left, leftmargin=!, labelsep=-1ex, noitemsep, nosep}
-
-\setlist[alineas, 2]{label=\textbf{--}, left=1ex, align=left, labelsep=1ex}
+\setlist[alineas, 2]{label=\textbf{--}, left=0ex, align=right, labelsep=1ex}
 %######################################################################
 
 
@@ -613,9 +612,10 @@
      \clearpage} %
 }
 
+
 % Codigo para impressao da folha de aprovacao
 \def\geraFolhaAprovacao{
-    \newpage
+   \newpage
 	 % Espacamento entre linhas
    \renewcommand{\baselinestretch}{1}\normalsize 
     \begin{center}
@@ -625,76 +625,49 @@
         
         \textbf{\MakeUppercase\@title}% titulo da monografia
         \ifthenelse{\equal{\@subtitle}{\@empty}}% verifica se tem subtitulo
-        {\par}% se nao tiver, so pula a linha
-        {: {\MakeUppercase\@subtitle}} % subtitulo da monografia
+        	{}% se nao tiver, so pula a linha
+        	{: {\MakeUppercase\@subtitle}} % subtitulo da monografia
+        
+        \vspace{\baselineskip}
         % escreve título e subtítulo em inglês, caso existam
-        \vspace{\stretch{0.2}}
-        \ifthenelse{\equal{\@engtitle}{\@empty}}{}{\par%
-        \textbf{\MakeUppercase\@engtitle}% titulo da monografia
-        \ifthenelse{\equal{\@engsubtitle}{\@empty}}% verifica se tem subtitulo
-        {\par}% se nao tiver, so pula a linha
-        {\textbf{:} {\MakeUppercase\@engsubtitle}} % subtitulo da monografia
-        }
+        \ifthenelse{\equal{\@engtitle}{\@empty}}{}{%
+        	\textbf{\MakeUppercase\@engtitle}% titulo da monografia
+        	\ifthenelse{\equal{\@engsubtitle}{\@empty}}% verifica se tem subtitulo
+        	{}% se nao tiver, so pula a linha
+        	{\textbf{:} {\MakeUppercase\@engsubtitle}}} % subtitulo da monografia
     \end{center}
 
-    \vspace{\stretch{0.1}}
+	\vspace{\baselineskip}
 
     \hfill%
-    % espaçamento simples
-        % a normalização diz que notas são tamanho 11, mas no docx é 12(?)
-        % mantive 12
-    {\renewcommand{\baselinestretch}{1}\normalsize
-        \begin{minipage}{8cm}
-             \@tipo
-        \end{minipage}
-    }
+    \begin{minipage}{8cm}
+    	\@tipo
+   	\end{minipage}
 
     \vspace{\stretch{.5}}
-        
-    \settowidth{\mylenbancaum}{\@nomeBancaUm}
-    \settowidth{\mylenbancadois}{\@nomeBancaDois}
-    \settowidth{\mylenbancatres}{\@nomeBancaTres}  
-    \settowidth{\mylenbancaquatro}{\@nomeBancaQuatro}        
-
-    % Descobre o maior dos comprimentos
-    \ifthenelse{\lengthtest{\mylenbancaum > \mylenbancadois}}%  checa qual o maior
-    {\setlength{\mylen}{\mylenbancaum}}% bancaum maior
-    {\setlength{\mylen}{\mylenbancadois}}% bancadois maior
-    
-    \ifthenelse{\lengthtest{\mylen > \mylenbancatres}}% checa qual o maior
-     {}% mylen maior
-     {\setlength{\mylen}{\mylenbancatres}}% bancatres maior
-
-    \ifthenelse{\lengthtest{\mylen > \mylenbancaquatro}}% checa qual o maior
-     {}% mylen maior
-     {\setlength{\mylen}{\mylenbancaquatro}}% bancatres maior
  
-
-    {\flushleft
-        \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
-        {}%                                     % não produza nada
-        {APROVADA em \@defesa.\par}%   % caso contrario, escreva-a
-        \vspace{0.2cm}
-        {\setlength{\tabcolsep}{0pt}%
-        \begin{tabular}{p{\mylen} l}
-        \@nomeBancaUm &\hspace{1em}\@instBancaUm \\ 
+ 	\newlength{\@maiorBanca}%
+ 	\setlength{\@maiorBanca}{\maxof{\widthof{\@nomeBancaUm}}{\widthof{\@nomeBancaDois}}}%
+ 	\setlength{\@maiorBanca}{\maxof{\@maiorBanca}{\widthof{\@nomeBancaTres}}}%
+ 	\setlength{\@maiorBanca}{\maxof{\@maiorBanca}{\widthof{\@nomeBancaQuatro}}}%
+	
+    \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
+    {}%                                     % não produza nada
+    {\noindent APROVADA em \@defesa.}%   % caso contrario, escreva-a
+    \begin{itemize}[align=left, left=0cm, leftmargin=!, labelwidth=\@maiorBanca, labelsep=2ex, noitemsep, nosep]
+		\item[\@nomeBancaUm] \@instBancaUm
+	      
+		\ifthenelse{\equal{\@nomeBancaDois}{\@empty}}{} % se 2. banca nao existir, nao produza nada
+	    {\item[\@nomeBancaDois] \@instBancaDois} % caso contrario, escreva-a
+	         
+	    \ifthenelse{\equal{\@nomeBancaTres}{\@empty}}{} % se 3. banca nao existir, nao  produza nada
+	    {\item[\@nomeBancaTres] \@instBancaTres}% caso contrario, escreva-a
+	                  
+	    \ifthenelse{\equal{\@nomeBancaQuatro}{\@empty}}{} % se 4. banca nao existir, nao produza nada
+	    {\item[\@nomeBancaQuatro] \@instBancaQuatro}%   % caso contrario, escreva-a
+    \end{itemize}
       
-        \ifthenelse{\equal{\@nomeBancaDois}{\@empty}}% % se 2. banca nao existir, nao
-        {}%                                            % produza nada
-        {\@nomeBancaDois &\hspace{1em}\@instBancaDois\\}%   % caso contrario, escreva-a
-         
-        \ifthenelse{\equal{\@nomeBancaTres}{\@empty}}% % se 3. banca nao existir, nao
-        {}%                                            % produza nada
-        {\@nomeBancaTres &\hspace{1em}\@instBancaTres\\}%   % caso contrario, escreva-a
-                  
-        \ifthenelse{\equal{\@nomeBancaQuatro}{\@empty}}% % se 4. banca nao existir, nao
-        {}%                                            % produza nada
-        {\@nomeBancaQuatro &\hspace{1em}\@instBancaQuatro\\}%   % caso contrario, escreva-a
-        \end{tabular}}
-        \hfill        
-    }      
-      
-    \vspace{\stretch{.7}}
+    \vspace{\stretch{.6}}
        
     \begin{center}
         \ifthenelse{\equal{\@orientadora}{\@empty}}
@@ -705,21 +678,22 @@
 
         \ifthenelse{\equal{\@coorientador}{\@empty}}{}% se coorientador nao existir, 
                                                       % nao produza nada
-        {\vspace{\stretch{.4}}                        % caso contrario, escreva-o
-            \@coorientador \par
+        {\vspace{\stretch{.5}}                        % caso contrario, escreva-o
+            \@coorientador\par
             Co-Orientador
         }
         
         \ifthenelse{\equal{\@coorientadora}{\@empty}}{}% se coorientadora nao existir, 
                                                       % nao produza nada
-        {\vspace{\stretch{.4}}                        % caso contrario, escreva-a
-            \@coorientadora \par
+        {\vspace{\stretch{.5}}                        % caso contrario, escreva-a
+            \@coorientadora\par
             Co-Orientadora
         }
         
 
-        \vspace{\stretch{.5}} 
-
+        \vspace*{\stretch{.6}}
+		
+		
         {\bf\MakeUppercase\@local}\par
         {\bf\@date}
     \end{center}   
@@ -777,16 +751,13 @@
 
 \newcommand{\resumo}[1]{
     \newpage
-    %\pagestyle{empty}    
-    %\null\vfill
                           
     \begin{center}
         \textbf{RESUMO}
     \end{center}
     
-    \noindent #1
+    \noindent #1\par
     \vspace{\baselineskip}
-    
     % evita texto escapando da margem
     {\sloppy\noindent Palavras-chave: \@palchaves\par}%
 	  
@@ -795,16 +766,13 @@
 
 \newcommand{\abstract}[1]{
     \newpage 
-    %\pagestyle{empty}    
-    %\null\vfill
                           
     \begin{center}
         \textbf{ABSTRACT}
     \end{center}
     
-    \noindent #1
+    \noindent #1\par
     \vspace{\baselineskip}
-    
     % evita texto escapando da margem
     {\sloppy\noindent  Keywords: \@keywords\par}%
        
@@ -1035,7 +1003,7 @@
 
 
 %######################################################################
-% Redefininido notas de rodapé (não identadas e tamanho 10)
+% Redefininido notas de rodapé (não identadas e tamanho 11)
 \RequirePackage[hang]{footmisc}
 \setlength\footnotemargin{10pt}
 \let\footnotesize\small
