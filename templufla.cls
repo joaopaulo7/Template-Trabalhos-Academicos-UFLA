@@ -200,39 +200,30 @@
 \renewcommand{\Large}{\fontsize{14pt}{16pt}\selectfont}
 
 % Redefinindo LARGE
-\renewcommand{\LARGE}{\fontsize{16pt}{17pt}\selectfont}
+\renewcommand{\LARGE}{\fontsize{16pt}{18pt}\selectfont}
 
 % Redefinindo small
 \renewcommand{\small}{\fontsize{11pt}{13pt}\selectfont}
 
 % Redefinindo footnotesize
 \renewcommand{\footnotesize}{\fontsize{11pt}{13pt}\selectfont}
+%######################################################################
 
 
-% Definindo tamanho para exemplo
-\newcommand\smallx{%
-   \@setfontsize\smallx\@ixpt{11}%
-   \abovedisplayskip 8\p@ \@plus2\p@ \@minus4\p@
-   \abovedisplayshortskip \z@ \@plus\p@
-   \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
-   \def\@listi{\leftmargin\leftmargini
-               \topsep 4\p@ \@plus2\p@ \@minus2\p@
-               \parsep 2\p@ \@plus\p@ \@minus\p@
-               \itemsep \parsep}%
-   \belowdisplayskip \abovedisplayskip
-}
-
-
-
-% Configurando margens de alíneas
+%######################################################################
+% Criando o ambiente de alíneas e subalíneas
 \RequirePackage{enumitem}
 
+% Usamos o pacote alphalph para alíneas com letras dobradas
 \def\enumalphalphcnt#1{\expandafter\@enumalphalphcnt\csname c@#1\endcsname}
 \def\@enumalphalphcnt#1{\alphalph{#1})}
 \AddEnumerateCounter{\enumalphalphcnt}{\@enumalphalphcnt)}{}
 
+% Definimos o ambiente das alíneas e subalíneas.
+% Não me pergunte sobre o alinhamento. Isso me assombra todas a noites.
 \newlist{alineas}{enumerate}{2}
-\setlist[alineas]{label={\enumalphalphcnt*}, labelindent=\parindent, align=left, leftmargin=!, labelsep=-1ex, noitemsep, nosep}
+\setlist[alineas]{label={\enumalphalphcnt*}, labelindent=\parindent,%
+	 align=left, leftmargin=!, labelsep=-1ex, noitemsep, nosep}
 \setlist[alineas, 2]{label=\textbf{--}, left=0ex, align=right, labelsep=1ex}
 %######################################################################
 
@@ -261,15 +252,14 @@
 \setcounter{tocdepth}{6}
 
 
-
-% máxima profundidade utilizada (necessário rodar duas vezes)
-% maxuseddepthold é pego do .aux
+% Para o alinhamento do sumário
+% widthsechold é pego do .aux (na segunda etapa da compilação)
 \newlength{\widthsechold}
 \newlength{\widthsec}
 \setlength{\widthsec}{0pt}
-
 \newlength{\auxwidthsec}
 \setlength{\auxwidthsec}{1.5em}% recuo dos textos com relação aos índices
+
 % encontra o maior índice, em pt, nas seções e salva em \widthsec
 \newcommand{\testasecao}{%
     % calcula o tamanho do texto dos índices. Ignora zeros.
@@ -289,6 +279,7 @@
     \global\widthsec=\auxwidthsec%
 }
 
+
 % Redefinindo titulo de capitulo
 \titleformat{\chapter}[hang]% redefinindo titulo de capitulo como de secao
 {\normalsize\bf}% formato do titulo
@@ -297,8 +288,9 @@
 {\MakeUppercase}% codigo anterior
 \assignpagestyle{\chapter}{ufla} % pagestyle
 \titlespacing{\chapter}{0pt}{-2em}{\baselineskip} % espacamento
-\renewcommand{\chaptername}{Seção}
+\renewcommand{\chaptername}{Seção} % renomeia para referências
 
+% fazemos o mesmo para as seções seguintes
 \titlespacing*{\section}{\z@}{\baselineskip}{\baselineskip}
 \titleformat{\section}{\normalfont\normalsize\bfseries}{\thesection}{1ex}{}[\testasecao]
 
@@ -310,7 +302,7 @@
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1ex}{}[\testasecao]
 \newcommand{\subsubsectionname}{Seção}
 
-
+% criamos a seção quinária
 \titleclass{\subsubsubsection}{straight}[\section]
 \titlespacing*{\subsubsubsection}{\z@}{\baselineskip}{\baselineskip}
 \titleformat{\subsubsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1ex}{}[\testasecao]
@@ -318,7 +310,7 @@
 \renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
 \newcommand{\subsubsubsectionname}{Seção}
 
-
+% corrigimos paragraph e sub paragraph
 \renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
   {3.25ex \@plus1ex \@minus.2ex}%
   {-1em}%
@@ -331,17 +323,19 @@
   {\normalfont\normalsize\bfseries}}
 \renewcommand\thesubparagraph{\theparagraph.\arabic{subparagraph}}
 
+% adicionamos a seção entra no sumário
 \def\toclevel@subsubsubsection{4}
 \def\toclevel@paragraph{5}
 \def\toclevel@paragraph{6}
 
+% adiciona os contadores que resetam a seção quinária
 \@addtoreset{subsubsubsection}{section}
 \@addtoreset{subsubsubsection}{subsection}
 
 \setcounter{secnumdepth}{6}
 \setcounter{tocdepth}{6}
-
 %######################################################################
+
 
 %######################################################################
 % Tipos de fontes
@@ -356,6 +350,7 @@
 \newlanguage\nohyphen
 \newcommand\nh[1]{{\language\nohyphen #1}}
 %######################################################################
+
 
 %######################################################################
 % Codigo para impressao da capa
@@ -379,7 +374,7 @@
 	    {\LARGE: {\MakeUppercase\@subtitle}} % subtitulo da monografia
 	    
 	    \ifthenelse{\equal{\@edicao}{\@empty}}% verifica se tem edicao
-	    {}{\large\@edicao}                                     % se tiver, imprime
+	    {}{\large\@edicao}                           % se tiver, imprime
 	    
 	    \vfill
 	
@@ -428,28 +423,24 @@
         \ifthenelse{\equal{\@orientador}{\@empty}} % % se orientador nao existir,
         {}%                                            % nao produza nada
         {\@orientador\par
-         Orientador
-        }
+         Orientador}
 
         \ifthenelse{\equal{\@orientadora}{\@empty}} % % se coorientadora nao existir,
         {}%                                            % nao produza nada
         {\@orientadora\par
-         Orientadora
-        }
+         Orientadora}
         
         \vspace{\stretch{.25}}
 
         \ifthenelse{\equal{\@coorientador}{\@empty}} % % se coorientador nao existir,
         {}%                                            % nao produza nada
         {\@coorientador\par
-          Coorientador
-        }
+          Coorientador}
 
         \ifthenelse{\equal{\@coorientadora}{\@empty}} % % se coorientadora nao existir,
         {}%                                            % nao produza nada
         {\@coorientadora\par
-          Coorientadora
-        }
+          Coorientadora}
 
 
         \vspace{\stretch{.86}} 
@@ -463,9 +454,8 @@
 %######################################################################
 
 
-
 %######################################################################
-% Codigo para impressao da ficha catalográfica
+% Codigo para impressao da ficha catalográfica (PESADELO)
 \fichacat{% texto da ficha catalográfica
 	% Antes verifica se tem os dados, senão, não imprime
 	\ifthenelse{\equal{\@fcautor}{\@empty}}{}{%
@@ -513,7 +503,7 @@
 }
 
 % a ficha catalográfica foi feita seguindo o manual e o exemplo do manual.
-%  a ficha do manual em si está fora do padrão.
+%  a ficha do manual em si está fora do padrão. ¯\(°°)/¯
 \newcommand\imprimeFichaCat{
   \ifthenelse{\equal{\@fcautor}{\@empty}}{}{%
       \ifthenelse{\equal{\@antesfichacat}{\@empty}} % verifica se não precisa imprimir nada 
@@ -521,7 +511,7 @@
       
       \vspace*{\stretch{1}}
   
-     \begin{center}
+      \begin{center}
         \bfseries
         \noindent\@preparofichacat
       \end{center}
@@ -553,7 +543,6 @@
   }
 }
 %######################################################################
-
 
 
 %######################################################################
@@ -591,10 +580,6 @@
     \gdef\@instBancaQuatro{#2}
 }
 \bancaquatro{}{}
-\newlength{\mylenbancaum}
-\newlength{\mylenbancadois}
-\newlength{\mylenbancatres}
-\newlength{\mylenbancaquatro}
 
 % Data da defesa
 \def\defesa#1{\gdef\@defesa{#1}} 
@@ -615,9 +600,11 @@
 
 % Codigo para impressao da folha de aprovacao
 \def\geraFolhaAprovacao{
-   \newpage
-	 % Espacamento entre linhas
-   \renewcommand{\baselinestretch}{1}\normalsize 
+    \newpage
+	% Espacamento simples entre linhas
+    \renewcommand{\baselinestretch}{1}\normalsize 
+    
+    % Títulos
     \begin{center}
         \textbf{\MakeUppercase\@author}  
           
@@ -638,7 +625,8 @@
     \end{center}
 
 	\vspace{\baselineskip}
-
+	
+	% Nota sobre o trabalho
     \hfill%
     \begin{minipage}{8cm}
     	\@tipo
@@ -646,6 +634,7 @@
 
     \vspace{\stretch{.5}}
  
+ 	% Econtra o maior nome (necesário para o alinhamento)
  	\newlength{\@maiorBanca}%
  	\setlength{\@maiorBanca}{\maxof{\widthof{\@nomeBancaUm}}{\widthof{\@nomeBancaDois}}}%
  	\setlength{\@maiorBanca}{\maxof{\@maiorBanca}{\widthof{\@nomeBancaTres}}}%
@@ -654,6 +643,8 @@
     \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
     {}%                                     % não produza nada
     {\noindent APROVADA em \@defesa.}%   % caso contrario, escreva-a
+    %
+    % Escreve a banca
     \begin{itemize}[align=left, left=0cm, leftmargin=!, labelwidth=\@maiorBanca, labelsep=2ex, noitemsep, nosep]
 		\item[\@nomeBancaUm] \@instBancaUm
 	      
@@ -676,19 +667,15 @@
 	    {\@orientadora\par
 	    Orientadora}
 
-        \ifthenelse{\equal{\@coorientador}{\@empty}}{}% se coorientador nao existir, 
-                                                      % nao produza nada
+        \ifthenelse{\equal{\@coorientador}{\@empty}}{}% se coorientador nao existir, nao produza nada
         {\vspace{\stretch{.5}}                        % caso contrario, escreva-o
             \@coorientador\par
-            Co-Orientador
-        }
+            Co-Orientador}
         
-        \ifthenelse{\equal{\@coorientadora}{\@empty}}{}% se coorientadora nao existir, 
-                                                      % nao produza nada
+        \ifthenelse{\equal{\@coorientadora}{\@empty}}{}% se coorientadora nao existir, nao produza nada
         {\vspace{\stretch{.5}}                        % caso contrario, escreva-a
             \@coorientadora\par
-            Co-Orientadora
-        }
+            Co-Orientadora}
         
 
         \vspace*{\stretch{.6}}
@@ -698,9 +685,10 @@
         {\bf\@date}
     \end{center}   
     
-    \clearpage
+    % Volta o espaçamento para 1.5
     \renewcommand{\baselinestretch}{1.5}\normalsize 
-} % \def\folhaaprovacao
+    \clearpage
+} 
 %######################################################################
 
 
@@ -711,34 +699,25 @@
     \null\vfill
     \begin{flushright}{\textit{#1}}\end{flushright}
     \vspace*{1cm}
-        
     \clearpage
-    %
-} % \dedic
+}
 
 
 % Agradecimentos
 \renewcommand{\thanks}[1]{%
     \begin{center}\textbf{AGRADECIMENTOS}\end{center}
     #1
-    
     \clearpage
-    %
-} % \thanks
+}
 
 
 % Pagina de epigrafe
-\newcommand{\epigrafe}[1]{
-    %
-    %\pagestyle{empty}                       
-                          
+\newcommand{\epigrafe}[1]{           
     \null\vfill
-    \begin{flushright}{\textit{#1}}\end{flushright}
+    \begin{flushright}{\it #1}\end{flushright}
     \vspace*{1cm}
-        
     \clearpage
-    %
-} % epigrafe
+}
 %######################################################################
 
 
@@ -751,16 +730,17 @@
 
 \newcommand{\resumo}[1]{
     \newpage
-                          
+                
     \begin{center}
         \textbf{RESUMO}
     \end{center}
     
     \noindent #1\par
+    
     \vspace{\baselineskip}
     % evita texto escapando da margem
     {\sloppy\noindent Palavras-chave: \@palchaves\par}%
-	  
+	
     \clearpage
 }
 
@@ -772,6 +752,7 @@
     \end{center}
     
     \noindent #1\par
+    
     \vspace{\baselineskip}
     % evita texto escapando da margem
     {\sloppy\noindent  Keywords: \@keywords\par}%
@@ -790,7 +771,7 @@
         \textbf{INDICADORES DE IMPACTO}
     \end{center}
     
-    \noindent #1
+    \noindent #1\par
     
     \clearpage
 }
@@ -802,7 +783,7 @@
         \textbf{IMPACT INDICATORS}
     \end{center}
     
-    \noindent #1
+    \noindent #1\par
     
     \clearpage
 }
@@ -916,8 +897,7 @@
 	% somente glossário vai para o sumário
 	\ifthenelse{\equal{#2}{Glossário}}{
 		\phantomsection%
-		\addcontentsline{toc}{chapter}{\numberline{} \MakeUppercase{#1}}}
-		{}
+		\addcontentsline{toc}{chapter}{\numberline{} \MakeUppercase{#1}}}{}
 }
 
 
@@ -930,7 +910,7 @@
 		type={abbreviations},
 		nonumberlist,
 		style=long3col]
-		\renewcommand{\baselinestretch}{1.5}\normalsize}
+	\renewcommand{\baselinestretch}{1.5}\normalsize}
 
 % lista de siglas
 \newcommand{\listofsiglas}{%
@@ -958,7 +938,7 @@
 % glossário
 \newcommand{\glossario}{%
 	\newpage
-	\renewcommand{\glsnamefont}[1]{\textbf{\makefirstuc{##1}}:}
+	\renewcommand{\glsnamefont}[1]{\textbf{\makefirstuc{##1}}:}%
 	\printnoidxglossary[
 		title={Glossário},
 		nonumberlist,
@@ -969,7 +949,6 @@
 %######################################################################
 % Imprimindo índice
 %  corrigindo a altura do índice
-
 %\indexprologue{\vspace{-1.0cm}}
 
 \newcommand{\indice}{%
@@ -1024,7 +1003,7 @@
 	\appendix%
 	\cleardoublepage%
 	\phantomsection%
-    {\centering\normalfont\selectfont\normalsize\bf ANEXOS\par} 
+    {\centering\bf ANEXOS\par} 
     \vspace{0.3cm}
 	\addcontentsline{toc}{chapter}{\numberline{} ANEXOS}
 }
@@ -1052,7 +1031,7 @@
 	\appendix%
 	\cleardoublepage%
 	\phantomsection%
-    {\centering\normalfont\selectfont\normalsize\bf APÊNDICES\par} 
+    {\centering\bf APÊNDICES\par} 
     \vspace{0.3cm}
 	\addcontentsline{toc}{chapter}{\numberline{} APÊNDICES}
 }
@@ -1099,7 +1078,8 @@
     \makenoidxglossaries % gera os glossários (gera, não imprime)
     
     \indexsetup{firstpagestyle=ufla}
-    \makeindex[title={\hfill \bfseries{ÍNDICE REMISSIVO} \hfill}, columnsep=15pt] % gera índices
+    \makeindex[title={\hfill \bfseries{ÍNDICE REMISSIVO} \hfill},%
+    	columnsep=15pt] % gera índices
     
     \def\maketitle{    %\maketitle
     	\setcounter{page}{0}
@@ -1138,7 +1118,6 @@
 %######################################################################
 % salvando a maior profundidade utilizada para próxima execução
 \AtEndDocument{
-    %\immediate\write\@mainaux{\string\newcounter{maxuseddepthold}}%
     \immediate\write\@mainaux{\string\global\widthsechold=\the\widthsec}%
 }
 %######################################################################
