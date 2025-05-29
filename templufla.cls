@@ -286,6 +286,7 @@
 {\normalsize\thechapter}% formato do label
 {1ex}% separador
 {\MakeUppercase}% codigo anterior
+[\testasecao] % código após
 \assignpagestyle{\chapter}{ufla} % pagestyle
 \titlespacing{\chapter}{0pt}{-2em}{\baselineskip} % espacamento
 \renewcommand{\chaptername}{Seção} % renomeia para referências
@@ -1100,7 +1101,6 @@
         {\imprimeFolhaAprovacao}%               % caso contrário produza folha de aprovação 
     }
     
-    \testasecao
     \newlength{\identation}
     \setlength{\identation}{0cm}
     \def\l@chapter{\bfseries\@dottedtocline{0}{\identation}{\widthsechold}}
