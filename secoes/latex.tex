@@ -379,21 +379,21 @@ Para gerenciar referências bibliográficas de forma eficiente no \LaTeX, pode-s
 
 Primeiro, é necessário um arquivo com a extensão \texttt{.bib} (por exemplo, \texttt{refbib.bib}). Neste arquivo, devem ser definidas todas as entradas bibliográficas usando um formato específico do BibTeX. É comum publicações online disponibilizarem entradas BibTeX prontas. O exemplo de uma entrada é:
 \begin{lstlisting}[language={[LaTeX]TeX}]
-@Manual{Weber2003,
-	Title          = {Estilo bibtex compatível com a `norma' 6023/2000 da {ABNT}},
-	Author         = {Gerald Weber},
-	Organization   = {Grupo abnTeX},
-	URL            = {http://abntex.codigolivre.org.br},
-	year           = 2003
+@Book{Bookchin:1982, % identificador
+	title     = {The Ecology of Freedom},
+	author    = {Murray Bookchin},
+	year      = 1982,
+	publisher = {The Anarchist Library}
+	url       = {https://theanarchistlibrary.org/library/murray-bookchin-the-ecology-of-freedom}
 }
 \end{lstlisting}
 Existem diversos tipos de entrada (como \texttt{@book}, \texttt{@inproceedings}, \texttt{@misc}) e campos obrigatórios/opcionais para cada um.
 
 \subsection{Citando no Texto}
-Para citar uma referência em seu texto, use o comando \verb|\cite{chave}|, onde chave é o identificador único que você definiu no seu arquivo \texttt{.bib}.\\
-Por exemplo, ``Exemplo da citação com cite: \cite{Weber2003}.'' tem código:
+Para citar uma referência em seu texto, basta usar o comando \verb|\cite{chave}|, onde chave é o identificador único que você definiu no seu arquivo \texttt{.bib}, e o sistema já faz todo o trabalho da formatação e adição na lista de referências.\par
+Por exemplo, ``Exemplo da citação com cite: \cite{Bookchin:1982}.'' tem código:
 \begin{lstlisting}[language={[LaTeX]TeX}]
-Exemplo da citação com cite: \cite{Weber2003}.
+Exemplo da citação com cite: \cite{Bookchin:1982}.
 \end{lstlisting}
 
 \subsection{Gerando Lista de Referências}
