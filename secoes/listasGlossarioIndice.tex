@@ -38,7 +38,7 @@ O comando \textit{\textbf{gls}} escreve o nome do ítem quando é usado. Para qu
 Abaixo listamos o formato para a adição de ítens em cada glossário:
 
 \begin{alineas}
-	\item \textbf{abreviaturas}: Adicionar uma abreviatura é simples e a sintaxe é relativamente fixa.\\ Um exemplo para a abreviatura de \gls{jan}:
+	\item \textbf{abreviaturas}: adicionar uma abreviatura é simples e a sintaxe é relativamente fixa.\\ Um exemplo para a abreviatura de \gls{jan}:
 		\begin{lstlisting}[language=tex]
 \newabbreviation{jan} % rótulo
 {jan.}% forma abreviada
@@ -47,7 +47,7 @@ Abaixo listamos o formato para a adição de ítens em cada glossário:
 ... Um exemplo para a abreviatura de \gls{jan}:
 		\end{lstlisting}
 	
-	\item \textbf{siglas}: Adicionar siglas é igualmente simples.\\ 
+	\item \textbf{siglas}: adicionar siglas é igualmente simples.\\ 
 	Um exemplo para a sigla \gls{abnt}:
 	\begin{lstlisting}[language=tex]
 \newacronym{abnt} % rótulo
@@ -57,7 +57,7 @@ Abaixo listamos o formato para a adição de ítens em cada glossário:
 ... Um exemplo para a sigla \gls{abnt}:
 	\end{lstlisting}
 	
-	\item \textbf{símbolos}: Adicionar símbolos é um pouco mais complicado, já que necessita de uma descrição. Como a lista é por ordem de uso, \gls{gama} deve aparecer antes de \gls{alfa}\\ 
+	\item \textbf{símbolos}: adicionar símbolos é um pouco mais complicado, já que necessita de uma descrição. Como a lista é por ordem de uso, \gls{gama} deve aparecer antes de \gls{alfa}\\ 
 	Um exemplo para o símbolo \gls{gama}:
 	\begin{lstlisting}[language=tex]
 \newglossaryentry{gama}{
@@ -68,7 +68,7 @@ Abaixo listamos o formato para a adição de ítens em cada glossário:
 ... Um exemplo para o símbolo \gls{gama}:
 	\end{lstlisting}
 	
-	\item \textbf{glossário}: Adicionar termos no glossário é igual ao exemplo mostrado antes.\\
+	\item \textbf{glossário}: adicionar termos no glossário é igual ao exemplo mostrado antes.\\
 	Nesse caso, no entanto, adicionamos uma \emph{tag} \LaTeX\ antes do nome, então temos que adicionar o valor "\emph{sort}", para que a ordenação seja correta.
 	Um exemplo para o termo \gls{llm}:
 	\begin{lstlisting}[language=tex]
@@ -81,7 +81,7 @@ Abaixo listamos o formato para a adição de ítens em cada glossário:
 ... Um exemplo para o termo \gls{llm}:
 	\end{lstlisting}
 	
-	\item \textbf{índice}: Adicionar termos ao índice é o mais fácil de todos. Para adicionar um índice, basta utilizar o comando \emph{index}. Caso algum índice tiver um pai(ou mãe), basta adicionar o delimitador ``!''.\\
+	\item \textbf{índice}: adicionar termos ao índice é o mais fácil de todos. Para adicionar um índice, basta utilizar o comando \emph{index}. Caso algum índice tiver um pai(ou mãe), basta adicionar o delimitador ``!''.\\
 	Um exemplo para os termos conjunto\index{Conjunto}, conjunto aberto\index{Conjunto!aberto} e conjunto fechado\index{Conjunto!fechado}:
 	\begin{lstlisting}[language=tex]
 ...Um exemplo para os termos conjunto\index{Conjunto},
