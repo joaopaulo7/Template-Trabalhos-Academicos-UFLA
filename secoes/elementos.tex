@@ -2,12 +2,12 @@
 
 Agora que já temos o conhecimento básico sobre como a linguagem \LaTeX\ funciona, podemos nos aprofundar nos detalhes de como utilizar esse template (e, especialmente, a classe \texttt{templufla}) para gerar documentos padronizados de alta qualidade.
 
-\section{Seção secundária}\label{sec2:secoes}
-\subsection{Seção terciária com texto extra comicamente grande para testar como será a quebra de linha do título}\label{sec3:teste}
-\subsubsection{Seção quaternária}\label{sec4:teste}
-\subsubsubsection{Seção quinária}\label{sec5:teste}
+\section{Sobre as Seções (seção secundária)}\label{sec2:secoes}
+\subsection{Sobre as Seções (seção terciária com texto extra comicamente grande para testar como será a quebra de linha do título)}\label{sec3:teste}
+\subsubsection{Sobre as Seções (seção quaternária)}\label{sec4:teste}
+\subsubsubsection{Sobre as Seções (seção quinária)}\label{sec5:teste}
 
-Um dos fatores fundamentais no desenvolvimento de um trabalho acadêmico é sua organização. Na normalização da UFLA e da ABNT, os trabalhos podem ter formato de livro, como esse template, mas devem ser divididos em seções, não em capítulos. Todo o texto pode ser dividido até a seção quinária.
+Um dos fatores fundamentais no desenvolvimento de um trabalho acadêmico é sua organização. Na normalização da UFLA e da ABNT, os trabalhos podem ter formato de livro, como esse template, mas devem ser divididos em seções, não em capítulos e todo o texto pode ser dividido até a seção quinária.
 
 No template, dispõem-se comandos para realizar tal divisão automaticamente, mas com uma importante observação: a seção primária utiliza o comando \verb|\chapter|. Isso foi feito para simplificar a migração de versões mais antigas e provavelmente será alterado no futuro. Abaixo estão listados os comandos de seccionamento disponíveis: 
 
@@ -59,7 +59,17 @@ Abaixo é mostrado exemplo em texto retirado, na maior parte, do manual:
 
 \section{Figuras, Ilustrações e etc}
 
-Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante ao que foi explicado na \autoref{sec:latexFiguras}. Só é importante se atentar para dois detalhes: os títulos das figuras, que devem vir antes do \texttt{inludegraphics}, e a fonte, que deve ser posicionada após o \texttt{inludegraphics} e pode utilizar o comando pré definido \texttt{fonte}. Exemplo do código para a \autoref{fig:leaoCTAN}:
+Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante ao que foi explicado na \autoref{sec:latexFiguras}.
+\begin{figure}[h]
+	\centering
+	\caption{Leão do site CTAN estudando \TeX}
+	\label{fig:leaoCTAN}
+	\includegraphics[width=0.6\textwidth]{imgs/ctanlion}
+	\fonte{Duane Bibby, diponibilizado em \url{www.ctan.org/lion}}
+\end{figure}
+
+
+ Só é importante se atentar para dois detalhes: os títulos das figuras, que devem vir antes do \texttt{inludegraphics}, e a fonte, que deve ser posicionada após o \texttt{inludegraphics} e pode utilizar o comando pré definido \texttt{fonte}. Exemplo do código para a \autoref{fig:leaoCTAN}:
 \begin{lstlisting}[language={[LaTeX]Tex}]
 \begin{figure}
 	\centering
@@ -71,23 +81,31 @@ Utilizar figuras, ilustrações e elementos ``float'' no template é semelhante 
 \end{figure}
 \end{lstlisting}
 
-\begin{figure}[hb!]
+
+
+\section{Quadros e Tabelas}\label{sec:tabelasUFLA}
+
+A normalização da UFLA reconhece dois principais tipos de elementos tabulares, tabelas e quadros, com conteúdos e formatos específicos. 
+
+\begin{table}[h]
 	\centering
-	\caption{Leão do site CTAN estudando \TeX}
-	\label{fig:leaoCTAN}
-	\includegraphics[width=0.6\textwidth]{imgs/ctanlion}
-	\fonte{Duane Bibby, diponibilizado em \url{www.ctan.org/lion}}
-\end{figure}
+	\caption{Exemplo de Tabela} 
+	\label{tab:exemplo2}
+	\begin{tabular}{c c c c }
+		\hline
+		\linhadir{\bf Pessoa} & \linhadir{\bf Livros} & \linhadir{\bf Artigos} & \bf Palestras \\
+		\hline
+		$p_1$ & 1 & 3 & 4 \\
+		$p_2$ & 1 & 3 & 3 \\
+		$p_3$ & 1 & 3 & 4 \\
+		$p_4$ & 3 & 5 & 2 \\
+		\hline 
+	\end{tabular}
+	\vspace{0.3cm}
+	\fonte{original} %Fonte do tabela
+\end{table}
 
-
-
-
-\section{Quadros e Tabelas}
-
-Tabelas e quadros são elementos tabulares com conteúdos e formatos específicos. 
-
-Tabelas envolvem principalmente números, utiliza-se linhas horizontais somente no topo, final e cabeçalhos e linhas verticais somente nos cabeçalhos. Para reduzir o tamanho do código dos cabeçalhos, o template dispõe do comando \texttt{linhadir}, que adiciona uma linha vertical à célula. Abaixo mostra-se um exemplo do código para a \autoref{tab:exemplo2}:
-
+Tabelas envolvem principalmente números, utiliza-se linhas horizontais somente no topo, final e cabeçalhos, além disso utiliza-se linhas verticais somente nos cabeçalhos\footnote{Por isso a \autoref{tab:exemplo} não segue o padrão correto.}. Para reduzir o tamanho do código dos cabeçalhos, a classe \texttt{templufla} define do comando \texttt{linhadir}, que adiciona uma linha vertical à direita da célula. Abaixo mostra-se um exemplo do código para a \autoref{tab:exemplo2}:
 \begin{lstlisting}[language={[LaTeX]Tex}]
 \begin{table}[h]
 	\centering
@@ -107,24 +125,6 @@ Tabelas envolvem principalmente números, utiliza-se linhas horizontais somente 
 	\fonte{original} %Fonte do tabela
 \end{table}
 \end{lstlisting}
-
-\begin{table}[h]
-	\centering
-	\caption{Exemplo de Tabela} 
-	\label{tab:exemplo2}
-	\begin{tabular}{c c c c }
-		\hline
-		\linhadir{\bf Pessoa} & \linhadir{\bf Livros} & \linhadir{\bf Artigos} & \bf Palestras \\
-		\hline
-		$p_1$ & 1 & 3 & 4 \\
-		$p_2$ & 1 & 3 & 3 \\
-		$p_3$ & 1 & 3 & 4 \\
-		$p_4$ & 3 & 5 & 2 \\
-		\hline 
-	\end{tabular}
-	\vspace{0.3cm}
-	\fonte{original} %Fonte do tabela
-\end{table}
 
 
 Quadros se diferem das tabelas por conterem principalmente dados textuais e suas células serem completamente fechadas. O \autoref{quad:exemplo} é um exemplo de quadro.

@@ -1,11 +1,11 @@
 \chapter{\MakeUppercase{Utilizando \LaTeX}}\label{sec:latex}
 
-Este capítulo apresenta o uso básico de equações, figuras e tabelas no código da monografia, bem como o posicionamento das legendas, segundo as normas da UFLA. O LaTeX é um sistema de preparação de documentos que se destaca pela sua capacidade de criar documentos com alta qualidade tipográfica e estrutural. Sua força reside em uma série de elementos fundamentais que, combinados, permitem ao usuário ter controle granular sobre a aparência e a organização do conteúdo.
+Esta seção apresenta o uso básico sobre a linguagem \LaTeX\ e age como um ponto de partida para quem está começando a criar documentos com essa ferramenta. O \LaTeX\ é um sistema de preparação de documentos que se destaca pela sua capacidade de criar documentos com alta qualidade tipográfica e estrutural. Sua força reside em uma série de elementos fundamentais que, combinados, permitem ao usuário ter controle granular sobre a aparência e a organização do conteúdo.
 
 
 \section{O Básico Sobre Comandos \LaTeX}
 
-Os \textbf{comandos} são a espinha dorsal do LaTeX. Eles são instruções que ditam como o texto e outros elementos devem ser processados e formatados. A maioria dos comandos começa com uma barra invertida (\verb|\|) e é seguida pelo nome do comando. Existem diferentes tipos de comandos.
+Os \textbf{comandos} são a espinha dorsal do \LaTeX. Eles são instruções que ditam como o texto e outros elementos devem ser processados e formatados. A maioria dos comandos começa com uma barra invertida (\verb|\|) e é seguida pelo nome do comando. Os comandos podem ser organizados em:
 
 \begin{alineas}
 	\item \textbf{comandos sem argumentos:} são simples chamadas para uma ação. Exemplos incluem \verb|\maketitle| (para gerar o título do documento, se definido) ou \verb|\newpage| (para iniciar uma nova página);
@@ -103,7 +103,7 @@ O domínio desses comandos de texto permite um controle preciso sobre a apresent
 	\fonte{fonte da figura (domínio público)} %Fonte da imagem
 \end{figure}
 
-A inclusão de \textbf{figuras} é um aspecto fundamental em muitos documentos, especialmente em trabalhos acadêmicos, relatórios técnicos e apresentações. A \autoref{fig:exemplo} é um exemplo de uma figura adicionada, O \LaTeX, em conjunto com o pacote \texttt{graphicx}, oferece um controle robusto sobre a inserção, posicionamento e legendagem de imagens:
+A inclusão de \textbf{figuras} é um aspecto fundamental em muitos documentos, especialmente em trabalhos acadêmicos, relatórios técnicos e apresentações; a \autoref{fig:exemplo} é um exemplo de uma figura adicionada ao documento. \LaTeX, em conjunto com o pacote \texttt{graphicx}, oferece um controle robusto sobre a inserção, posicionamento e legendagem de imagens:
 
 \begin{alineas}
 	\item \textbf{o ambiente} \texttt{figure}\textbf{:} figuras no LaTeX são geralmente inseridas dentro do ambiente \texttt{figure}. Este é um ambiente "flutuante", o que significa que o LaTeX pode mover a figura para uma posição ideal na página para evitar quebras de página embaraçosas e garantir uma boa legibilidade. Em um comando:
@@ -159,14 +159,14 @@ A correta utilização desses comandos e ambientes para figuras garante que suas
 
 \section{Ambientes Tabulares}
 
-Tabelas são elementos cruciais para apresentar dados de forma organizada e legível em documentos científicos e acadêmicos. No \LaTeX, a criação de elementos tabulares é feita principalmente através do ambiente \texttt{tabular}, que oferece um controle preciso sobre a formatação e o alinhamento do conteúdo. A \autoref{tab:exemplo} é um exemplo.
+Tabelas são elementos cruciais para apresentar dados de forma organizada e legível em documentos científicos e acadêmicos. No \LaTeX, a criação de elementos tabulares é feita principalmente através do ambiente \texttt{tabular}, que oferece um controle preciso sobre a formatação e o alinhamento do conteúdo. 
 
 \begin{table}[h!]
 	\centering
 	\caption{Exemplo de Tabela Flutuante com Fonte}\label{tab:exemplo}
-	\begin{tabular}{l c r}
+	\begin{tabular}{l | c r}
 		\hline
-		\linhadir{Cabeçalho 1} & \linhadir{Cabeçalho 2} & Cabeçalho 3 \\
+		Cabeçalho 1 & Cabeçalho 2 & Cabeçalho 3 \\
 		\hline
 		Item 1 & Valor A & Nota X \\
 		Item 2 & Valor B & Nota Y \\
@@ -176,16 +176,17 @@ Tabelas são elementos cruciais para apresentar dados de forma organizada e leg�
 	\fonte{original}
 \end{table}
 
-A estrutura fundamental de uma tabela em \LaTeX\  envolve o ambiente \texttt{tabular} e o uso de especificadores para definir o alinhamento das colunas e as linhas divisórias. Veja um exemplo simples:
+A estrutura fundamental de uma tabela em \LaTeX\  envolve o ambiente \texttt{tabular} e o uso de especificadores para definir o alinhamento das colunas e as linhas divisórias. Veja um exemplo simples do código que gera a \autoref{tab:exemplo}\footnote
+{\textbf{IMPORTANTE:} a \autoref{tab:exemplo} é unicamente um exemplo de como tabelas funcionam em \LaTeX\ e \textbf{não} segue o padrão da UFLA. Veja a \autoref{sec:tabelasUFLA} para mais informações.}:
 
 \begin{lstlisting}[language={[LaTeX]TeX}]
-\begin{tabular}{l c r}
-  \hline
-  \linhadir{Cabeçalho 1}& \linhadir{Cabeçalho 2}& Cabeçalho 3\\
-  \hline
-  Item 1& Valor A& Nota X\\
-  Item 2& Valor B& Nota Y\\
-  \hline
+\begin{tabular}{l | c r}
+	\hline
+	Cabeçalho 1 & Cabeçalho 2 & Cabeçalho 3 \\
+	\hline
+	Item 1 & Valor A & Nota X \\
+	Item 2 & Valor B & Nota Y \\
+	\hline
 \end{tabular}
 \end{lstlisting}
 Nesse exemplo:
@@ -211,11 +212,11 @@ Para que sua tabela seja tratada como um ``float'' (flutuante), permitindo que o
 \begin{lstlisting}[language={[LaTeX]TeX}]
 \begin{table}[h!]
 	\centering
-	\caption{Exemplo de Tabela Flutuante com Legenda}
-	\label{tab:minhatabela}
-	\begin{tabular}{l c r}
+	\caption{Exemplo de Tabela Flutuante com Fonte}
+	\label{tab:exemplo}
+	\begin{tabular}{l | c r}
 		\hline
-		\linhadir{Cabeçalho 1}& \linhadir{Cabeçalho 2}& Cabeçalho 3\\
+		Cabeçalho 1 & Cabeçalho 2 & Cabeçalho 3 \\
 		\hline
 		Item 1 & Valor A & Nota X \\
 		Item 2 & Valor B & Nota Y \\
@@ -231,7 +232,7 @@ Os comandos usados e suas explicacões são:
 	\item \texttt{\textbackslash begin\{table\}[h!]} e \texttt{\textbackslash end\{table\}}: delimitam o ambiente flutuante da tabela. As opções entre colchetes, como \texttt{[h!]}, sugerem ao \LaTeX\  a preferência de posicionamento (\texttt{h} para ``here'' - aqui, \texttt{!} para ``definitivamente aqui se possível''). Outras opções incluem \texttt{t} (top - topo da página), \texttt{b} (bottom - base da página) e \texttt{p} (page of floats - página dedicada a flutuantes);
 	\item \texttt{\textbackslash centering}: centraliza a tabela na página;
 	\item \texttt{\textbackslash caption\{...\}}: adiciona um título à tabela;
-	\item \texttt{\textbackslash label\{...\}}: permite criar uma referência cruzada para a tabela usando\\ \texttt{\textbackslash ref\{tab:minhatabela\}} no texto, que será automaticamente atualizada com o número da tabela ou quadro, como \autoref{tab:exemplo};
+	\item \texttt{\textbackslash label\{...\}}: permite criar uma referência cruzada para a tabela usando\\ \texttt{\textbackslash ref\{tab:exemplo\}} no texto, que será automaticamente gerada, com o número e \emph{link} atualizados, por exemplo: \autoref{tab:exemplo};
 	\item \texttt{\textbackslash fonte\{...\}}: usado para criar o texto da fonte. Deve vir após o \texttt{\textbackslash end\{tabular\}} e é ideal que tenha um espaço \texttt{\textbackslash vspace\{0.3cm\}} entre eles.
 \end{alineas}
 
