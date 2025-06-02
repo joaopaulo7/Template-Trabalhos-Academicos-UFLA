@@ -78,6 +78,7 @@
 \RequirePackage{lastpage} % para ficha catalografica
 \RequirePackage{graphicx} % Logo da UFLA na capa.
 \RequirePackage{alphalph} % Para número de apêndices/anexos acima de 26.
+\RequirePackage[a4paper]{geometry} % Para margens diferentes na capa
 
 % para listas de siglas, símbolos e etc; glossário e índice.
 \RequirePackage[nopostdot, abbreviations, acronym, symbols, nogroupskip]{glossaries-extra}
@@ -170,6 +171,7 @@
 \setlength\textwidth{  % largura disponivel para texto
  \paperwidth-\oddsidemargin-\evensidemargin
 }
+%\geometry{left=3cm, right=2cm, top=3cm, bottom=2cm}
 %######################################################################
 
 
@@ -358,6 +360,7 @@
 % "Os elementos da capa serão distribuídos uniformemente" p.35 da normalização.
 % Não reclame comigo. Se os outros não estão assim é porque não seguiram as regras.
 \newcommand\imprimeCapa{
+	\newgeometry{offset=0cm, left=2.5cm, right=2.5cm, top=3cm, bottom=2cm}
     \begin{center}
     	\renewcommand{\baselinestretch}{1}\normalsize 
     	% fonte da imagem: https://ufla.br/comunicacao/identidade-visual
@@ -383,6 +386,7 @@
 	    \textbf{\MakeUppercase\@date}
 	    \renewcommand{\baselinestretch}{1.5}\normalsize 
 	\end{center}
+	\restoregeometry
 }
 %######################################################################
 
