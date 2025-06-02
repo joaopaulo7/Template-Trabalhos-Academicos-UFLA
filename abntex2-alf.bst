@@ -26,8 +26,9 @@
 
 %%Small adaptations made by @joaopaulo7 to fit the 6th edition of UFLA's style guide. 
 %% Current changes:
-%% adding italics tags to latin expressions other than et al. (e. g., s.n. and s.l.)
+%%  adding italics tags to latin expressions other than et al. (e. g., s.n. and s.l.)
 %%  removing <> from urls
+%%  organizations aren't cite ALLCAPS anymore
 
 
 ENTRY
@@ -1333,7 +1334,7 @@ FUNCTION {calc.extended.label}
      {org-short empty$ not
       {org-short * "}{" * org-short "u" change.case$ *}
       {organization empty$ not
-       {organization * "}{" * organization "u" change.case$ *}
+       {organization * "}{" * organization *} % CHAGED
         {title empty$ not
          {title format.title.for.label *}
          {"nada}{NADA" *}
