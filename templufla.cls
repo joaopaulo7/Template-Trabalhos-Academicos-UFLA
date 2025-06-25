@@ -853,7 +853,7 @@
 \newcommand{\listadetabelasname}{Lista de Tabelas}
 \renewcommand{\listoftables}{%
 	{%
-	\renewcommand{\numberline}{Tabela~}
+	\renewcommand{\numberline}{\tablename~}
 	\listof{table}{\listadetabelasname}}}
 
 % Lista de Exemplos
