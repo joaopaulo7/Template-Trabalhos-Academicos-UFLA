@@ -394,6 +394,11 @@
 
 %######################################################################
 % Codigo para impressao da folha de rosto
+
+\newcommand{\orientadorname}{Orientador}
+\newcommand{\orientadoraname}{Orientadora}
+\newcommand{\coorientadorname}{Co-orientador}
+\newcommand{\coorientadoraname}{Co-orientadora}
 \newcommand\imprimeFolhaRosto{
     \newpage
     \begin{center}       
@@ -428,24 +433,24 @@
         \ifthenelse{\equal{\@orientador}{\@empty}} % % se orientador nao existir,
         {}%                                            % nao produza nada
         {\@orientador\par
-         Orientador}
+         \orientadorname}
 
         \ifthenelse{\equal{\@orientadora}{\@empty}} % % se coorientadora nao existir,
         {}%                                            % nao produza nada
         {\@orientadora\par
-         Orientadora}
+         \orientadoraname}
         
         \vspace{\stretch{.25}}
 
         \ifthenelse{\equal{\@coorientador}{\@empty}} % % se coorientador nao existir,
         {}%                                            % nao produza nada
         {\@coorientador\par
-          Coorientador}
+          \coorientadorname}
 
         \ifthenelse{\equal{\@coorientadora}{\@empty}} % % se coorientadora nao existir,
         {}%                                            % nao produza nada
         {\@coorientadora\par
-          Coorientadora}
+          \coorientadoraname}
 
 
         \vspace{\stretch{.86}} 
@@ -604,6 +609,7 @@
 
 
 % Codigo para impressao da folha de aprovacao
+\newcommand{\acceptedinname}{APROVADA em }
 \def\geraFolhaAprovacao{
     \newpage
 	% Espacamento simples entre linhas
@@ -647,7 +653,7 @@
 	
     \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
     {}%                                     % não produza nada
-    {\noindent APROVADA em \@defesa.}%   % caso contrario, escreva-a
+    {\noindent \acceptedinname \@defesa.}%   % caso contrario, escreva-a
     %
     % Escreve a banca
     \begin{itemize}[align=left, left=0cm, leftmargin=!, labelwidth=\@maiorBanca, labelsep=2ex, noitemsep, nosep]
@@ -668,19 +674,19 @@
     \begin{center}
         \ifthenelse{\equal{\@orientadora}{\@empty}}
     	{\@orientador\par
-    	 Orientador}
+    	 \orientadorname}
 	    {\@orientadora\par
-	    Orientadora}
+	    \orientadoraname}
 
         \ifthenelse{\equal{\@coorientador}{\@empty}}{}% se coorientador nao existir, nao produza nada
         {\vspace{\stretch{.5}}                        % caso contrario, escreva-o
             \@coorientador\par
-            Co-Orientador}
+            \coorientadorname}
         
         \ifthenelse{\equal{\@coorientadora}{\@empty}}{}% se coorientadora nao existir, nao produza nada
         {\vspace{\stretch{.5}}                        % caso contrario, escreva-a
             \@coorientadora\par
-            Co-Orientadora}
+            \coorientadoraname}
         
 
         \vspace*{\stretch{.6}}
@@ -709,8 +715,9 @@
 
 
 % Agradecimentos
+\newcommand{\agradecimentosname}{AGRADECIMENTOS}
 \renewcommand{\thanks}[1]{%
-    \begin{center}\textbf{AGRADECIMENTOS}\end{center}
+    \begin{center}\textbf{\agradecimentosname}\end{center}
     #1
     \clearpage
 }
@@ -810,6 +817,7 @@
 %######################################################################
 % Arrumando Lista de Figuras, Lista de Tabelas e
 % Criando outras listas
+
 \RequirePackage{float}
 \floatstyle{plaintop}
 
@@ -833,107 +841,119 @@
 % Lista de Figuras
 %\newfloat{figure}{htb!}{lff}[chapter]
 %\floatname{figure}{Figura}
+\newcommand{\listadefigurasname}{Lista de Figuras}
 \renewcommand{\listoffigures}{%
 	{%
-	\renewcommand{\numberline}{Figura~}
-	\listof{figure}{Lista de Figuras}}}
+	\renewcommand{\numberline}{\figurename~}
+	\listof{figure}{\listadefigurasname}}}
 
 % Lista de Tabelas
 %\newfloat{table}{htb!}{ltt}[chapter]
 %\floatname{table}{Tabela}
+\newcommand{\listadetabelasname}{Lista de Tabelas}
 \renewcommand{\listoftables}{%
 	{%
 	\renewcommand{\numberline}{Tabela~}
-	\listof{table}{Lista de Tabelas}}}
+	\listof{table}{\listadetabelasname}}}
 
 % Lista de Exemplos
 \newcommand{\exemploname}{Exemplo}
+\newcommand{\listadeexemplosname}{Lista de Exemplos}
 \newfloat{exemplo}{htb!}{loe}[chapter]
 \floatname{exemplo}{\exemploname}
 \newcommand{\listofexemplos}{%
 	{%
 	\renewcommand{\numberline}{\exemploname~}
-	\listof{exemplo}{Lista de Exemplos}}}
+	\listof{exemplo}{\listadeexemplosname}}}
 
 % Lista de Quadros
 \newcommand{\quadroname}{Quadro}
+\newcommand{\listadequadrosname}{Lista de Quadros}
 \newfloat{quadro}{htb!}{loq}[chapter]
 \floatname{quadro}{\quadroname}
 \newcommand{\listofquadros}{%
 	{%
 	\renewcommand{\numberline}{\quadroname~}
-	\listof{quadro}{Lista de Quadros}}}
+	\listof{quadro}{\listadequadrosname}}}
 
 % Lista de Gráficos
 \newcommand{\graficoname}{Gráfico}
+\newcommand{\listadegraficosname}{Lista de Gráficos}
 \newfloat{grafico}{htb!}{lgg}[chapter]
 \floatname{grafico}{\graficoname}
 \newcommand{\listofgraficos}{
 	{%
 	\renewcommand{\numberline}{\graficoname~}
-	\listof{grafico}{Lista de Gráficos}}}
+	\listof{grafico}{\listadegraficosname}}}
 
 % Lista de Teoremas
 \newcommand{\teoremaname}{Teorema}
+\newcommand{\listadeteoremasname}{Lista de Teoremas}
 \newfloat{teorema}{htb!}{ltt}[chapter]
 \floatname{teorema}{\teoremaname}
 \newcommand{\listofteoremas}{
 	{%
 	\renewcommand{\numberline}{\teoremaname~}
-	\listof{teorema}{Lista de Teoremas}}}
+	\listof{teorema}{\listadeteoremasname}}}
 
 % Lista de Ilustrações
 \newcommand{\ilustracaoname}{Ilustração}
+\newcommand{\listadeilustracoesname}{Lista de Ilustrações}
 \newfloat{ilustracao}{htb!}{loi}[chapter]
 \floatname{ilustracao}{\ilustracaoname}
 \newcommand{\listofilustracoes}{
 	{%
 	\renewcommand{\numberline}{\ilustracaoname~}
-	\listof{ilustracao}{Lista de Ilustrações}}}
+	\listof{ilustracao}{\listadeilustracoesname}}}
 %######################################################################
 
 
 %######################################################################
 % Imprimindo os glossários
 %  comando para imprimir corretamente os títulos
+
+\newcommand{\glossarioname}{Glossário}
 \renewcommand{\glossarysection}[2][]{%
 	{\centering\bfseries\MakeUppercase{#2}\par}
 	\vspace{0.25cm}
 	% somente glossário vai para o sumário
-	\ifthenelse{\equal{#2}{Glossário}}{
+	\ifthenelse{\equal{#2}{\MakeUppercase{\glossarioname}}}{
 		\phantomsection%
 		\addcontentsline{toc}{chapter}{\numberline{} \MakeUppercase{#1}}}{}
 }
 
 
 % lista de abreviaturas
+\newcommand{\listadeabreviaturasname}{LISTA DE ABREVIATURAS}
 \newcommand{\listofabreviaturas}{%
 	\newpage
 	\renewcommand{\baselinestretch}{1.0}\normalsize%
 	\printnoidxglossary[
-		title={LISTA DE ABREVIATURAS},
+		title=\MakeUppercase{\listadeabreviaturasname},
 		type={abbreviations},
 		nonumberlist,
 		style=long3col]
 	\renewcommand{\baselinestretch}{1.5}\normalsize}
 
 % lista de siglas
+\newcommand{\listadesiglasname}{LISTA DE SIGLAS}
 \newcommand{\listofsiglas}{%
 	\newpage
 	\renewcommand{\baselinestretch}{1.0}\normalsize%
 	\printnoidxglossary[
-		title={LISTA DE SIGLAS},
+		title=\MakeUppercase{\listadesiglasname},
 		type={\acronymtype},
 		nonumberlist,
 		style=long3col]
 	\renewcommand{\baselinestretch}{1.5}\normalsize}
 	
 % lista de símbolos
+\newcommand{\listadesimbolosname}{LISTA DE SÍMBOLOS}
 \newcommand{\listofsimbolos}{%
 	\newpage
 	\renewcommand{\baselinestretch}{1.0}\normalsize%
 	\printnoidxglossary[
-		title={LISTA DE SÍMBOLOS},
+		title=\MakeUppercase{\listadesimbolosname},
 		type={symbols},
 		nonumberlist,
 		sort=use,
@@ -945,7 +965,7 @@
 	\newpage
 	\renewcommand{\glsnamefont}[1]{\textbf{\makefirstuc{##1}}:}%
 	\printnoidxglossary[
-		title={Glossário},
+		title=\MakeUppercase{\glossarioname},
 		nonumberlist,
 		style=tree]}
 %######################################################################
@@ -955,10 +975,11 @@
 % Imprimindo índice
 %  corrigindo a altura do índice
 %\indexprologue{\vspace{-1.0cm}}
-
+\newcommand{\indicename}{ÍNDICE REMISSIVO}
 \newcommand{\indice}{%
 	\printindex
-	\addcontentsline{toc}{chapter}{\numberline{} ÍNDICE REMISSIVO}}
+	\addcontentsline{toc}{chapter}{\numberline{} \MakeUppercase{\indicename}}
+}
 %######################################################################
 
 
@@ -1003,14 +1024,15 @@
 \newcounter{anexo} %contador para os anexos (uso em referências)
 \renewcommand\theanexo{\AlphAlph{\value{anexo}}}
 \newcommand{\anexoname}{Anexo}
+\newcommand{\anexosname}{ANEXOS}
 
 \newcommand\anexos{%
 	\appendix%
 	\cleardoublepage%
 	\phantomsection%
-    {\centering\bf ANEXOS\par} 
+    {\centering\bf \MakeUppercase{\anexosname}\par} 
     \vspace{0.3cm}
-	\addcontentsline{toc}{chapter}{\numberline{} ANEXOS}
+	\addcontentsline{toc}{chapter}{\numberline{} \MakeUppercase{\anexosname}}
 }
 
 
@@ -1021,7 +1043,7 @@
   } {\par\vspace{\baselineskip}} % senão, crie espaço vertical 
   \refstepcounter{anexo}
   {
-  	\noindent\bf ANEXO~\theanexo\ -- \MakeUppercase{#1}
+  	\noindent\bf \anexoname~\theanexo\ -- \MakeUppercase{#1}
   	\vspace{\baselineskip}}
 }
 
@@ -1031,14 +1053,15 @@
 \newcounter{apendice}[chapter] %contador para os apêndices (uso em referências)
 \renewcommand\theapendice{\AlphAlph{\value{apendice}}}
 \newcommand{\apendicename}{Apêndice}
+\newcommand{\apendicesname}{APÊNDICES}
 
 \newcommand\apendices{%
 	\appendix%
 	\cleardoublepage%
 	\phantomsection%
-    {\centering\bf APÊNDICES\par} 
+    {\centering\bf \MakeUppercase{\apendicesname}\par} 
     \vspace{0.3cm}
-	\addcontentsline{toc}{chapter}{\numberline{} APÊNDICES}
+	\addcontentsline{toc}{chapter}{\numberline{} \MakeUppercase{\apendicesname}}
 }
 
 
@@ -1049,20 +1072,21 @@
   } {\par\vspace{\baselineskip}} % senão, crie espaço vertical
   \refstepcounter{apendice}
   {
-  	\noindent\bf APÊNDICE~\theapendice\ -- \MakeUppercase{#1}%
+  	\noindent\bf \apendicename~\theapendice\ -- \MakeUppercase{#1}%
     \vspace{\baselineskip}}}
 %######################################################################
 
 %######################################################################
 % Comando auxiliar para formatação da seção de referências
+\newcommand{\referenciasname}{REFERÊNCIAS}
 \newcommand\referencias{%
    \phantomsection%
-   \addcontentsline{toc}{chapter}{\numberline{} REFERÊNCIAS}%
+   \addcontentsline{toc}{chapter}{\numberline{} \MakeUppercase{\referenciasname}}%
    
    % vspaces para corrigir a margem superior.
    \renewcommand{\bibname}{%
    	\centering\vspace{1.8ex}%
-   	\bf REFERÊNCIAS\par
+   	\bf \MakeUppercase{\referenciasname}\par
    	\vspace{-1.8ex}}%
 }
 %######################################################################
@@ -1083,7 +1107,8 @@
     \makenoidxglossaries % gera os glossários (gera, não imprime)
     
     \indexsetup{firstpagestyle=ufla}
-    \makeindex[title={\hfill \bfseries{ÍNDICE REMISSIVO} \hfill},%
+    \makeindex[intoc,%
+    	title={\hfill \bfseries{\MakeUppercase{\indicename}} \hfill},%
     	columnsep=15pt] % gera índices
     
     \def\maketitle{    %\maketitle

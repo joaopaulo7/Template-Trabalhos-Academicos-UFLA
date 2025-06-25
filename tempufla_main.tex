@@ -3,14 +3,22 @@
 %==============================================================================
 \documentclass{templufla}          
 
+%==============================================================================
+% Configurando a lingaugem do template
+
+% Português
+%\usepackage[brazil]{babel}
+%\input{linguas/tempPor}
+
+% Inglês
+\usepackage[english]{babel}
+\input{linguas/tempEng}
 
 %==============================================================================
 % Configuração dos pacotes necessários
-%==============================================================================
 % Primeiros pacotes (alguns precisam ser importados depois)
 
 % TEXTOS
-\usepackage[brazil]{babel}       % hifenização e títulos em português do Brasil
 \usepackage[T1]{fontenc}         % usa fontes postscript com acentos
 \usepackage[utf8]{inputenc}      % permite edição direta com acentos
 \usepackage{listings}            % para inserção de código
@@ -115,27 +123,11 @@ citecolor=rltgreen,%
 % Adicione aqui palavras precise especificar como hifenizar (ou não hifenizar)
 \hyphenation{software am-bien-te coor-de-na-ção FAE-PE TelEduc Williams UFLA Murray Bookchin}
 
-% Adaptando os nomes das seções
-% Também pode ser usado para alterar a lingua dos elementos
-% (ex Figura para Figure, caso seu texto esteja em inglês).
-\addto\captionsbrazil{
-	\renewcommand{\chaptername}{Seção}
-	\renewcommand{\subsectionname}{Seção}
-	\renewcommand{\subsubsectionname}{Seção}
-	%\renewcommand{\figurename}{Figure}
-}
-\addto\extrasbrazil{
-	\renewcommand{\chapterautorefname}{Seção}
-	\renewcommand{\subsectionautorefname}{Seção}
-	\renewcommand{\subsubsectionautorefname}{Seção}
-	%\renewcommand{\figureautorefname}{Figure}
-}
-
-
 %==============================================================================
 % Dados da monografia, capa: autor, titulo, banca, etc... - SUBSTITUA DE ACORDO
 %==============================================================================
 % Dados para o arquivo PDF (metadados)
+
 \hypersetup{%
 % Titulo
 pdftitle={Template de Exemplo do Estilo Padrão UFLA},
@@ -336,7 +328,7 @@ f) demonstrate the impacts of the research and whether they are aligned with the
 \include{secoes/latex}
 \include{secoes/elementos}
 \include{secoes/listasGlossarioIndice}
-\include{secoes/conclusao}
+\include{secoes/conclusao} \citeonline{Booth2000}
 
 %==============================================================================
 % Bibliografia
@@ -357,7 +349,8 @@ f) demonstrate the impacts of the research and whether they are aligned with the
 
 % Altera o estilo de citação para (Autor, ano)
 % A opção abnt-cite-style=AuthorYEAR está quebrada; essa é equivalente.
-\citeoption{abnt-nbr10520=1988} 
+\citeoption{abnt-nbr10520=1988}
+\citeoption{abnt-and-type=e}
 
 
 % Comando necessário para corrigir o título das referências.
