@@ -609,7 +609,7 @@
 
 
 % Codigo para impressao da folha de aprovacao
-\newcommand{\acceptedinname}{APROVADA em }
+\newcommand{\aprovadaemname}{APROVADA em }
 \def\geraFolhaAprovacao{
     \newpage
 	% Espacamento simples entre linhas
@@ -653,7 +653,7 @@
 	
     \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
     {}%                                     % não produza nada
-    {\noindent \acceptedinname \@defesa.}%   % caso contrario, escreva-a
+    {\noindent \aprovadaemname \@defesa.}%   % caso contrario, escreva-a
     %
     % Escreve a banca
     \begin{itemize}[align=left, left=0cm, leftmargin=!, labelwidth=\@maiorBanca, labelsep=2ex, noitemsep, nosep]
@@ -717,7 +717,7 @@
 % Agradecimentos
 \newcommand{\agradecimentosname}{AGRADECIMENTOS}
 \renewcommand{\thanks}[1]{%
-    \begin{center}\textbf{\agradecimentosname}\end{center}
+    \begin{center}\textbf{\MakeUppercase{\agradecimentosname}}\end{center}
     #1
     \clearpage
 }
