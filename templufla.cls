@@ -1,7 +1,7 @@
 %######################################################################
 % Classe templUFLA - Template de trabalhos acadêmicos da UFLA
 % 
-% v6.10.1
+% v6.10.2
 %
 %  Essa classe é parte de um template de trabalhos acadêmcios da UFLA
 % seguindo o Manual de Normalização Ed. 6.
@@ -1043,7 +1043,7 @@
   } {\par\vspace{\baselineskip}} % senão, crie espaço vertical 
   \refstepcounter{anexo}
   {
-  	\noindent\bf \anexoname~\theanexo\ -- \MakeUppercase{#1}
+  	\noindent\bf \MakeUppercase{\anexoname}~\theanexo\ -- \MakeUppercase{#1}
   	\vspace{\baselineskip}}
 }
 
@@ -1072,7 +1072,7 @@
   } {\par\vspace{\baselineskip}} % senão, crie espaço vertical
   \refstepcounter{apendice}
   {
-  	\noindent\bf \apendicename~\theapendice\ -- \MakeUppercase{#1}%
+  	\noindent\bf \MakeUppercase{\apendicename}~\theapendice\ -- \MakeUppercase{#1}%
     \vspace{\baselineskip}}}
 %######################################################################
 
