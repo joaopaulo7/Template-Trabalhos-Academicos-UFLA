@@ -360,7 +360,9 @@
 % "Os elementos da capa serão distribuídos uniformemente" p.35 da normalização.
 % Não reclame comigo. Se os outros não estão assim é porque não seguiram as regras.
 \newcommand\imprimeCapa{
-	\newgeometry{offset=0cm, left=2.5cm, right=2.5cm, top=3cm, bottom=2cm}
+	
+	% para capa centralizada
+	%\newgeometry{offset=0cm, left=2.5cm, right=2.5cm, top=3cm, bottom=2cm}
     \begin{center}
     	\renewcommand{\baselinestretch}{1}\normalsize 
     	% fonte da imagem: https://ufla.br/comunicacao/identidade-visual
@@ -386,7 +388,9 @@
 	    \textbf{\MakeUppercase\@date}
 	    \renewcommand{\baselinestretch}{1.5}\normalsize 
 	\end{center}
-	\restoregeometry
+	
+	% para capa centralizada
+	%\restoregeometry
 }
 %######################################################################
 
