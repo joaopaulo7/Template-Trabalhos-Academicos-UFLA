@@ -4,6 +4,30 @@
 \documentclass{templufla}          
 
 %==============================================================================
+% Pacote hyperref para referências cruzadas dentro do documento \ref e \autoref
+% O pacote hyperref precisa ser importado o mais cedo possível.
+
+% Setspace precisa estar antes do hyperref para usar a versão atual do abntex.
+\usepackage{setspace}
+
+% Definindo cores para os links cruzados
+\usepackage{xcolor}              % para mais cores
+\definecolor{rltred}{rgb}{0.2,0,0}
+\definecolor{rltgreen}{rgb}{0,0.2,0}
+\definecolor{rltblue}{rgb}{0,0,0.2}
+
+
+% Importa hyperref
+\usepackage[%
+hidelinks, % colorlinks=true, | Troque se quiser link com cor
+urlcolor=rltblue,       % \href{...}{...} external (URL)
+filecolor=rltgreen,     % \href{...} local file
+linkcolor=rltred,       % \ref{...} and \pageref{...}
+citecolor=rltgreen,%
+]{hyperref} % 
+
+
+%==============================================================================
 % Configurando a linguagem do template
 
 % Português
@@ -38,30 +62,8 @@
 \usepackage{multicol}            % para células com várias colunas
 
 % FIGUAS E GRÁFICOS
-\usepackage{xcolor}              % para mais cores
 \usepackage{subfigure}           % para figuras dentro de figuras
 \usepackage{caption}             % para remodelar o formato dos títulos
-
-%==============================================================================
-% O pacote hyperref para referência cruzadas dentro do documento \ref e \autoref
-
-% Setspace precisa estar antes do hyperref para usar a versão atual do abntex.
-\usepackage{setspace}
-
-% Definindo cores para os links cruzados
-\definecolor{rltred}{rgb}{0.2,0,0}
-\definecolor{rltgreen}{rgb}{0,0.2,0}
-\definecolor{rltblue}{rgb}{0,0,0.2}
-
-
-% Importa hyperref
-\usepackage[%
-hidelinks, % colorlinks=true, | Troque se quiser link com cor
-urlcolor=rltblue,       % \href{...}{...} external (URL)
-filecolor=rltgreen,     % \href{...} local file
-linkcolor=rltred,       % \ref{...} and \pageref{...}
-citecolor=rltgreen,%
-]{hyperref} % 
 
 
 %==============================================================================
