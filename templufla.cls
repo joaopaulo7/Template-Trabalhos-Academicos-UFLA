@@ -1,7 +1,7 @@
 %######################################################################
 % Classe templUFLA - Template de trabalhos acadêmicos da UFLA
 % 
-% v6.11.1
+% v6.12
 %
 %  Essa classe é parte de um template de trabalhos acadêmcios da UFLA
 % seguindo o Manual de Normalização Ed. 6.
@@ -115,6 +115,8 @@
 \edicao{}
 
 % Campos da ficha catalográfica
+\def\fichaCatalograficaPDF#1{\gdef\@fichaCatalograficaPDF{#1}} % arquivo PDF
+\fichaCatalograficaPDF{}
 \def\fichacat#1{\gdef\@fichacat{#1}} % texto da ficha catalografica
 \fichacat{}
 \def\fcedicao#1{\gdef\@fcedicao{#1}} % edicao
@@ -469,6 +471,21 @@
 
 
 %######################################################################
+\newcommand{\imprimeFichaCatPDF}{%
+	\begingroup
+	\let\clearpage\relax%
+	\vspace*{-3.46cm}%
+	\hspace*{-4.25cm}%
+	%
+	\nobreak\noindent%
+	\includegraphics[%
+	height=297mm,%
+	width=210mm,%
+	]{\@fichaCatalograficaPDF}
+	\endgroup%
+}
+
+
 % Codigo para impressao da ficha catalográfica (PESADELO)
 \fichacat{% texto da ficha catalográfica
 	% Antes verifica se tem os dados, senão, não imprime
@@ -601,13 +618,23 @@
 
 
 % Folha de aprovacao
-\newcommand{\imprimeFolhaAprovacao}{
+\newcommand{\imprimeFolhaAprovacao}{%
     \ifthenelse{\equal{\@arquivoFolhaAprovacao}{\@empty}} %
     % se não existir arquivo da folha de aprovação, então produza-a
     {\geraFolhaAprovacao} %
     % se existir arquivo, então insira-o
     {%\pagestyle{empty} %
-     \vspace*{-4.5cm}\hspace*{-4.5cm} \includegraphics[scale=\@escalaFolhaAprovacao]{\@arquivoFolhaAprovacao}%
+     \begingroup%
+     \let\clearpage\relax%
+     \vspace*{-3.46cm}%
+     \hspace*{-4.25cm}%
+     %
+     \noindent%
+     \includegraphics[%
+     height=279mm,%
+     width=210mm,%
+     ]{\@arquivoFolhaAprovacao}
+     \endgroup%
      \clearpage} %
 }
 
@@ -1121,14 +1148,18 @@
         
         \imprimeFolhaRosto
         
+        % Ficha catalográfica
         \newpage
         \newcounter{oldPageNumber}
         \setcounter{oldPageNumber}{\value{page}}
         \setcounter{page}{-1}
-        \imprimeFichaCat
-        \clearpage
-        \setcounter{page}{\value{oldPageNumber}}
-     
+        \ifthenelse{\equal{\@fichaCatalograficaPDF}{\@empty}}% % se não existir data de defesa
+        {\imprimeFichaCat}%                                     % não produza 
+        {\imprimeFichaCatPDF}% 
+        %
+        \newpage%
+        \setcounter{page}{\value{oldPageNumber}}%
+     	%
         \ifthenelse{\equal{\@defesa}{\@empty}}% % se não existir data de defesa
         {}%                                     % não produza 
         {\imprimeFolhaAprovacao}%               % caso contrário produza folha de aprovação 
